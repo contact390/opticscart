@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mega Menu with Two Dropdowns</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+
+
+<nav style="background-color: #fff; border-bottom: 1px solid #ddd; padding: 10px 20px;">
+  <ul style="list-style: none; display: flex; gap: 30px; margin: 0; padding: 0;">
+  
+    
+    <li style="position: relative; cursor: pointer;" id="navEyeglasses">
+      <a href="#" style="text-decoration: none; color: #000; font-weight: bold;">EYEGLASSES</a>
+      <div id="dropdownEyeglasses" style="display: none; position: absolute; top: 100%; left: 0; width: 1000px; background-color: #f9f9f9; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px; z-index: 10; flex-direction: row; gap: 30px;">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://images.pexels.com/photos/5752296/pexels-photo-5752296.jpeg" alt="Men" style="width: 50px; height: 50px; border-radius: 50%;" />
+            <div><h4 style="margin: 0;">Men</h4><p style="margin: 0;">Classic Eyeglasses<br>From ₹2000</p></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://images.pexels.com/photos/5752296/pexels-photo-5752296.jpeg" alt="Women" style="width: 50px; height: 50px; border-radius: 50%;" />
+            <div><h4 style="margin: 0;">Women</h4><p style="margin: 0;">Premium Eyeglasses<br>From ₹3500</p></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://images.pexels.com/photos/5752296/pexels-photo-5752296.jpeg" alt="Kids" style="width: 50px; height: 50px; border-radius: 50%;" />
+            <div><h4 style="margin: 0;">Kids</h4><p style="margin: 0;">Screen Eyeglasses<br>From ₹500</p></div>
+          </div>
+        </div>
+        <div style="flex: 3; display: flex; gap: 40px;">
+          <div>
+            <h5 style="margin: 0 0 10px; font-size: 16px;">Our Top Picks</h5>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="margin-bottom: 5px;">New Arrivals</li>
+              <li style="margin-bottom: 5px;">Best Seller</li>
+              <li style="margin-bottom: 5px;">Lenskart BLU Lenses</li>
+              <li style="margin-bottom: 5px;">Tinted Eyeglasses</li>
+              <li style="margin-bottom: 5px;">Progressive Eyeglasses</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    
+    <li style="position: relative; cursor: pointer;" id="navSunglasses">
+      <a href="#" style="text-decoration: none; color: #000; font-weight: bold;">SUNGLASSES</a>
+      <div id="dropdownSunglasses" style="display: none; position: absolute; top: 100%; left: 0; width: 1000px; background-color: #f0f0f0; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 20px; z-index: 10; flex-direction: row; gap: 30px;">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://images.pexels.com/photos/5752296/pexels-photo-5752296.jpeg" alt="Men" style="width: 50px; height: 50px; border-radius: 50%;" />
+            <div><h4 style="margin: 0;">Men</h4><p style="margin: 0;">Sporty Sunglasses<br>From ₹1500</p></div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://images.pexels.com/photos/5752296/pexels-photo-5752296.jpeg" alt="Women" style="width: 50px; height: 50px; border-radius: 50%;" />
+            <div><h4 style="margin: 0;">Women</h4><p style="margin: 0;">Stylish Shades<br>From ₹1800</p></div>
+          </div>
+        </div>
+        <div style="flex: 3; display: flex; gap: 40px;">
+          <div>
+            <h5 style="margin: 0 0 10px; font-size: 16px;">Styles</h5>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="margin-bottom: 5px;">Aviator</li>
+              <li style="margin-bottom: 5px;">Wayfarer</li>
+              <li style="margin-bottom: 5px;">Round</li>
+              <li style="margin-bottom: 5px;">Oversized</li>
+              <li style="margin-bottom: 5px;">Clip-ons</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+</nav>
+
+
+<script>
+  const navEyeglasses = document.getElementById('navEyeglasses');
+  const dropdownEyeglasses = document.getElementById('dropdownEyeglasses');
+
+  const navSunglasses = document.getElementById('navSunglasses');
+  const dropdownSunglasses = document.getElementById('dropdownSunglasses');
+
+  navEyeglasses.addEventListener('mouseenter', () => {
+    dropdownEyeglasses.style.display = 'flex';
+    dropdownSunglasses.style.display = 'none';
+  });
+
+  navEyeglasses.addEventListener('mouseleave', () => {
+    dropdownEyeglasses.style.display = 'none';
+  });
+
+  navSunglasses.addEventListener('mouseenter', () => {
+    dropdownSunglasses.style.display = 'flex';
+    dropdownEyeglasses.style.display = 'none';
+  });
+
+  navSunglasses.addEventListener('mouseleave', () => {
+    dropdownSunglasses.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
+

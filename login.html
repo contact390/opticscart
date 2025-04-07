@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body style="
+    background: url('https://img.freepik.com/free-photo/morskie-oko-tatry_1204-510.jpg?t=st=1743496893~exp=1743500493~hmac=f2f8e5378cdf9b103e16dbe667db2286cd069e0311993037edf51d8edab32d22&w=1380') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+">
+
+    <div style="
+        background: rgba(255, 255, 255, 0.2);
+        padding: 30px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+    ">
+        <h2 style="margin-bottom: 20px; color: white;">Login</h2>
+        <form onsubmit="return handleLogin(event)">
+            <input type="text" id="username" placeholder="Username" required style="
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 5px;
+                background-color: white;
+                outline: none;
+            ">
+
+            <input type="password" id="password" placeholder="Password" required style="
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 5px;
+                background-color: white;
+                outline: none;
+                -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+                box-shadow: 0 0 0px 1000px white inset !important;
+                -webkit-text-fill-color: black !important;
+            ">
+
+            <button type="submit" style="
+                width: 100%;
+                padding: 10px;
+                background: #007BFF;
+                border: none;
+                color: white;
+                font-size: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+            " 
+            onmouseover="this.style.background='#0056b3'" 
+            onmouseout="this.style.background='#007BFF'">
+                Login
+            </button>
+        </form>
+        <p id="message" style="color: white;"></p>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); 
+
+            const username = document.getElementById("username").value.trim(); 
+            const password = document.getElementById("password").value.trim(); 
+            const message = document.getElementById("message");
+
+            if (username === "admin" && password === "password123") {
+                message.style.color = "green";
+                message.textContent = "Login successful!";
+                alert("Login successful!"); 
+
+                window.location.href = "homepage.html"; 
+            } else {
+                message.style.color = "red";
+                message.textContent = "Invalid username or password.";
+                alert("Invalid username or password."); 
+            }
+        }
+    </script>
+
+</body>
+</html>
