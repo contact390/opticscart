@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HitaishiLens</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      /* Sticky header that keeps navbars visible at top */
+      #main-header{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      }
+      /* small padding for top navigation */
+      #main-header .top-nav{padding: 6px 20px;}
+      /* keep the second row visually separated when sticky */
+      #main-header .brand-row{background-color: #f5f5f5;}
+    </style>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px;">
+     <!----------------------------------------------navigation bars-------------------------------------------------------------------------------->
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitaishi Lens | Premium Eyewear</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #fafafa; color: #333; }
+        
+        /* Desktop Navigation */
+        .desktop-nav { 
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; 
+            background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        /* Top Info Bar */
+        .top-info-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 8px 0; font-size: 13px;
+        }
+        
+        .top-info-content {
+            max-width: 1280px; margin: 0 auto; padding: 0 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        
+        .info-links a {
+            color: rgba(255,255,255,0.9); text-decoration: none;
+            margin-right: 25px; transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .info-links a:hover { color: white; }
+        
+        .contact-btn {
+            background: rgba(255,255,255,0.15); color: white;
+            padding: 5px 15px; border-radius: 20px; text-decoration: none;
+            font-weight: 500; transition: all 0.3s;
+        }
+        
+        .contact-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+        
+        /* Main Header */
+        .main-header {
+            max-width: 1280px; margin: 0 auto; padding: 20px 40px;
+            display: flex; align-items: center; gap: 40px;
+        }
+        
+        .logo img { height: 45px; width: auto; }
+        
+        .search-container {
+            flex: 1; position: relative; max-width: 600px;
+        }
+        
+        .search-input {
+            width: 100%; padding: 14px 20px 14px 50px;
+            border: 2px solid #e1e5e9; border-radius: 30px;
+            font-size: 15px; background: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none; border-color: #667eea;
+            background: white; box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+        
+        .search-icon {
+            position: absolute; left: 20px; top: 50%;
+            transform: translateY(-50%); color: #8895a7;
+        }
+        
+        .contact-info {
+            text-align: right; margin-right: 30px;
+        }
+        
+        .phone-number {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            display: flex; align-items: center; gap: 8px;
+        }
+        
+        .customer-support {
+            font-size: 12px; color: #718096; margin-top: 2px;
+        }
+        
+        .user-actions {
+            display: flex; align-items: center; gap: 20px;
+        }
+        
+        .user-action-link {
+            color: #4a5568; text-decoration: none; font-size: 14px;
+            font-weight: 500; transition: color 0.3s;
+            display: flex; align-items: center; gap: 5px;
+        }
+        
+        .user-action-link:hover { color: #667eea; }
+        
+        .cart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 10px 24px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; font-size: 14px;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.2);
+        }
+        
+        .cart-btn:hover {
+            transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.3);
+        }
+        
+        /* Categories Menu */
+        .categories-menu {
+            border-top: 1px solid #edf2f7; background: white;
+            position: relative;
+        }
+        
+        .categories-content {
+            max-width: 1280px; margin: 0 auto; padding: 0 40px;
+            display: flex; justify-content: center; gap: 40px;
+        }
+        
+        .category-item {
+            position: relative; padding: 18px 0;
+        }
+        
+        .category-link {
+            color: #4a5568; text-decoration: none; font-weight: 600;
+            font-size: 15px; display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .category-link:hover { color: #667eea; }
+        
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%); background: white;
+            border-radius: 12px; padding: 25px; min-width: 280px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+            z-index: 100;
+        }
+        
+        .category-item:hover .dropdown-menu {
+            opacity: 1; visibility: visible;
+        }
+        
+        .dropdown-title {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            margin-bottom: 20px; padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .dropdown-link {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 0; text-decoration: none; color: #4a5568;
+            transition: all 0.2s; border-radius: 6px;
+        }
+        
+        .dropdown-link:hover {
+            background: #f7fafc; padding-left: 10px; color: #667eea;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; z-index: 1000; background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-header {
+            padding: 15px 20px; display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid #edf2f7;
+        }
+        
+        .mobile-menu-btn {
+            background: none; border: none; font-size: 24px;
+            color: #4a5568; cursor: pointer; padding: 5px;
+        }
+        
+        .mobile-logo img { height: 35px; width: auto; }
+        
+        .mobile-actions {
+            display: flex; align-items: center; gap: 15px;
+        }
+        
+        .mobile-search-btn, .mobile-cart-btn {
+            background: none; border: none; font-size: 20px;
+            color: #4a5568; cursor: pointer; padding: 5px;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed; top: 0; left: -100%; width: 320px;
+            height: 100%; background: white; z-index: 1001;
+            transition: left 0.3s ease; overflow-y: auto;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu.active { left: 0; }
+        
+        .mobile-menu-header {
+            padding: 25px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; display: flex; justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-menu-close {
+            background: none; border: none; color: white;
+            font-size: 28px; cursor: pointer;
+        }
+        
+        .mobile-menu-content { padding: 20px; }
+        
+        .mobile-category {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-category-title {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            margin-bottom: 15px; padding-bottom: 10px;
+            border-bottom: 2px solid #edf2f7;
+        }
+        
+        .mobile-link {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 0; text-decoration: none; color: #4a5568;
+            border-bottom: 1px solid #edf2f7; font-weight: 500;
+        }
+        
+        .mobile-link:last-child { border-bottom: none; }
+        
+        .mobile-link:hover { color: #667eea; }
+        
+        /* Overlay */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 999;
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1280px; margin: 180px auto 60px; padding: 0 40px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px; padding: 60px; color: white;
+            margin-bottom: 60px; text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 48px; font-weight: 800; margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px; opacity: 0.9; max-width: 600px;
+            margin: 0 auto 30px; line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block; background: white;
+            color: #667eea; padding: 15px 35px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; font-size: 16px;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; margin-top: 40px;
+        }
+        
+        .product-card {
+            background: white; border-radius: 16px; padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s; text-align: center;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-icon {
+            font-size: 48px; margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .product-title {
+            font-size: 20px; font-weight: 700; color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .product-description {
+            color: #718096; font-size: 14px; line-height: 1.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .categories-content { gap: 30px; }
+            .main-header { padding: 20px 30px; gap: 30px; }
+            .top-info-content, .categories-content { padding: 0 30px; }
+            .hero-title { font-size: 36px; }
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-nav { display: block; }
+            .main-content { margin: 100px auto 40px; padding: 0 20px; }
+            .hero-section { padding: 40px 20px; margin-bottom: 40px; }
+            .hero-title { font-size: 28px; }
+            .hero-subtitle { font-size: 16px; }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-menu { width: 280px; }
+            .main-content { padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+        <!-- Top Info Bar -->
+        <!-- <div class="top-info-bar">
+            <div class="top-info-content">
+                <div class="info-links">
+                    <a href="domorebemore.html">🚀 Do More Be More</a>
+                    <a href="singapur.html">🇸🇬 Singapore</a>
+                    <a href="uae.html">🇦🇪 UAE</a>
+                    <a href="johnjacobs.html">👓 John Jacobs</a>
+                    <a href="aqualence.html">💧 Aqualens</a>
+                </div>
+                <div>
+                    <a href="engineeringblogs.html" class="info-links">📚 Engineering Blogs</a>
+                    <a href="contactus.html" class="contact-btn">📞 Contact Us</a>
+                </div>
+            </div>
+        </div> -->
+        
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="logo">
+                <img src="image\hitaishilogo.png" alt="Hitaishi Lens" style="width: 80px; height: 80px;">
+            </div>
+            
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search for eyeglasses, sunglasses, lenses...">
+            </div>
+            
+            <div class="contact-info">
+                <div class="phone-number">
+                    <span>📞</span> 99998 99998
+                </div>
+                <div class="customer-support">24/7 Customer Support</div>
+            </div>
+            
+            <div class="user-actions">
+                <a href="trackorder.html" class="user-action-link">📦 Track Order</a>
+                <a href="signup.html" class="user-action-link">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="user-action-link">❤️ Wishlist</a>
+                <a href="cart.html" class="cart-btn">
+                    🛒 Cart <span class="cart-count"></span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="categories-content">
+                <div class="category-item">
+                    <a href="index.html" class="category-link">🏠 Home</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="eyeglasses.html" class="category-link">👓 Eyeglasses</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Eyeglasses Collection</div>
+                        <a href="#" class="dropdown-link">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Premium frames for men</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Stylish frames for women</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Durable & fun frames</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item">
+                    <a href="sunglasses.html" class="category-link">🕶️ Sunglasses</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Sunglasses Collection</div>
+                        <a href="#" class="dropdown-link">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">UV protection & style</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Fashion meets protection</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Safe & colorful</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item">
+                    <a href="kids.html" class="category-link">👶 Kids Glasses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="lenses.html" class="category-link">🔍 Lenses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="contactlenses.html" class="category-link">👁️ Contact Lenses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="storelocater.html" class="category-link">📍 Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-header">
+            <button class="mobile-menu-btn" onclick="openMobileMenu()">☰</button>
+            <div class="mobile-logo">
+                <img src="image\hitaishilogo.png" alt="Hitaishi Lens"style="width: 80px; height: 80px;">
+            </div>
+            <div class="mobile-actions">
+                <button class="mobile-search-btn" onclick="openSearch()">🔍</button>
+                <button class="mobile-cart-btn" onclick="openCart()">🛒</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3 style="margin: 0;">Menu</h3>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">×</button>
+        </div>
+        <div class="mobile-menu-content">
+            <div class="mobile-category">
+                <div class="mobile-category-title">Categories</div>
+                <a href="home.html" class="mobile-link">🏠 Home</a>
+                <a href="eyeglasses.html" class="mobile-link">👓 Eyeglasses</a>
+                <a href="sunglasses.html" class="mobile-link">🕶️ Sunglasses</a>
+                <a href="kids.html" class="mobile-link">👶 Kids Glasses</a>
+                <a href="lenses.html" class="mobile-link">🔍 Lenses</a>
+                <a href="contactlenses.html" class="mobile-link">👁️ Contact Lenses</a>
+                <a href="storelocater.html" class="mobile-link">📍 Store Locator</a>
+            </div>
+            
+            <div class="mobile-category">
+                <div class="mobile-category-title">Quick Links</div>
+                <a href="trackorder.html" class="mobile-link">📦 Track Order</a>
+                <a href="signup.html" class="mobile-link">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="mobile-link">❤️ Wishlist</a>
+                <a href="engineeringblogs.html" class="mobile-link">📚 Engineering Blogs</a>
+                <a href="domorebemore.html" class="mobile-link">🚀 Do More Be More</a>
+            </div>
+            
+            <div class="mobile-category">
+                <div class="mobile-category-title">Contact</div>
+                <a href="tel:9999899998" class="mobile-link">📞 99998 99998</a>
+                <a href="contactus.html" class="mobile-link">📧 Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="hero-section">
+            <h1 class="hero-title">Premium Eyewear for Clear Vision</h1>
+            <p class="hero-subtitle">
+                Discover our exclusive collection of stylish eyeglasses, sunglasses, and contact lenses. 
+                Experience unmatched quality and comfort with Hitaishi Lens.
+            </p>
+            <a href="products.html" class="cta-button">Shop Now →</a>
+        </section>
+
+        <section id="products">
+            <h2 style="text-align: center; font-size: 32px; color: #2d3748; margin-bottom: 20px;">
+                Our Collections
+            </h2>
+            <p style="text-align: center; color: #718096; max-width: 600px; margin: 0 auto 40px;">
+                Browse through our carefully curated selection of premium eyewear
+            </p>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">👓</div>
+                    <h3 class="product-title">Eyeglasses</h3>
+                    <p class="product-description">
+                        Stylish frames designed for comfort and clear vision. Perfect for everyday use.
+                    </p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">🕶️</div>
+                    <h3 class="product-title">Sunglasses</h3>
+                    <p class="product-description">
+                        UV protection with contemporary designs. Stay stylish while protecting your eyes.
+                    </p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">👁️</div>
+                    <h3 class="product-title">Contact Lenses</h3>
+                    <p class="product-description">
+                        High-quality contact lenses for daily wear. Experience comfort and clarity.
+                    </p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">👶</div>
+                    <h3 class="product-title">Kids Glasses</h3>
+                    <p class="product-description">
+                        Durable and colorful frames specially designed for children.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mobile Menu Functions
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Search Functionality
+        function openSearch() {
+            const searchInput = document.querySelector('.search-input');
+            if (window.innerWidth <= 768) {
+                const searchText = prompt("Search for products:");
+                if (searchText) {
+                    alert(`Searching for: ${searchText}`);
+                }
+            } else {
+                searchInput.focus();
+            }
+        }
+        
+        // Cart Functionality
+        function openCart() {
+            alert("Your cart has 3 items. Proceed to checkout?");
+        }
+        
+        // Close mobile menu when clicking outside
+        document.getElementById('overlay').addEventListener('click', closeMobileMenu);
+        
+        // Handle dropdown hover delay
+        const categoryItems = document.querySelectorAll('.category-item');
+        categoryItems.forEach(item => {
+            let timeout;
+            item.addEventListener('mouseenter', () => {
+                clearTimeout(timeout);
+                const dropdown = item.querySelector('.dropdown-menu');
+                dropdown.style.opacity = '1';
+                dropdown.style.visibility = 'visible';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                const dropdown = item.querySelector('.dropdown-menu');
+                timeout = setTimeout(() => {
+                    dropdown.style.opacity = '0';
+                    dropdown.style.visibility = 'hidden';
+                }, 200);
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }      
+        });
+    </script>
+</body>
+</html>
+<!--------------------------------------------------------------images with hedinges------------------------------------------------------------->
+<!-- HEADING WITH LINES -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; height:1px; background:black;"></div>
+  <span style="padding:0 15px; text-align:center; font-size:30px; color:red;">
+    Behind every Lens Is A Start
+  </span>
+  <div style="flex:1; height:1px; background:black;"></div>
+</div>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .lens-heading{
+    font-size:22px !important;
+  }
+  .lens-text{
+    font-size:20px !important;
+  }
+  .lens-subtext{
+    font-size:16px !important;
+  }
+  .lens-content{
+    top:auto !important;
+    bottom:20px !important;
+    left:50% !important;
+    transform:translateX(-50%) !important;
+    text-align:center !important;
+    width:90% !important;
+  }
+}
+</style>
+
+<!-- IMAGE SECTION -->
+<div 
+  style="width:100%; overflow:hidden; margin-bottom:10px;"
+  onmouseover="this.children[0].style.filter='grayscale(20%) sepia(100%) hue-rotate(200deg) saturate(200%)';"
+  onmouseout="this.children[0].style.filter='none';"
+>
+
+  <div style="position:relative; width:100%; height:50vh;">
+
+    <img 
+      src="https://twelvesixtynine.com/cdn/shop/products/jacques-marie-mage-diana-gold-sunglasses2.jpg?v=1682944188&width=1600"
+      style="width:100%; height:100%; object-fit:cover; display:block;"
+      alt="Lens Image"
+    >
+
+    <!-- TEXT CONTENT -->
+    <div class="lens-content" style="
+      position:absolute;
+      top:20px;
+      left:20px;
+      color:blue;
+      font-size:34px;
+      font-weight:bold;
+      line-height:1.4;
+      max-width:450px;
+    ">
+
+      <p class="lens-heading" style="padding:10px; color:violet; margin:0;">
+        Smart look. Sharper vision.
+      </p>
+
+      <span class="lens-subtext" style="font-size:28px; color:blue; font-weight:normal;">
+        Sometimes all it takes is a lens <br>
+        change to see life more clearly
+      </span>
+      <br><br>
+
+      <!-- BUTTON -->
+      <a href="nearbylocater.html" style="
+        display:inline-block;
+        padding:10px 24px;
+        background:#004aad;
+        color:white;
+        text-decoration:none;
+        font-size:18px;
+        border-radius:8px;
+        transition:background-color 0.3s ease;
+      "
+      onmouseover="this.style.backgroundColor='#002f6c';"
+      onmouseout="this.style.backgroundColor='#004aad';">
+        Offers
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<!------------------------------------------------------------------third image------------------------------------------------------------------------->
+<!-- TITLE DIVIDER -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; height:1px; background:black;"></div>
+  <span class="eye-safe-title" style="padding:0 15px; text-align:center; font-size:30px; color:aqua;">
+    Your Eye Are In Good Hand
+  </span>
+  <div style="flex:1; height:1px; background:black;"></div>
+</div>
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .eye-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .eye-image,
+  .eye-content{
+    width:100% !important;
+    height:auto !important;
+  }
+  .eye-image img{
+    height:300px !important;
+  }
+  .eye-safe-title{
+    font-size:22px !important;
+  }
+  .eye-heading{
+    font-size:24px !important;
+  }
+  .eye-text{
+    font-size:16px !important;
+  }
+  .eye-btn{
+    font-size:16px !important;
+    padding:12px 24px !important;
+  }
+}
+</style>
+
+<!-- MAIN SECTION -->
+<div class="eye-wrapper" style="width:100%; height:50vh; display:flex;">
+
+  <!-- LEFT IMAGE -->
+  <div class="eye-image" style="width:50%;">
+    <img
+      src="https://i0.wp.com/pixahive.com/wp-content/uploads/2021/05/Model-sitting-and-posing-in-Black-outfit-439244-pixahive.jpg?fit=1560%2C1955&ssl=1"
+      alt="Eye Care"
+      style="width:100%; height:100%; object-fit:cover;"
+    >
+  </div>
+
+  <!-- RIGHT CONTENT -->
+  <div class="eye-content" style="
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background-image:url('https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg');
+    background-size:cover;
+    background-position:center;
+    color:blueviolet;
+    padding:20px;
+  ">
+
+    <h1 class="eye-heading" style="margin:0; font-weight:bold; font-size:36px;">
+      Take an instant<br>eye check-up
+    </h1>
+
+    <div class="eye-text" style="padding:10px; font-size:18px;">
+      See detailed vision insights now!
+    </div>
+
+    <!-- BUTTON -->
+    <a href="freeonlineeyetest.html"
+       class="eye-btn"
+       style="
+        margin-top:10px;
+        padding:12px 26px;
+        font-size:18px;
+        background-color:blueviolet;
+        color:white;
+        border-radius:6px;
+        text-decoration:none;
+       ">
+      Try Now
+    </a>
+
+  </div>
+</div>
+
+             <br>
+<!-------------------------------------------------------------------------4rth omage------------------------------------------------------------->
+
+                
+     <!-- TITLE DIVIDER -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; height:1px; background:black;"></div>
+  <span class="premium-title" style="padding:0 15px; text-align:center; font-size:30px;">
+    PRIMIUM EYEVIEW
+  </span>
+  <div style="flex:1; height:1px; background:black;"></div>
+</div>
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .premium-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .premium-text,
+  .premium-image{
+    width:100% !important;
+  }
+  .premium-image img{
+    height:280px !important;
+  }
+  .premium-title{
+    font-size:22px !important;
+  }
+  .premium-heading{
+    font-size:22px !important;
+    text-align:center !important;
+  }
+  .premium-offer{
+    font-size:20px !important;
+  }
+  .premium-btn{
+    font-size:16px !important;
+    padding:12px 26px !important;
+  }
+}
+</style>
+
+<!-- MAIN SECTION -->
+<div class="premium-wrapper" style="width:100%; height:50vh; display:flex;">
+
+  <!-- LEFT TEXT -->
+  <div class="premium-text" style="
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    color:black;
+    font-size:2em;
+    background-color:lightblue;
+    padding:20px;
+    text-align:center;
+  ">
+
+    <h1 class="premium-heading" style="margin:0; font-weight:bold; font-size:30px;">
+      Double Down On Striking Eyeglasses by <b>HITAISHI</b>
+    </h1>
+
+    <h2 class="premium-offer" style="margin:0; font-weight:bold;">
+      BUY 1 GET 1 FREE*
+    </h2>
+
+    <!-- BUTTON -->
+    <a href="primiumeyeview.html"
+       class="premium-btn"
+       style="
+        margin-top:10px;
+        padding:12px 26px;
+        font-size:18px;
+        background:black;
+        color:white;
+        border-radius:6px;
+        text-decoration:none;
+       ">
+      Shop Now
+    </a>
+
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="premium-image" style="width:50%;">
+    <img
+      src="https://www.clearly.ca/thelook/wp-content/uploads/2022/04/imgRB9-1050x608.jpg"
+      alt="Premium Eyeview"
+      style="width:100%; height:100%; object-fit:cover;"
+    >
+  </div>
+
+</div>
+      
+  <!---------------------------------------------------5th image------------------------------------------------------------------------------------>
+  <br>
+
+<!-- TITLE -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; height:1px; background:black;"></div>
+  <span class="top-title" style="padding:0 15px; text-align:center; font-size:30px; color:magenta;">
+    TOP-NOTCH QUALITY
+  </span>
+  <div style="flex:1; height:1px; background:black;"></div>
+</div>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .top-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .top-left,
+  .top-right,
+  .top-center{
+    width:100% !important;
+    height:260px !important;
+  }
+  .top-center{
+    height:auto !important;
+    padding:20px !important;
+  }
+  .top-title{
+    font-size:22px !important;
+  }
+  .top-center h2{
+    font-size:20px !important;
+  }
+}
+</style>
+
+<!-- MAIN SECTION -->
+<div class="top-wrapper" style="display:flex; width:100%; height:50vh; margin:0; padding:0;">
+
+  <!-- LEFT IMAGE -->
+  <div class="top-left" style="width:40%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://lenscaravan.com/cdn/shop/products/3_8ddb0943-47a9-4403-8cdf-83fc73887862_510x@2x.jpg?v=1619106571"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <div id="overlay-left" style="
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0); pointer-events:none;">
+    </div>
+
+    <button id="button-left" style="
+      position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+      padding:10px 20px; font-size:16px; color:white;
+      background:rgba(0,0,0,0.7); border:none; border-radius:5px; cursor:pointer;">
+      <a href="topnotchquality.html" style="color:white; text-decoration:none;">Shop Now</a>
+    </button>
+  </div>
+
+  <!-- CENTER TEXT -->
+  <div class="top-center" style="
+    width:20%; height:100%; display:flex; align-items:center; justify-content:center;
+    text-align:center; background:#f5f5f5;">
+    <h2 style="font-size:24px; margin:0; color:red;">
+      Get your favourite Lens From <b>Hitaishi</b>
+    </h2>
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="top-right" style="width:40%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://images.pexels.com/photos/4226870/pexels-photo-4226870.jpeg"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <div id="overlay-right" style="
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0); pointer-events:none;">
+    </div>
+
+    <button id="button-right" style="
+      position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+      padding:10px 20px; font-size:16px; color:white;
+      background:rgba(0,0,0,0.7); border:none; border-radius:5px; cursor:pointer;">
+      <a href="topnotchquality.html" style="color:white; text-decoration:none;">Shop Now</a>
+    </button>
+  </div>
+
+</div>
+
+<!-- ANIMATION SCRIPT -->
+<script>
+const buttonLeft = document.getElementById("button-left");
+const buttonRight = document.getElementById("button-right");
+const overlayLeft = document.getElementById("overlay-left");
+const overlayRight = document.getElementById("overlay-right");
+
+let toggle = false;
+
+setInterval(() => {
+  toggle = !toggle;
+
+  const btnColor = toggle ? '#ff4081' : 'rgba(0,0,0,0.7)';
+  const overlayColor = toggle ? 'rgba(255,64,129,0.3)' : 'rgba(0,0,0,0)';
+
+  buttonLeft.style.backgroundColor = btnColor;
+  buttonRight.style.backgroundColor = btnColor;
+
+  overlayLeft.style.backgroundColor = overlayColor;
+  overlayRight.style.backgroundColor = overlayColor;
+}, 800);
+</script>
+
+<br>
+
+ <!----------------------------------------------------------6th image-------------------------------------------------------------------------------->
+<!-- TITLE DIVIDER -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; height:1px; background:black;"></div>
+  <span class="trend-title" style="padding:0 15px; text-align:center; font-size:30px; color:green;">
+    TRENDY AND ELEGANT
+  </span>
+  <div style="flex:1; height:1px; background:black;"></div>
+</div>
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .trend-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .trend-text,
+  .trend-image{
+    width:100% !important;
+  }
+  .trend-image{
+    height:280px !important;
+  }
+  .trend-image img{
+    height:100% !important;
+  }
+  .trend-title{
+    font-size:22px !important;
+  }
+  .trend-heading{
+    font-size:22px !important;
+  }
+  .trend-offer{
+    font-size:20px !important;
+  }
+  .trend-btn{
+    font-size:16px !important;
+    padding:12px 26px !important;
+  }
+}
+</style>
+
+<!-- MAIN SECTION -->
+<div class="trend-wrapper" style="width:100%; height:50vh; display:flex;">
+
+  <!-- LEFT TEXT -->
+  <div class="trend-text" style="
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    color:peru;
+    font-size:2em;
+    background-color:lightblue;
+    text-align:center;
+    padding:20px;
+  ">
+
+    <h1 class="trend-heading" style="margin:0; font-size:30px;">
+      Spotlight-Worthy Sunglasses
+    </h1>
+
+    <h2 class="trend-offer" style="margin:0; font-weight:bold;">
+      BUY 1 GET 1
+    </h2>
+
+    <!-- BUTTON -->
+    <a href="trendyandelegant.html"
+       class="trend-btn"
+       style="
+        margin-top:10px;
+        padding:12px 26px;
+        font-size:18px;
+        background-color:peru;
+        color:white;
+        border-radius:6px;
+        text-decoration:none;
+       ">
+      Shop Now
+    </a>
+
+  </div>
+
+  <!-- RIGHT IMAGE (SWAP) -->
+  <div class="trend-image" style="width:50%; height:100%;">
+    <img
+      id="swappingImage"
+      src="https://opticalpark.com/wp-content/uploads/2021/07/sun.jpg"
+      alt="Trendy Sunglasses"
+      style="width:100%; height:100%; object-fit:cover; display:block;"
+    >
+  </div>
+
+</div>
+
+<!-- IMAGE SWAP SCRIPT -->
+<script>
+var img = document.getElementById('swappingImage');
+var images = [
+  'https://opticalpark.com/wp-content/uploads/2021/07/sun.jpg',
+  'https://images.unsplash.com/photo-1517841905240-472988babdf9?fit=crop&w=800&q=80'
+];
+var i = 0;
+
+setInterval(function () {
+  i = (i + 1) % images.length;
+  img.src = images[i];
+}, 1000);
+</script>
+
+<br>
+
+  <!---------------------------------------------------------7th image--------------------------------------------------------------------------------->
+ <!-- TITLE -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; height:1px; background:black;"></div>
+  <span class="sun-title" style="padding:0 15px; text-align:center; font-size:30px; color:yellow;">
+    SUN GLASSES
+  </span>
+  <div style="flex:1; height:1px; background:black;"></div>
+</div>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .sun-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .sun-box{
+    width:100% !important;
+    height:300px !important;
+  }
+  .sun-title{
+    font-size:22px !important;
+  }
+  .sun-text{
+    font-size:16px !important;
+  }
+  .sun-btn{
+    font-size:16px !important;
+    padding:12px 24px !important;
+  }
+}
+</style>
+
+<!-- MAIN WRAPPER -->
+<div class="sun-wrapper" style="display:flex; width:100%; height:50vh; margin:0; padding:0;">
+
+  <!-- IMAGE 1 -->
+  <div class="sun-box" style="width:50%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://eyedrnowga.com/wp-content/uploads/2022/07/Ray-Ban-RB6396-copy.webp"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <div class="sun-text" style="
+      position:absolute;
+      bottom:60px;
+      left:50%;
+      transform:translateX(-50%);
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      text-shadow:1px 1px 3px black;">
+      Shop your favourite one
+    </div>
+
+    <button class="sun-btn" style="
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 20px;
+      font-size:16px;
+      background:rgba(0,0,0,0.7);
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;">
+      <a href="sunglasses.html" style="color:white; text-decoration:none;">Shop Now</a>
+    </button>
+  </div>
+
+  <!-- IMAGE 2 -->
+  <div class="sun-box" style="width:50%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://cdn12.picryl.com/photo/2016/12/31/eyeglasses-glasses-spectacles-04f987-1024.jpg"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <div class="sun-text" style="
+      position:absolute;
+      bottom:60px;
+      left:50%;
+      transform:translateX(-50%);
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      text-shadow:1px 1px 3px black;">
+      Shop your favourite one
+    </div>
+
+    <button class="sun-btn" style="
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 20px;
+      font-size:16px;
+      background:rgba(0,0,0,0.7);
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;">
+      <a href="sunglasses.html" style="color:white; text-decoration:none;">Shop Now</a>
+    </button>
+  </div>
+
+</div>
+
+<!---------------------------------------------------------8th image------------------------------------------------------------------------->
+  <!-- TITLE -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; height:1px; background:black;"></div>
+  <span class="contact-title" style="padding:0 15px; text-align:center; font-size:30px; color:pink;">
+    CONTACT LENSES & STYLISH
+  </span>
+  <div style="flex:1; height:1px; background:black;"></div>
+</div>
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .contact-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .contact-box{
+    width:100% !important;
+    height:300px !important;
+  }
+  .contact-title{
+    font-size:22px !important;
+  }
+  .contact-btn{
+    font-size:16px !important;
+    padding:12px 24px !important;
+  }
+}
+</style>
+
+<!-- MAIN WRAPPER -->
+<div class="contact-wrapper" style="display:flex; width:100%; height:50vh;">
+
+  <!-- LEFT IMAGE -->
+  <div class="contact-box" style="width:50%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://pixahive.com/wp-content/uploads/2020/12/Goggles-on-a-paper-213966-pixahive.jpg"
+         alt="Contact Lenses"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <button class="contact-btn" style="
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 20px;
+      font-size:16px;
+      background:rgba(0,0,0,0.7);
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;">
+      <a href="contactlences.html" style="color:white; text-decoration:none;">
+        Shop Now
+      </a>
+    </button>
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="contact-box" style="width:50%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://storage.needpix.com/rsynced_images/sunglasses-1678166_1280.jpg"
+         alt="Stylish Glasses"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <button class="contact-btn" style="
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 20px;
+      font-size:16px;
+      background:rgba(0,0,0,0.7);
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;">
+      <a href="contactlences.html" style="color:white; text-decoration:none;">
+        Shop Now
+      </a>
+    </button>
+  </div>
+
+</div>
+
+<br>
+
+ <!-------------------------------------------------------------9TH IMAGE----------------------------------------------------------------------->
+    <!-- TITLE -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; height:1px; background:black;"></div>
+  <span class="brand-title" style="padding:0 15px; text-align:center; font-size:30px; color:chocolate;">
+    OUR BRANDS
+  </span>
+  <div style="flex:1; height:1px; background:black;"></div>
+</div>
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .brand-banner{
+    height:320px !important;
+  }
+  .brand-title{
+    font-size:22px !important;
+  }
+  .brand-text{
+    font-size:20px !important;
+    left:15px !important;
+    top:auto !important;
+    bottom:20px !important;
+    line-height:1.3 !important;
+  }
+  .brand-text p{
+    font-size:22px !important;
+  }
+}
+</style>
+
+<!-- IMAGE BANNER -->
+<div class="brand-banner" style="position:relative; width:100%; height:500px; overflow:hidden;">
+
+  <img
+    src="https://lensrus.com/cdn/shop/files/lensRus-EyeExams-banner-Sep.jpg?v=1694460240&width=1500"
+    alt="Our Brands"
+    style="width:100%; height:100%; object-fit:cover; display:block;"
+  >
+
+  <!-- TEXT OVERLAY -->
+  <div class="brand-text" style="
+    position:absolute;
+    top:20px;
+    left:20px;
+    color:blue;
+    font-size:34px;
+    font-weight:bold;
+    text-align:left;
+    line-height:1.2;
+    max-width:80%;
+  ">
+    <p style="padding:10px 0; color:brown; margin:0;">
+      HITAISHI LENS
+    </p>
+    IRRESISTIBLE FASHION <br>
+    DELIGHTS TO EXPLORE <br>
+    THE MANY 'YOU'
+  </div>
+
+</div>
+
+  
+<!------------------------------------------------------whats up contact------------------------------------------------------------->
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .call-wrapper{
+    flex-direction:column !important;
+    gap:15px !important;
+    text-align:center !important;
+  }
+  .call-left,
+  .call-right{
+    flex-direction:column !important;
+    gap:8px !important;
+  }
+  .call-left span,
+  .call-right span{
+    margin:0 !important;
+  }
+}
+</style>
+
+<!-- MAIN WRAPPER -->
+<div class="call-wrapper" style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:linear-gradient(to right, #65c1a7, #74c3b5);
+  padding:25px 15px;
+  border-radius:8px;
+  font-family:Arial, sans-serif;
+  flex-wrap:wrap;
+">
+
+  <!-- LEFT SECTION -->
+  <div class="call-left" style="display:flex; align-items:center; color:white; font-size:18px;">
+    <span style="margin-right:12px; font-size:26px;">📞</span>
+
+    <div>
+      <div style="font-weight:bold; line-height:1.5;">CALL OUR EXPERTS TO</div>
+      <div style="font-weight:bold; line-height:1.5;">PLACE AN ORDER</div>
+    </div>
+
+    <span style="margin-left:20px; font-weight:bold; font-size:18px;">
+      <a href="tel:9999899998" style="color:white; text-decoration:none;">
+        99998-99998
+      </a>
+    </span>
+  </div>
+
+  <!-- RIGHT SECTION -->
+  <div class="call-right" style="display:flex; align-items:center;">
+    <span style="color:white; font-size:18px; font-weight:bold; margin-right:12px;">
+      📱 BUY ON WHATSAPP
+    </span>
+
+    <span style="
+      background-color:yellow;
+      padding:10px 18px;
+      border-radius:5px;
+      font-weight:bold;
+      color:black;
+    ">
+      <a href="https://wa.me/918447821891" style="color:black; text-decoration:none;">
+        84478-21891
+      </a>
+    </span>
+  </div>
+
+</div>
+
+                    <br>
+<footer style="width:100%; margin:0; padding:0;">
+
+  <div style="background:#6A6FD4; color:white; font-family:Arial, sans-serif; padding:40px 20px; width:100%; box-sizing:border-box;">
+
+    <h3 style="text-align:center; margin-bottom:15px;">See Better with HitaishiLens</h3>
+
+    <p style="max-width:1200px; margin:0 auto; line-height:1.7; text-align:center;">
+      HitaishiLens is the leading e-commerce portal for eyewear in India.
+      From stylish frames to precision lenses, HitaishiLens helps you
+      <b><i>See Better with HitaishiLens</i></b>.
+      With strong omni-channel presence and advanced technology,
+      we deliver premium eyewear with great offers.
+    </p>
+
+    <!-- LINKS SECTION -->
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; max-width:1200px; margin:40px auto; gap:30px;">
+
+      <div style="min-width:180px;">
+        <h4>Services</h4>
+        <a href="storelocater.html" style="display:block; color:white; text-decoration:none; margin:6px 0;">Store Locator</a>
+        <a href="#" style="display:block; color:white; text-decoration:none; margin:6px 0;">Buying Guide</a>
+        <a href="#" style="display:block; color:white; text-decoration:none; margin:6px 0;">Frame Size</a>
+      </div>
+
+      <div style="min-width:180px;">
+        <h4>About Us</h4>
+        <a href="wearehiring.html" style="display:block; color:white; text-decoration:none; margin:6px 0;">We Are Hiring</a>
+        <a href="referandearn.html" style="display:block; color:white; text-decoration:none; margin:6px 0;">Refer & Earn</a>
+        <a href="domorebemore.html" style="display:block; color:white; text-decoration:none; margin:6px 0;">About Hitaishi</a>
+        <a href="coupons.html" style="display:block; color:white; text-decoration:none; margin:6px 0;">Coupons</a>
+      </div>
+
+      <div style="min-width:180px;">
+        <h4>Help</h4>
+        <a href="#" style="display:block; color:white; text-decoration:none; margin:6px 0;">FAQs</a>
+        <a href="#" style="display:block; color:white; text-decoration:none; margin:6px 0;">Grievance Redressal</a>
+        <a href="#" style="display:block; color:white; text-decoration:none; margin:6px 0;">Cardemi</a>
+      </div>
+
+    </div>
+
+    <!-- APP DOWNLOAD -->
+    <div style="text-align:center;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+           style="width:140px; margin:6px;">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZ0AAAB6CAMAAABTN34e..."
+           style="width:130px; background:white; border-radius:6px; padding:6px; margin:6px;">
+      <p style="margin-top:10px; font-size:14px;">
+        Download HitaishiLens App to buy Eyeglasses, Sunglasses & Contact Lenses
+      </p>
+    </div>
+
+    <hr style="border:0.5px solid rgba(255,255,255,0.4); margin:30px 0;">
+
+    <!-- BOTTOM BAR -->
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:15px; font-size:14px;">
+
+      <div style="display:flex; gap:15px; flex-wrap:wrap;">
+        <a href="#" style="color:white; text-decoration:none;">T & C</a>
+        <a href="#" style="color:white; text-decoration:none;">Privacy</a>
+        <a href="#" style="color:white; text-decoration:none;">Disclaimer</a>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span>Version 1.0.0</span>
+        <span>|</span>
+        <span>Follow Us</span>
+        <a href="https://www.facebook.com/login.php/"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" style="width:20px;"></a>
+        <a href="https://www.instagram.com/accounts/login/"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" style="width:20px;"></a>
+        <a href="https://x.com/i/flow/login"><img src="https://img.freepik.com/premium-vector/x-new-social-network-black-app-icon-twitter-rebranded-as-x-twitter-s-logo-was-changed_277909-568.jpg" style="width:20px;"></a>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+</body>
+</html>

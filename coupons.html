@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HitaishiLens Coupons</title>
+</head>
+<body style="margin:0; font-family:'Segoe UI', sans-serif; background:#f5f7fa; color:#333;">
+
+  <!-- Header -->
+  <div style="background:linear-gradient(to right, #0d47a1, #42a5f5); padding:40px 20px; color:#fff; text-align:center;">
+    <h1 style="font-size:36px; margin:0;">🎯 HitaishiLens Coupon Center</h1>
+    <p style="font-size:18px; margin-top:10px;">Unlock savings on lenses, glasses, & home eye care</p>
+  </div>
+
+  <!-- Coupon Container -->
+  <div style="max-width:1100px; margin:40px auto; padding:20px; display:flex; flex-wrap:wrap; gap:30px; justify-content:center;">
+
+    <!-- Coupon Card -->
+    <div style="background:#ffffff; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); width:320px; padding:24px; border-left:5px solid #0d47a1; position:relative;">
+      <h3 style="margin:0 0 10px;">💥 25% OFF First Order</h3>
+      <p style="margin:0 0 16px;">Use this code at checkout for your first order.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span id="code1" style="background:#0d47a1; color:white; padding:8px 12px; border-radius:6px;">HIT25NEW</span>
+        <button onclick="copyCode('code1')" style="background:#1565c0; border:none; padding:8px 14px; color:white; border-radius:6px; cursor:pointer; font-weight:600;">Copy</button>
+      </div>
+    </div>
+
+    <!-- Coupon Card -->
+    <div style="background:#ffffff; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); width:320px; padding:24px; border-left:5px solid #33691e; position:relative;">
+      <h3 style="margin:0 0 10px;">🎁 Buy 1 Get 1 Free</h3>
+      <p style="margin:0 0 16px;">On selected eyeglass frames. Limited time only!</p>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span id="code2" style="background:#33691e; color:white; padding:8px 12px; border-radius:6px;">BOGOGLASS</span>
+        <button onclick="copyCode('code2')" style="background:#558b2f; border:none; padding:8px 14px; color:white; border-radius:6px; cursor:pointer; font-weight:600;">Copy</button>
+      </div>
+    </div>
+
+    <!-- Coupon Card -->
+    <div style="background:#ffffff; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); width:320px; padding:24px; border-left:5px solid #ef6c00; position:relative;">
+      <h3 style="margin:0 0 10px;">🚚 Free Home Eye Test</h3>
+      <p style="margin:0 0 16px;">Use this code to get a home visit by an expert.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span id="code3" style="background:#ef6c00; color:white; padding:8px 12px; border-radius:6px;">EYETEST100</span>
+        <button onclick="copyCode('code3')" style="background:#fb8c00; border:none; padding:8px 14px; color:white; border-radius:6px; cursor:pointer; font-weight:600;">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" style="position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#4caf50; color:white; padding:12px 24px; border-radius:8px; font-weight:500; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.2); z-index:1000;">
+    Coupon copied!
+  </div>
+
+  <!-- Footer -->
+  <div style="background:#0d47a1; color:white; text-align:center; padding:20px; font-size:14px; margin-top:60px;">
+    © 2025 HitaishiLens | All Rights Reserved | <span style="opacity:0.8;">help@hitaishilens.com</span>
+  </div>
+
+  <!-- JS: Copy Code -->
+  <script>
+    function copyCode(id) {
+      const code = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        toast.innerText = "🎉 Code copied: " + code;
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 2500);
+      });
+    }
+  </script>
+
+</body>
+</html>

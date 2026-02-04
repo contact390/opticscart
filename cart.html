@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cart - Hitaishi Lens</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      color: #333;
+      min-height: 100vh;
+    }
+
+    .nav {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav h1 {
+      font-size: 26px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateX(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    @media (min-width: 992px) {
+      .container {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      grid-column: 1 / -1;
+    }
+
+    .header h2 {
+      font-size: 36px;
+      color: #333;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      color: #666;
+      font-size: 16px;
+      opacity: 0.8;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(102, 126, 234, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .card h2, .card h3 {
+      color: #333;
+      margin-bottom: 25px;
+      font-size: 22px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #fafbff;
+      border: 1px solid #eef2ff;
+      transition: all 0.3s;
+    }
+
+    .item:hover {
+      border-color: #667eea;
+      background: #f8faff;
+      transform: translateY(-2px);
+    }
+
+    .item-image {
+      width: 120px;
+      height: 100px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .item:hover .item-image img {
+      transform: scale(1.05);
+    }
+
+    .item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .item-brand {
+      font-size: 13px;
+      color: #764ba2;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .item-price {
+      font-size: 18px;
+      font-weight: 800;
+      color: #667eea;
+      white-space: nowrap;
+    }
+
+    .item-subtotal {
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 8px;
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .qty-control button {
+      background: #f8f9ff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #667eea;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .qty-control button:hover {
+      background: #667eea;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .qty-control input {
+      width: 50px;
+      text-align: center;
+      border: none;
+      background: transparent;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .qty-control input:focus {
+      outline: none;
+    }
+
+    .remove-btn {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .remove-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+    }
+
+    .summary-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      font-size: 15px;
+    }
+
+    .summary-row:not(:last-child) {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .summary-row .label {
+      color: #666;
+    }
+
+    .summary-row .value {
+      color: #333;
+      font-weight: 600;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      margin-top: 10px;
+      border-top: 2px solid #f0f0f0;
+      border-bottom: 2px solid #f0f0f0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .total-row .label {
+      color: #333;
+    }
+
+    .total-row .amount {
+      color: #667eea;
+      font-size: 24px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 16px 24px;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
+      font-size: 17px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 60px 30px;
+      color: #666;
+    }
+
+    .empty-cart svg {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      color: #667eea;
+      opacity: 0.5;
+    }
+
+    .empty-cart h3 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .empty-cart p {
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .message {
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 14px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .message.show {
+      display: flex;
+    }
+
+    .message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .discount-badge {
+      background: linear-gradient(135deg, #4cd964 0%, #5ac8fa 100%);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .nav h1 {
+        justify-content: center;
+      }
+
+      .container {
+        padding: 20px 15px;
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .item-image {
+        width: 100%;
+        height: 180px;
+      }
+
+      .item-header {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .item-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .qty-control {
+        align-self: flex-start;
+      }
+    }
+
+    .free-shipping {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #667eea;
+      font-weight: 600;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .cart-count {
+      background: #ff4757;
+      color: white;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitaishi Lens | Premium Eyewear</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', Arial, sans-serif; background: #fafafa; color: #333; box-sizing: border-box;">
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; display: block;">
+        <!-- Main Header -->
+        <div class="main-header" style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; gap: 40px;">
+            <div class="logo">
+                <img src="image\hitaishilogo.png" alt="Hitaishi Lens" style="width: 80px; height: 80px;">
+            </div>
+            
+            <div class="search-container" style="flex: 1; position: relative; max-width: 600px;">
+                <form id="searchForm" onsubmit="handleSearch(event)" style="margin: 0; width: 100%;">
+                    <span class="search-icon" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #8895a7; z-index: 2;">🔍</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search for eyeglasses, sunglasses, lenses..." style="width: 350px; padding: 14px 20px 14px 50px; border: 2px solid #e1e5e9; border-radius: 30px; font-size: 15px; background: #f8f9fa; transition: all 0.3s;">
+                </form>
+            </div>
+            
+            <div class="contact-info" style="text-align: right; margin-right: 30px;">
+                <div class="phone-number" style="font-size: 16px; font-weight: 700; color: #2d3748; display: flex; align-items: center; gap: 8px;">
+                    <span>📞</span> 99998 99998
+                </div>
+                <div class="customer-support" style="font-size: 12px; color: #718096; margin-top: 2px;">24/7 Customer Support</div>
+            </div>
+            
+            <div class="user-actions" style="display: flex; align-items: center; gap: 20px;">
+                <a href="trackorder.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">📦 Track Order</a>
+                <a href="signup.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">❤️ Wishlist</a>
+                <a href="cart.html" class="cart-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.2);">
+                    🛒 Cart <span class="cart-count"></span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Categories Menu -->
+        <div class="categories-menu" style="border-top: 1px solid #edf2f7; background: white; position: relative;">
+            <div class="categories-content" style="max-width: 1280px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: center; gap: 40px;">
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="index.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">🏠 Home</a>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="products-eyeglasses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👓 Eyeglasses</a>
+                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
+                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Eyeglasses Collection</div>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Premium frames for men</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Stylish frames for women</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Durable & fun frames</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="products-sunglasses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">🕶️ Sunglasses</a>
+                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
+                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Sunglasses Collection</div>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">UV protection & style</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Fashion meets protection</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Safe & colorful</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="products-children.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👶 Kids Glasses</a>
+                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
+                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Kids Glasses Collection</div>
+                        <a href="products-children.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👦</span>
+                            <div>
+                                <div style="font-weight: 600;">Boys Glasses</div>
+                                <div style="font-size: 12px; color: #718096;">Durable & fun designs</div>
+                            </div>
+                        </a>
+                        <a href="products-children.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👧</span>
+                            <div>
+                                <div style="font-weight: 600;">Girls Glasses</div>
+                                <div style="font-size: 12px; color: #718096;">Stylish & safe</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="products-contactlenses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👁️ Contact Lenses</a>
+                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
+                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Contact Lenses Collection</div>
+                        <a href="products-contactlenses.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>🔵</span>
+                            <div>
+                                <div style="font-weight: 600;">Daily Disposable</div>
+                                <div style="font-size: 12px; color: #718096;">Comfortable daily wear</div>
+                            </div>
+                        </a>
+                        <a href="products-contactlenses.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>🟢</span>
+                            <div>
+                                <div style="font-weight: 600;">Monthly Lenses</div>
+                                <div style="font-size: 12px; color: #718096;">Extended wear option</div>
+                            </div>
+                        </a>
+                        <a href="products-contactlenses.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>🟡</span>
+                            <div>
+                                <div style="font-weight: 600;">Colored Lenses</div>
+                                <div style="font-size: 12px; color: #718096;">Change your eye color</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="storelocater.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">📍 Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" style="display: none; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div class="mobile-header" style="padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #edf2f7;">
+            <button class="mobile-menu-btn" onclick="openMobileMenu()" style="background: none; border: none; font-size: 24px; color: #4a5568; cursor: pointer; padding: 5px;">☰</button>
+            <div class="mobile-logo">
+                <img src="image\hitaishilogo.png" alt="Hitaishi Lens" style="width: 60px; height: 60px;">
+            </div>
+            <div class="mobile-actions" style="display: flex; align-items: center; gap: 15px;">
+                <button class="mobile-search-btn" onclick="openMobileSearch()" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px;">🔍</button>
+<!-- Change this line in mobile-header section -->
+<a href="cart.html" class="mobile-cart-btn" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px; text-decoration: none;">🛒</a>            </div>
+        </div>
+        
+        <!-- Mobile Search Bar (Hidden by default) -->
+        <div id="mobileSearchBar" class="mobile-search-container" style="display: none; padding: 15px 20px; background: white; border-bottom: 1px solid #edf2f7;">
+            <form id="mobileSearchForm" onsubmit="handleMobileSearch(event)" style="margin: 0; width: 100%; display: flex; gap: 10px;">
+                <div style="flex: 1; position: relative;">
+                    <span class="mobile-search-icon" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #8895a7;">🔍</span>
+                    <input type="text" id="mobileSearchInput" class="mobile-search-input" placeholder="Search products..." style="width: 100%; padding: 12px 15px 12px 45px; border: 2px solid #e1e5e9; border-radius: 25px; font-size: 14px; background: #f8f9fa;">
+                </div>
+                <button type="button" onclick="closeMobileSearch()" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px;">✕</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="position: fixed; top: 0; left: -100%; width: 320px; height: 100%; background: white; z-index: 1001; transition: left 0.3s ease; overflow-y: auto; box-shadow: 10px 0 30px rgba(0,0,0,0.1);">
+        <div class="mobile-menu-header" style="padding: 25px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin: 0;">Menu</h3>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer;">×</button>
+        </div>
+        <div class="mobile-menu-content" style="padding: 20px;">
+            <!-- Mobile Search in Menu -->
+            <div class="mobile-menu-search" style="margin-bottom: 25px;">
+                <form onsubmit="handleMobileMenuSearch(event)" style="margin: 0;">
+                    <div style="position: relative;">
+                        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #8895a7;">🔍</span>
+                        <input type="text" id="mobileMenuSearchInput" placeholder="Search products..." style="width: 100%; padding: 12px 15px 12px 45px; border: 2px solid #e1e5e9; border-radius: 25px; font-size: 14px; background: #f8f9fa;">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="mobile-category" style="margin-bottom: 25px;">
+                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Categories</div>
+                <a href="home.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🏠 Home</a>
+                <a href="eyeglasses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👓 Eyeglasses</a>
+                <a href="products-sunglasses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🕶️ Sunglasses</a>
+                <a href="kids.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👶 Kids Glasses</a>
+                <a href="lenses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🔍 Lenses</a>
+                <a href="contactlenses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">👁️ Contact Lenses</a>
+                <a href="storelocater.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📍 Store Locator</a>
+            </div>
+            
+            <div class="mobile-category" style="margin-bottom: 25px;">
+                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Quick Links</div>
+                <a href="trackorder.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">📦 Track Order</a>
+                <a href="signup.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">❤️ Wishlist</a>
+                <a href="engineeringblogs.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📚 Engineering Blogs</a>
+                <a href="domorebemore.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">🚀 Do More Be More</a>
+            </div>
+            
+            <div class="mobile-category" style="margin-bottom: 25px;">
+                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Contact</div>
+                <a href="tel:9999899998" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">📞 99998 99998</a>
+                <a href="contactus.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📧 Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeMobileMenu(); closeMobileSearch();" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s;"></div>
+
+  
+    <script>
+        // SEARCH FUNCTIONALITY
+        function handleSearch(event) {
+            event.preventDefault();
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Navigate to products page with search query
+                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+        
+        function handleMobileSearch(event) {
+            event.preventDefault();
+            const searchInput = document.getElementById('mobileSearchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Navigate to products page with search query
+                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+            closeMobileSearch();
+        }
+        
+        function handleMobileMenuSearch(event) {
+            event.preventDefault();
+            const searchInput = document.getElementById('mobileMenuSearchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Navigate to products page with search query
+                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+            closeMobileMenu();
+        }
+        
+        // MOBILE SEARCH FUNCTIONS
+        function openMobileSearch() {
+            const mobileSearchBar = document.getElementById('mobileSearchBar');
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            
+            mobileSearchBar.style.display = 'block';
+            setTimeout(() => {
+                mobileSearchInput.focus();
+            }, 100);
+        }
+        
+        function closeMobileSearch() {
+            const mobileSearchBar = document.getElementById('mobileSearchBar');
+            mobileSearchBar.style.display = 'none';
+        }
+        
+        // MOBILE MENU FUNCTIONS
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').style.left = '0';
+            document.getElementById('overlay').style.opacity = '1';
+            document.getElementById('overlay').style.visibility = 'visible';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').style.left = '-100%';
+            document.getElementById('overlay').style.opacity = '0';
+            document.getElementById('overlay').style.visibility = 'hidden';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // CART FUNCTIONALITY
+        function openCart() {
+            alert("Your cart has 3 items. Proceed to checkout?");
+        }
+        
+        // Close mobile menu and search when clicking outside
+        document.getElementById('overlay').addEventListener('click', function() {
+            closeMobileMenu();
+            closeMobileSearch();
+        });
+        
+        // Handle dropdown hover - MUST RUN AFTER DOM LOADS
+        function initializeDropdowns() {
+            const categoryItems = document.querySelectorAll('.category-item');
+            categoryItems.forEach(item => {
+                let timeout;
+                
+                item.addEventListener('mouseenter', () => {
+                    clearTimeout(timeout);
+                    const dropdown = item.querySelector('.dropdown-menu');
+                    if (dropdown) {
+                        dropdown.style.opacity = '1';
+                        dropdown.style.visibility = 'visible';
+                        dropdown.style.pointerEvents = 'auto';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    const dropdown = item.querySelector('.dropdown-menu');
+                    if (dropdown) {
+                        timeout = setTimeout(() => {
+                            dropdown.style.opacity = '0';
+                            dropdown.style.visibility = 'hidden';
+                            dropdown.style.pointerEvents = 'none';
+                        }, 100);
+                    }
+                });
+            });
+        }
+        
+        // Initialize dropdowns when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeDropdowns);
+        } else {
+            initializeDropdowns();
+        }
+        
+        // RESPONSIVE DESIGN HANDLER
+        function handleResponsiveDesign() {
+            const mobileNav = document.querySelector('.mobile-nav');
+            const desktopNav = document.querySelector('.desktop-nav');
+            const mainContent = document.querySelector('.main-content');
+            const heroSection = document.querySelector('.hero-section');
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const productsGrid = document.querySelector('.products-grid');
+            const categoriesContent = document.querySelector('.categories-content');
+            const mainHeader = document.querySelector('.main-header');
+            const searchContainer = document.querySelector('.search-container');
+            const userActions = document.querySelector('.user-actions');
+            const contactInfo = document.querySelector('.contact-info');
+            
+            if (window.innerWidth <= 768) {
+                // Mobile view
+                mobileNav.style.display = 'block';
+                desktopNav.style.display = 'none';
+                
+                // Adjust main content
+                mainContent.style.margin = '100px auto 40px';
+                mainContent.style.padding = '0 20px';
+                
+                // Adjust hero section
+                heroSection.style.padding = '40px 20px';
+                heroSection.style.marginBottom = '40px';
+                heroTitle.style.fontSize = '28px';
+                heroSubtitle.style.fontSize = '16px';
+                
+                // Adjust products grid
+                productsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                
+                // Adjust categories (for tablets)
+                if (categoriesContent) {
+                    categoriesContent.style.gap = '20px';
+                    categoriesContent.style.padding = '0 20px';
+                }
+                
+            } else if (window.innerWidth <= 1024) {
+                // Tablet view
+                mobileNav.style.display = 'none';
+                desktopNav.style.display = 'block';
+                
+                // Adjust main content
+                mainContent.style.margin = '160px auto 60px';
+                mainContent.style.padding = '0 30px';
+                
+                // Adjust hero section
+                heroSection.style.padding = '50px 30px';
+                heroTitle.style.fontSize = '36px';
+                
+                // Adjust products grid
+                productsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                
+                // Adjust header
+                if (mainHeader) {
+                    mainHeader.style.padding = '20px 30px';
+                    mainHeader.style.gap = '30px';
+                }
+                
+                // Adjust categories
+                if (categoriesContent) {
+                    categoriesContent.style.gap = '30px';
+                    categoriesContent.style.padding = '0 30px';
+                }
+                
+            } else {
+                // Desktop view
+                mobileNav.style.display = 'none';
+                desktopNav.style.display = 'block';
+                
+                // Reset all styles to default
+                mainContent.style.margin = '180px auto 60px';
+                mainContent.style.padding = '0 40px';
+                
+                heroSection.style.padding = '60px';
+                heroSection.style.marginBottom = '60px';
+                heroTitle.style.fontSize = '48px';
+                heroSubtitle.style.fontSize = '18px';
+                
+                productsGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+                
+                if (mainHeader) {
+                    mainHeader.style.padding = '20px 40px';
+                    mainHeader.style.gap = '40px';
+                }
+                
+                if (categoriesContent) {
+                    categoriesContent.style.gap = '40px';
+                    categoriesContent.style.padding = '0 40px';
+                }
+            }
+            
+            // Extra small mobile adjustments
+            if (window.innerWidth <= 480) {
+                // Very small screens
+                productsGrid.style.gridTemplateColumns = '1fr';
+                heroTitle.style.fontSize = '24px';
+                heroSubtitle.style.fontSize = '14px';
+                
+                // Adjust mobile menu width
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu) {
+                    mobileMenu.style.width = '280px';
+                }
+                
+                mainContent.style.padding = '0 15px';
+            }
+            
+            if (window.innerWidth <= 600) {
+                // Small screens
+                productsGrid.style.gridTemplateColumns = '1fr';
+            }
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', handleResponsiveDesign);
+        
+        // Initialize responsive design on load
+        window.addEventListener('load', handleResponsiveDesign);
+        
+        // ADD HOVER EFFECTS
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search input focus effect
+            const searchInputs = document.querySelectorAll('.search-input, .mobile-search-input, #mobileMenuSearchInput');
+            searchInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.outline = 'none';
+                    this.style.borderColor = '#667eea';
+                    this.style.background = 'white';
+                    this.style.boxShadow = '0 0 0 3px rgba(102,126,234,0.1)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = '#e1e5e9';
+                    this.style.background = '#f8f9fa';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // Add hover effects for links
+            const userActionLinks = document.querySelectorAll('.user-action-link');
+            userActionLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#667eea';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.color = '#4a5568';
+                });
+            });
+            
+            // Add hover effects for category links
+            const categoryLinks = document.querySelectorAll('.category-link');
+            categoryLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#667eea';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.color = '#4a5568';
+                });
+            });
+            
+            // Add hover effects for cart button
+            const cartBtn = document.querySelector('.cart-btn');
+            if (cartBtn) {
+                cartBtn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 6px 20px rgba(102,126,234,0.3)';
+                });
+                cartBtn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 15px rgba(102,126,234,0.2)';
+                });
+            }
+            
+            // Add hover effects for CTA button
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
+                });
+                ctaButton.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+                });
+            }
+            
+            // Add hover effects for dropdown links
+            const dropdownLinks = document.querySelectorAll('.dropdown-link');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.background = '#f7fafc';
+                    this.style.paddingLeft = '10px';
+                    this.style.color = '#667eea';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.background = 'transparent';
+                    this.style.paddingLeft = '0';
+                    this.style.color = '#4a5568';
+                });
+            });
+            
+            // Add hover effects for mobile links
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#667eea';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.color = '#4a5568';
+                });
+            });
+            
+            // Initialize responsive design
+            handleResponsiveDesign();
+            
+            // Check for search query in URL (for demo purposes)
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                // If there's a search query in URL, show it in search bar
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.value = searchQuery;
+                }
+                // You could also trigger a search display here
+                console.log(`Search query detected: ${searchQuery}`);
+            }
+        });
+        
+        // Handle Enter key press in search
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const activeElement = document.activeElement;
+                if (activeElement.id === 'searchInput') {
+                    handleSearch(event);
+                } else if (activeElement.id === 'mobileSearchInput') {
+                    handleMobileSearch(event);
+                } else if (activeElement.id === 'mobileMenuSearchInput') {
+                    handleMobileMenuSearch(event);
+                }
+            }
+        });
+    </script>
+    
+    <!-- Load navbar authentication script -->
+    <script src="navbar-auth.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+  <div class="nav" style="margin-top: 170px;">
+    <h1>🕶️ Hitaishi Lens</h1>
+    <a href="products.html">
+      ← Continue Shopping
+      <span id="cartCountBadge" class="cart-count">0</span>
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h2>🛒 Your Shopping Cart</h2>
+      <p>Review and manage your items before checkout</p>
+    </div>
+
+    <div class="card" id="cartList">
+      <h2>Cart Items</h2>
+      <div id="items" class="items-list"></div>
+    </div>
+
+    <div class="card">
+      <h3>Order Summary</h3>
+      <div id="summary" class="summary-content"></div>
+      <div id="freeShippingMessage" class="free-shipping" style="display: none;">
+        🚚 You've qualified for free shipping!
+      </div>
+      <button id="proceedBtn" class="btn-primary" onclick="proceedToCheckout()">
+        <span>Proceed to Checkout</span>
+        <span id="checkoutArrow">→</span>
+      </button>
+      <div id="checkoutMessage" class="message"></div>
+      <p style="text-align: center; margin-top: 15px; color: #666; font-size: 14px;">
+        Secure checkout powered by Hitaishi Lens
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem('cart') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const cart = getCart();
+      const totalItems = cart.reduce((sum, item) => sum + (parseInt(item.quantity) || 1), 0);
+      const badge = document.getElementById('cartCountBadge');
+      badge.textContent = totalItems;
+      badge.style.display = totalItems > 0 ? 'inline-block' : 'none';
+    }
+
+    function renderCart() {
+      const itemsDiv = document.getElementById('items');
+      const summaryDiv = document.getElementById('summary');
+      const cart = getCart();
+      
+      updateCartCount();
+
+      if (cart.length === 0) {
+        itemsDiv.innerHTML = `
+          <div class="empty-cart">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <h3>Your cart is empty</h3>
+            <p>Add some amazing lenses to get started!</p>
+            <a href="products.html" class="btn-secondary">Browse Products</a>
+          </div>
+        `;
+        summaryDiv.innerHTML = '';
+        document.getElementById('proceedBtn').disabled = true;
+        document.getElementById('freeShippingMessage').style.display = 'none';
+        return;
+      }
+
+      itemsDiv.innerHTML = '';
+      let subtotal = 0;
+      
+      cart.forEach((item, index) => {
+        const price = parseFloat(item.price || 0);
+        const quantity = parseInt(item.quantity || 1, 10);
+        const itemSubtotal = price * quantity;
+        subtotal += itemSubtotal;
+        
+        const imageUrl = item.image_url 
+          ? ('http://localhost:5000' + item.image_url)
+          : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="100"%3E%3Crect fill="%23f0f0f0" width="120" height="100" rx="10"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="12"%3ENo Image%3C/text%3E%3C/svg%3E';
+        
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item';
+        itemDiv.innerHTML = `
+          <div class="item-image">
+            <img src="${imageUrl}" alt="${item.name}" 
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"100\"%3E%3Crect fill=\"%23f0f0f0\" width=\"120\" height=\"100\" rx=\"10\"/%3E%3C/svg%3E'">
+          </div>
+          <div class="item-content">
+            <div class="item-header">
+              <div class="item-info">
+                <div class="item-name">${item.name}</div>
+                <div class="item-brand">${item.brand || 'Generic Brand'}</div>
+                <div class="item-subtotal">₹${itemSubtotal.toFixed(2)} total</div>
+              </div>
+              <div class="item-price">₹${price.toFixed(2)}</div>
+            </div>
+            <div class="item-actions">
+              <div class="qty-control">
+                <button onclick="changeQty(${index}, -1)" aria-label="Decrease quantity">−</button>
+                <input type="number" value="${quantity}" min="1" 
+                       onchange="setQty(${index}, this.value)"
+                       onblur="validateQty(${index}, this.value)">
+                <button onclick="changeQty(${index}, 1)" aria-label="Increase quantity">+</button>
+              </div>
+              <button class="remove-btn" onclick="removeItem(${index})">
+                <span>🗑️</span> Remove
+              </button>
+            </div>
+          </div>
+        `;
+        itemsDiv.appendChild(itemDiv);
+      });
+
+      const shipping = subtotal > 1000 ? 0 : 50;
+      const total = subtotal + shipping;
+
+      summaryDiv.innerHTML = `
+        <div class="summary-row">
+          <span class="label">Subtotal (${cart.length} item${cart.length > 1 ? 's' : ''})</span>
+          <span class="value">₹${subtotal.toFixed(2)}</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Shipping</span>
+          <span class="value">${shipping === 0 ? 'FREE' : '₹50.00'}</span>
+        </div>
+        <div class="total-row">
+          <span class="label">Total Amount</span>
+          <span class="amount">₹${total.toFixed(2)}</span>
+        </div>
+      `;
+
+      document.getElementById('proceedBtn').disabled = false;
+      
+      // Show free shipping message if applicable
+      const freeShippingMsg = document.getElementById('freeShippingMessage');
+      if (subtotal > 1000) {
+        freeShippingMsg.style.display = 'flex';
+      } else {
+        freeShippingMsg.style.display = 'none';
+      }
+    }
+
+    function changeQty(index, delta) {
+      const cart = getCart();
+      const currentQty = parseInt(cart[index].quantity || 1, 10);
+      cart[index].quantity = Math.max(1, currentQty + delta);
+      saveCart(cart);
+      renderCart();
+      showMessage('Quantity updated', 'success');
+    }
+
+    function setQty(index, value) {
+      const cart = getCart();
+      const newQty = Math.max(1, parseInt(value || 1, 10));
+      cart[index].quantity = newQty;
+      saveCart(cart);
+      renderCart();
+    }
+
+    function validateQty(index, value) {
+      if (!value || parseInt(value) < 1) {
+        const cart = getCart();
+        cart[index].quantity = 1;
+        saveCart(cart);
+        renderCart();
+      }
+    }
+
+    function removeItem(index) {
+      const cart = getCart();
+      const itemName = cart[index].name;
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+      showMessage(`"${itemName}" removed from cart`, 'success');
+    }
+
+    function proceedToCheckout() {
+      const cart = getCart();
+      if (!cart || cart.length === 0) {
+        showMessage('Your cart is empty', 'error');
+        return;
+      }
+      window.location.href = 'checkout.html';
+    }
+
+    function showMessage(text, type) {
+      const messageEl = document.getElementById('checkoutMessage');
+      messageEl.textContent = text;
+      messageEl.className = `message ${type} show`;
+      setTimeout(() => {
+        messageEl.className = 'message';
+      }, 3000);
+    }
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+    });
+  </script>
+</body>
+</html>

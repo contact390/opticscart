@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aqualens | Clear Vision Everyday</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background-color: #f0f9ff;
+      color: #03396c;
+    }
+
+    header {
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3em;
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 50px 30px;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #022b3a;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #444;
+      font-size: 0.95em;
+      margin-bottom: 15px;
+    }
+
+    .card button {
+      background-color: #0072ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .card button:hover {
+      background-color: #005ec4;
+    }
+
+    .banner {
+      background: url('https://images.unsplash.com/photo-1606235784068-946e6e15a0c5?auto=format&fit=crop&w=1300&q=80') center/cover no-repeat;
+      padding: 100px 30px;
+      color: white;
+      text-align: center;
+    }
+
+    .banner h2 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.4);
+    }
+
+    .banner p {
+      font-size: 1.1em;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+
+    .testimonial {
+      background: #d0f0ff;
+      padding: 40px;
+      border-radius: 12px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    footer {
+      background: #022b3a;
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-top: 60px;
+      font-size: 14px;
+    }
+
+    /* Popup Styles */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .popup-content h3 {
+      margin-bottom: 20px;
+      color: #022b3a;
+    }
+
+    .popup-content input, .popup-content button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    .popup-content button {
+      background-color: #00aaff;
+      color: white;
+      border: none;
+    }
+
+    .popup-content button:hover {
+      background-color: #0087cc;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Aqua Hitaishi Lens</h1>
+    <p>Reimagine Comfort. Rethink Vision.</p>
+  </header>
+
+  <div class="section">
+    <h2>Why Choose Aqualens?</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://pixahive.com/wp-content/uploads/2020/11/A-lenses-176891-pixahive.jpg" alt="Comfort">
+        <h3>All-Day Comfort</h3>
+        <p>Designed to stay moist and comfortable from morning till night with advanced hydrogel technology.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBeuUL-a7EkkHuzW1lF6urSMOIgnqJ4qpoCZ0MwXKtye6lnAItldLRmMXOTqQs15V9D1w&usqp=CAU" alt="Clarity">
+        <h3>Crystal Clear Vision</h3>
+        <p>High-definition optics provide sharp, consistent clarity in all light conditions.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://img.freepik.com/premium-photo/modern-eyeglasses-white-background_307890-969.jpg" alt="UV Protection">
+        <h3>UV Protection</h3>
+        <p>Built-in UV-blocking to help protect your eyes from harmful sun exposure.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://agent.erclens.com/wp-content/uploads/2023/01/DSC1002_11zon-768x768-1.webp" alt="Hygiene">
+        <h3>Hygienic & Easy</h3>
+        <p>Hassle-free daily disposables or monthly lenses that are easy to handle and maintain.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Our Lens Collection</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://agent.erclens.com/wp-content/uploads/2023/01/DSC1104_11zon-768x768-1.webp" alt="Daily">
+        <h3>Daily Disposable Lenses</h3>
+        <p>Perfect for busy lifestyles. Use once and throw away. Zero maintenance.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://www.mr-sunglass.com/media/catalog/product/cache/45d2e1725fa4650f9de52cb7e890b9af/e/c/eco-2-0-piave-blk-mr-sunglass-803926502883.jpg" alt="Monthly">
+        <h3>Monthly Lenses</h3>
+        <p>Reliable, economical, and ultra-comfortable for everyday wear.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://i.ebayimg.com/images/g/Tb0AAOSwTn5hLCbh/s-l1200.jpg" alt="Color Lenses">
+        <h3>Colored Lenses</h3>
+        <p>Add a pop of style with safe and stunning color options.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://static5.lenskart.com/media/catalog/product/pro/1/thumbnail/480x480/9df78eab33525d08d6e5fb8d27136e95//v/i/vincent-chase-vc-e12989-c1-eyeglasses_j_3039_Image_PLA_1.jpg" alt="Toric">
+        <h3>Toric Lenses</h3>
+        <p>Custom comfort and clear vision for those with astigmatism.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial">
+      "I've tried many brands, but Aqualens has the perfect balance of clarity and comfort. I can wear them for 12+ hours without irritation!" – <strong>Ananya M.</strong>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Eye Care Tips</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://i5.walmartimages.com/asr/5f9c22e2-06d3-4af1-8f29-9e1ae6194b84.4afe5ec7f6bcc27113966ca7765b54de.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Wash Hands">
+        <h3>Wash Your Hands</h3>
+        <p>Always wash and dry hands thoroughly before touching your lenses.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://www.nectarsunglasses.com/cdn/shop/files/cambridge-xl-black-overhead_bcf814e2-479d-4a82-970e-2456fe333965.png?v=1716299471&width=932" alt="Sleep">
+        <h3>Never Sleep in Lenses</h3>
+        <p>Unless prescribed, remove lenses before sleeping to avoid infections.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://m.media-amazon.com/images/I/6163EgEr8xL._AC_UF1000,1000_QL80_.jpg" alt="Solution">
+        <h3>Use Fresh Solution</h3>
+        <p>Never reuse old contact lens solution. Clean and rinse properly.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+      <div class="card">
+        <img src="https://i.ebayimg.com/images/g/HwAAAOSwJsBiiCSr/s-l1200.jpg" alt="Replace">
+        <h3>Replace Regularly</h3>
+        <p>Stick to the recommended lens replacement schedule from your optometrist.</p>
+        <button class="buy-btn">Buy</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Aqualens. Vision with Hydration. All rights reserved. | Follow us on Instagram @aqualens.official
+  </footer>
+
+  <!-- Order Popup -->
+  <div class="popup" id="orderPopup">
+    <div class="popup-content">
+      <h3>Confirm Your Order</h3>
+      <input type="text" placeholder="Full Name" />
+      <input type="text" placeholder="Delivery Address" />
+      <input type="number" placeholder="Contact Number" />
+      <button>Place Order</button>
+    </div>
+    <div class="close-btn" onclick="document.getElementById('orderPopup').style.display='none'">&times;</div>
+  </div>
+
+  <script>
+    const buyButtons = document.querySelectorAll(".buy-btn");
+    const popup = document.getElementById("orderPopup");
+
+    buyButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        popup.style.display = "flex";
+      });
+    });
+  </script>
+
+</body>
+</html>

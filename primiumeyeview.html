@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Premium EyeView Lenses</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background: #f2f7fb; color: #333;">
+
+  <!-- Header / Hero -->
+  <div style="background: linear-gradient(135deg, #004aad, #0074e4); color: white; text-align: center; padding: 60px 20px;">
+    <h1 style="font-size: 40px; margin-bottom: 10px;">Premium EyeView Lenses</h1>
+    <p style="font-size: 18px;">Explore ultra-clear, scratch-resistant, and stylish lenses at unbeatable prices.</p>
+  </div>
+
+  <!-- Product Grid -->
+  <div style="padding: 40px 20px; max-width: 1200px; margin: auto;">
+    <h2 style="text-align: center; font-size: 30px; margin-bottom: 30px;">Our Top Premium Lenses</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
+
+      <!-- Product Cards -->
+      <div style="background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 280px; text-align: center; padding: 20px;">
+        <img src="https://www.shutterstock.com/image-photo/eye-glasses-against-ametropia-sharp-260nw-2261700051.jpg" alt="Anti-Glare Lens" style="width: 100%; border-radius: 8px;">
+        <h3 style="margin: 15px 0 10px; color: #004aad;">Anti-Glare Lens</h3>
+        <p style="margin: 0; font-size: 18px;"><s style="color: grey;">₹2000</s> <strong style="color: #e60023;">₹1399</strong></p>
+        <p style="margin: 5px 0; color: green;">30% OFF</p>
+        <button onclick="openPopup('Anti-Glare Lens')" style="padding: 10px 20px; background: #004aad; color: white; border: none; border-radius: 6px; cursor: pointer;">Buy Now</button>
+      </div>
+
+      <div style="background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 280px; text-align: center; padding: 20px;">
+        <img src="https://ae01.alicdn.com/kf/S82662dce10684aeba86970414b165b9a6.jpg_960x960.jpg" alt="Blue Light Filter" style="width: 100%; border-radius: 8px;">
+        <h3 style="margin: 15px 0 10px; color: #004aad;">Blue Light Filter</h3>
+        <p style="margin: 0; font-size: 18px;"><s style="color: grey;">₹2500</s> <strong style="color: #e60023;">₹1799</strong></p>
+        <p style="margin: 5px 0; color: green;">28% OFF</p>
+        <button onclick="openPopup('Blue Light Filter')" style="padding: 10px 20px; background: #004aad; color: white; border: none; border-radius: 6px; cursor: pointer;">Buy Now</button>
+      </div>
+
+      <div style="background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 280px; text-align: center; padding: 20px;">
+        <img src="https://s.alicdn.com/@sc04/kf/H642fd2eed5754655a0dcb479ef679711V.jpg_720x720q50.jpg" alt="Photochromic Lens" style="width: 100%; border-radius: 8px;">
+        <h3 style="margin: 15px 0 10px; color: #004aad;">Photochromic Lens</h3>
+        <p style="margin: 0; font-size: 18px;"><s style="color: grey;">₹3000</s> <strong style="color: #e60023;">₹2199</strong></p>
+        <p style="margin: 5px 0; color: green;">27% OFF</p>
+        <button onclick="openPopup('Photochromic Lens')" style="padding: 10px 20px; background: #004aad; color: white; border: none; border-radius: 6px; cursor: pointer;">Buy Now</button>
+      </div>
+
+      <div style="background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 280px; text-align: center; padding: 20px;">
+        <img src="https://www.cutlerandgross.com/media/catalog/product/cache/8e555fcdf62da15bebe859220ab3f2b6/c/g/cgsn-gr06-48-02_3.jpg" alt="High Index Lens" style="width: 100%; border-radius: 8px;">
+        <h3 style="margin: 15px 0 10px; color: #004aad;">High Index Lens</h3>
+        <p style="margin: 0; font-size: 18px;"><s style="color: grey;">₹3500</s> <strong style="color: #e60023;">₹2499</strong></p>
+        <p style="margin: 5px 0; color: green;">29% OFF</p>
+        <button onclick="openPopup('High Index Lens')" style="padding: 10px 20px; background: #004aad; color: white; border: none; border-radius: 6px; cursor: pointer;">Buy Now</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Popup Form -->
+  <div id="popupForm" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 999;">
+    <div style="background: white; padding: 30px; border-radius: 10px; width: 90%; max-width: 400px; position: relative;">
+      <span onclick="closePopup()" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer; color: #999;">&times;</span>
+      <h3 style="margin-top: 0; color: #004aad;">Order Form</h3>
+      <form>
+        <label>Name:</label><br>
+        <input type="text" style="width: 100%; padding: 10px; margin: 5px 0 15px;"><br>
+        <label>Phone:</label><br>
+        <input type="tel" style="width: 100%; padding: 10px; margin: 5px 0 15px;"><br>
+        <label>Address:</label><br>
+        <textarea style="width: 100%; padding: 10px; margin: 5px 0 15px;"></textarea><br>
+        <label>Product:</label><br>
+        <input type="text" id="productInput" readonly style="width: 100%; padding: 10px; margin: 5px 0 15px; background: #f0f0f0;"><br>
+        <button type="submit" style="padding: 10px 20px; background: #004aad; color: white; border: none; border-radius: 6px; cursor: pointer;">Submit Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="background: #004aad; color: white; text-align: center; padding: 30px;">
+    <p style="margin: 0;">&copy; 2025 Premium EyeView Lenses. Clearer Vision, Better Life.</p>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function openPopup(productName) {
+      document.getElementById("popupForm").style.display = "flex";
+      document.getElementById("productInput").value = productName;
+    }
+
+    function closePopup() {
+      document.getElementById("popupForm").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

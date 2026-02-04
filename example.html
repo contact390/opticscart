@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitaishi Lens | Premium Eyewear</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #fafafa; color: #333; }
+        
+        /* Desktop Navigation */
+        .desktop-nav { 
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; 
+            background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        /* Top Info Bar */
+        .top-info-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 8px 0; font-size: 13px;
+        }
+        
+        .top-info-content {
+            max-width: 1280px; margin: 0 auto; padding: 0 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        
+        .info-links a {
+            color: rgba(255,255,255,0.9); text-decoration: none;
+            margin-right: 25px; transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .info-links a:hover { color: white; }
+        
+        .contact-btn {
+            background: rgba(255,255,255,0.15); color: white;
+            padding: 5px 15px; border-radius: 20px; text-decoration: none;
+            font-weight: 500; transition: all 0.3s;
+        }
+        
+        .contact-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+        
+        /* Main Header */
+        .main-header {
+            max-width: 1280px; margin: 0 auto; padding: 20px 40px;
+            display: flex; align-items: center; gap: 40px;
+        }
+        
+        .logo img { height: 45px; width: auto; }
+        
+        .search-container {
+            flex: 1; position: relative; max-width: 600px;
+        }
+        
+        .search-input {
+            width: 100%; padding: 14px 20px 14px 50px;
+            border: 2px solid #e1e5e9; border-radius: 30px;
+            font-size: 15px; background: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none; border-color: #667eea;
+            background: white; box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+        
+        .search-icon {
+            position: absolute; left: 20px; top: 50%;
+            transform: translateY(-50%); color: #8895a7;
+        }
+        
+        .contact-info {
+            text-align: right; margin-right: 30px;
+        }
+        
+        .phone-number {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            display: flex; align-items: center; gap: 8px;
+        }
+        
+        .customer-support {
+            font-size: 12px; color: #718096; margin-top: 2px;
+        }
+        
+        .user-actions {
+            display: flex; align-items: center; gap: 20px;
+        }
+        
+        .user-action-link {
+            color: #4a5568; text-decoration: none; font-size: 14px;
+            font-weight: 500; transition: color 0.3s;
+            display: flex; align-items: center; gap: 5px;
+        }
+        
+        .user-action-link:hover { color: #667eea; }
+        
+        .cart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 10px 24px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; font-size: 14px;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.2);
+        }
+        
+        .cart-btn:hover {
+            transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.3);
+        }
+        
+        /* Categories Menu */
+        .categories-menu {
+            border-top: 1px solid #edf2f7; background: white;
+            position: relative;
+        }
+        
+        .categories-content {
+            max-width: 1280px; margin: 0 auto; padding: 0 40px;
+            display: flex; justify-content: center; gap: 40px;
+        }
+        
+        .category-item {
+            position: relative; padding: 18px 0;
+        }
+        
+        .category-link {
+            color: #4a5568; text-decoration: none; font-weight: 600;
+            font-size: 15px; display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .category-link:hover { color: #667eea; }
+        
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%); background: white;
+            border-radius: 12px; padding: 25px; min-width: 280px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+            z-index: 100;
+        }
+        
+        .category-item:hover .dropdown-menu {
+            opacity: 1; visibility: visible;
+        }
+        
+        .dropdown-title {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            margin-bottom: 20px; padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .dropdown-link {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 0; text-decoration: none; color: #4a5568;
+            transition: all 0.2s; border-radius: 6px;
+        }
+        
+        .dropdown-link:hover {
+            background: #f7fafc; padding-left: 10px; color: #667eea;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; z-index: 1000; background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-header {
+            padding: 15px 20px; display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid #edf2f7;
+        }
+        
+        .mobile-menu-btn {
+            background: none; border: none; font-size: 24px;
+            color: #4a5568; cursor: pointer; padding: 5px;
+        }
+        
+        .mobile-logo img { height: 35px; width: auto; }
+        
+        .mobile-actions {
+            display: flex; align-items: center; gap: 15px;
+        }
+        
+        .mobile-search-btn, .mobile-cart-btn {
+            background: none; border: none; font-size: 20px;
+            color: #4a5568; cursor: pointer; padding: 5px;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed; top: 0; left: -100%; width: 320px;
+            height: 100%; background: white; z-index: 1001;
+            transition: left 0.3s ease; overflow-y: auto;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu.active { left: 0; }
+        
+        .mobile-menu-header {
+            padding: 25px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; display: flex; justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-menu-close {
+            background: none; border: none; color: white;
+            font-size: 28px; cursor: pointer;
+        }
+        
+        .mobile-menu-content { padding: 20px; }
+        
+        .mobile-category {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-category-title {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            margin-bottom: 15px; padding-bottom: 10px;
+            border-bottom: 2px solid #edf2f7;
+        }
+        
+        .mobile-link {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 0; text-decoration: none; color: #4a5568;
+            border-bottom: 1px solid #edf2f7; font-weight: 500;
+        }
+        
+        .mobile-link:last-child { border-bottom: none; }
+        
+        .mobile-link:hover { color: #667eea; }
+        
+        /* Overlay */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 999;
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1280px; margin: 180px auto 60px; padding: 0 40px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px; padding: 60px; color: white;
+            margin-bottom: 60px; text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 48px; font-weight: 800; margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px; opacity: 0.9; max-width: 600px;
+            margin: 0 auto 30px; line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block; background: white;
+            color: #667eea; padding: 15px 35px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; font-size: 16px;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; margin-top: 40px;
+        }
+        
+        .product-card {
+            background: white; border-radius: 16px; padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s; text-align: center;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-icon {
+            font-size: 48px; margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .product-title {
+            font-size: 20px; font-weight: 700; color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .product-description {
+            color: #718096; font-size: 14px; line-height: 1.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .categories-content { gap: 30px; }
+            .main-header { padding: 20px 30px; gap: 30px; }
+            .top-info-content, .categories-content { padding: 0 30px; }
+            .hero-title { font-size: 36px; }
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-nav { display: block; }
+            .main-content { margin: 100px auto 40px; padding: 0 20px; }
+            .hero-section { padding: 40px 20px; margin-bottom: 40px; }
+            .hero-title { font-size: 28px; }
+            .hero-subtitle { font-size: 16px; }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-menu { width: 280px; }
+            .main-content { padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+        <!-- Top Info Bar -->
+        <div class="top-info-bar">
+            <div class="top-info-content">
+                <div class="info-links">
+                    <a href="domorebemore.html">🚀 Do More Be More</a>
+                    <a href="singapur.html">🇸🇬 Singapore</a>
+                    <a href="uae.html">🇦🇪 UAE</a>
+                    <a href="johnjacobs.html">👓 John Jacobs</a>
+                    <a href="aqualence.html">💧 Aqualens</a>
+                </div>
+                <div>
+                    <a href="engineeringblogs.html" class="info-links">📚 Engineering Blogs</a>
+                    <a href="contactus.html" class="contact-btn">📞 Contact Us</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="logo">
+                <img src="https://via.placeholder.com/180x45/667eea/ffffff?text=HITAISHI+LENS" alt="Hitaishi Lens">
+            </div>
+            
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search for eyeglasses, sunglasses, lenses...">
+            </div>
+            
+            <div class="contact-info">
+                <div class="phone-number">
+                    <span>📞</span> 99998 99998
+                </div>
+                <div class="customer-support">24/7 Customer Support</div>
+            </div>
+            
+            <div class="user-actions">
+                <a href="trackorder.html" class="user-action-link">📦 Track Order</a>
+                <a href="signup.html" class="user-action-link">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="user-action-link">❤️ Wishlist</a>
+                <a href="cart.html" class="cart-btn">
+                    🛒 Cart <span class="cart-count"></span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="categories-content">
+                <div class="category-item">
+                    <a href="home.html" class="category-link">🏠 Home</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="eyeglasses.html" class="category-link">👓 Eyeglasses</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Eyeglasses Collection</div>
+                        <a href="#" class="dropdown-link">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Premium frames for men</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Stylish frames for women</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Durable & fun frames</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item">
+                    <a href="sunglasses.html" class="category-link">🕶️ Sunglasses</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Sunglasses Collection</div>
+                        <a href="#" class="dropdown-link">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">UV protection & style</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Fashion meets protection</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Safe & colorful</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item">
+                    <a href="kids.html" class="category-link">👶 Kids Glasses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="lenses.html" class="category-link">🔍 Lenses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="contactlenses.html" class="category-link">👁️ Contact Lenses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="storelocater.html" class="category-link">📍 Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-header">
+            <button class="mobile-menu-btn" onclick="openMobileMenu()">☰</button>
+            <div class="mobile-logo">
+                <img src="https://via.placeholder.com/120x35/667eea/ffffff?text=HITAISHI+LENS" alt="Hitaishi Lens">
+            </div>
+            <div class="mobile-actions">
+                <button class="mobile-search-btn" onclick="openSearch()">🔍</button>
+                <button class="mobile-cart-btn" onclick="openCart()">🛒</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3 style="margin: 0;">Menu</h3>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">×</button>
+        </div>
+        <div class="mobile-menu-content">
+            <div class="mobile-category">
+                <div class="mobile-category-title">Categories</div>
+                <a href="home.html" class="mobile-link">🏠 Home</a>
+                <a href="eyeglasses.html" class="mobile-link">👓 Eyeglasses</a>
+                <a href="sunglasses.html" class="mobile-link">🕶️ Sunglasses</a>
+                <a href="kids.html" class="mobile-link">👶 Kids Glasses</a>
+                <a href="lenses.html" class="mobile-link">🔍 Lenses</a>
+                <a href="contactlenses.html" class="mobile-link">👁️ Contact Lenses</a>
+                <a href="storelocater.html" class="mobile-link">📍 Store Locator</a>
+            </div>
+            
+            <div class="mobile-category">
+                <div class="mobile-category-title">Quick Links</div>
+                <a href="trackorder.html" class="mobile-link">📦 Track Order</a>
+                <a href="signup.html" class="mobile-link">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="mobile-link">❤️ Wishlist</a>
+                <a href="engineeringblogs.html" class="mobile-link">📚 Engineering Blogs</a>
+                <a href="domorebemore.html" class="mobile-link">🚀 Do More Be More</a>
+            </div>
+            
+            <div class="mobile-category">
+                <div class="mobile-category-title">Contact</div>
+                <a href="tel:9999899998" class="mobile-link">📞 99998 99998</a>
+                <a href="contactus.html" class="mobile-link">📧 Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="hero-section">
+            <h1 class="hero-title">Premium Eyewear for Clear Vision</h1>
+            <p class="hero-subtitle">
+                Discover our exclusive collection of stylish eyeglasses, sunglasses, and contact lenses. 
+                Experience unmatched quality and comfort with Hitaishi Lens.
+            </p>
+            <a href="#products" class="cta-button">Shop Now →</a>
+        </section>
+
+        <section id="products">
+            <h2 style="text-align: center; font-size: 32px; color: #2d3748; margin-bottom: 20px;">
+                Our Collections
+            </h2>
+            <p style="text-align: center; color: #718096; max-width: 600px; margin: 0 auto 40px;">
+                Browse through our carefully curated selection of premium eyewear
+            </p>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">👓</div>
+                    <h3 class="product-title">Eyeglasses</h3>
+                    <p class="product-description">
+                        Stylish frames designed for comfort and clear vision. Perfect for everyday use.
+                    </p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">🕶️</div>
+                    <h3 class="product-title">Sunglasses</h3>
+                    <p class="product-description">
+                        UV protection with contemporary designs. Stay stylish while protecting your eyes.
+                    </p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">👁️</div>
+                    <h3 class="product-title">Contact Lenses</h3>
+                    <p class="product-description">
+                        High-quality contact lenses for daily wear. Experience comfort and clarity.
+                    </p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">👶</div>
+                    <h3 class="product-title">Kids Glasses</h3>
+                    <p class="product-description">
+                        Durable and colorful frames specially designed for children.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mobile Menu Functions
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Search Functionality
+        function openSearch() {
+            const searchInput = document.querySelector('.search-input');
+            if (window.innerWidth <= 768) {
+                const searchText = prompt("Search for products:");
+                if (searchText) {
+                    alert(`Searching for: ${searchText}`);
+                }
+            } else {
+                searchInput.focus();
+            }
+        }
+        
+        // Cart Functionality
+        function openCart() {
+            alert("Your cart has 3 items. Proceed to checkout?");
+        }
+        
+        // Close mobile menu when clicking outside
+        document.getElementById('overlay').addEventListener('click', closeMobileMenu);
+        
+        // Handle dropdown hover delay
+        const categoryItems = document.querySelectorAll('.category-item');
+        categoryItems.forEach(item => {
+            let timeout;
+            item.addEventListener('mouseenter', () => {
+                clearTimeout(timeout);
+                const dropdown = item.querySelector('.dropdown-menu');
+                dropdown.style.opacity = '1';
+                dropdown.style.visibility = 'visible';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                const dropdown = item.querySelector('.dropdown-menu');
+                timeout = setTimeout(() => {
+                    dropdown.style.opacity = '0';
+                    dropdown.style.visibility = 'hidden';
+                }, 200);
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }      
+        });
+    </script>
+</body>
+</html>

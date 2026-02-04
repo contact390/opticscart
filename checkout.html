@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout - Hitaishi Lens</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    .nav {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav h1 {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 15px;
+      border-radius: 6px;
+    }
+
+    .nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-3px);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    @media (min-width: 992px) {
+      .container {
+        grid-template-columns: 1fr 1fr;
+      }
+      .summary-section {
+        grid-column: 1;
+      }
+      .form-section {
+        grid-column: 2;
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      grid-column: 1 / -1;
+    }
+
+    .header h2 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      color: #666;
+      font-size: 16px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+      border: 1px solid #eef2ff;
+    }
+
+    .card h3 {
+      color: #333;
+      margin-bottom: 25px;
+      font-size: 22px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .order-items {
+      margin-bottom: 25px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #f0f0f0;
+      gap: 15px;
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    .item-image {
+      width: 70px;
+      height: 70px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .item:hover .item-image img {
+      transform: scale(1.05);
+    }
+
+    .item-details {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .item-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .item-qty {
+      background: #667eea;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .item-price {
+      color: #667eea;
+      font-weight: 700;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .subtotal {
+      color: #999;
+      font-size: 13px;
+      font-weight: normal;
+    }
+
+    .total-section {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      color: #666;
+    }
+
+    .total-row.final {
+      font-weight: 700;
+      font-size: 18px;
+      color: #333;
+      border-top: 2px solid #e0e0e0;
+      margin-top: 10px;
+      padding-top: 15px;
+    }
+
+    .total-row.final .amount {
+      color: #667eea;
+      font-size: 24px;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+    }
+
+    .empty-cart svg {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+      opacity: 0.5;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 14px;
+    }
+
+    label .required {
+      color: #e74c3c;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 15px;
+      transition: all 0.3s;
+      background: #fafafa;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-primary .loading {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .message {
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .message.show {
+      display: flex;
+    }
+
+    .message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .message.loading {
+      background: #cce5ff;
+      color: #004085;
+      border: 1px solid #b8daff;
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .nav h1 {
+        justify-content: center;
+      }
+
+      .container {
+        padding: 20px 15px;
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .header h2 {
+        font-size: 28px;
+      }
+
+      .item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .item-details {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .item-meta {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+
+    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitaishi Lens | Premium Eyewear</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #fafafa; color: #333; }
+        
+        /* Desktop Navigation */
+        .desktop-nav { 
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; 
+            background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        /* Top Info Bar */
+        .top-info-bar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 8px 0; font-size: 13px;
+        }
+        
+        .top-info-content {
+            max-width: 1280px; margin: 0 auto; padding: 0 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        
+        .info-links a {
+            color: rgba(255,255,255,0.9); text-decoration: none;
+            margin-right: 25px; transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .info-links a:hover { color: white; }
+        
+        .contact-btn {
+            background: rgba(255,255,255,0.15); color: white;
+            padding: 5px 15px; border-radius: 20px; text-decoration: none;
+            font-weight: 500; transition: all 0.3s;
+        }
+        
+        .contact-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+        
+        /* Main Header */
+        .main-header {
+            max-width: 1280px; margin: 0 auto; padding: 20px 40px;
+            display: flex; align-items: center; gap: 40px;
+        }
+        
+        .logo img { height: 45px; width: auto; }
+        
+        .search-container {
+            flex: 1; position: relative; max-width: 600px;
+        }
+        
+        .search-input {
+            width: 100%; padding: 14px 20px 14px 50px;
+            border: 2px solid #e1e5e9; border-radius: 30px;
+            font-size: 15px; background: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none; border-color: #667eea;
+            background: white; box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+        
+        .search-icon {
+            position: absolute; left: 20px; top: 50%;
+            transform: translateY(-50%); color: #8895a7;
+        }
+        
+        .contact-info {
+            text-align: right; margin-right: 30px;
+        }
+        
+        .phone-number {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            display: flex; align-items: center; gap: 8px;
+        }
+        
+        .customer-support {
+            font-size: 12px; color: #718096; margin-top: 2px;
+        }
+        
+        .user-actions {
+            display: flex; align-items: center; gap: 20px;
+        }
+        
+        .user-action-link {
+            color: #4a5568; text-decoration: none; font-size: 14px;
+            font-weight: 500; transition: color 0.3s;
+            display: flex; align-items: center; gap: 5px;
+        }
+        
+        .user-action-link:hover { color: #667eea; }
+        
+        .cart-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 10px 24px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; font-size: 14px;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.2);
+        }
+        
+        .cart-btn:hover {
+            transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.3);
+        }
+        
+        /* Categories Menu */
+        .categories-menu {
+            border-top: 1px solid #edf2f7; background: white;
+            position: relative;
+        }
+        
+        .categories-content {
+            max-width: 1280px; margin: 0 auto; padding: 0 40px;
+            display: flex; justify-content: center; gap: 40px;
+        }
+        
+        .category-item {
+            position: relative; padding: 18px 0;
+        }
+        
+        .category-link {
+            color: #4a5568; text-decoration: none; font-weight: 600;
+            font-size: 15px; display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .category-link:hover { color: #667eea; }
+        
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%); background: white;
+            border-radius: 12px; padding: 25px; min-width: 280px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+            z-index: 100;
+        }
+        
+        .category-item:hover .dropdown-menu {
+            opacity: 1; visibility: visible;
+        }
+        
+        .dropdown-title {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            margin-bottom: 20px; padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .dropdown-link {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 0; text-decoration: none; color: #4a5568;
+            transition: all 0.2s; border-radius: 6px;
+        }
+        
+        .dropdown-link:hover {
+            background: #f7fafc; padding-left: 10px; color: #667eea;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; z-index: 1000; background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-header {
+            padding: 15px 20px; display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid #edf2f7;
+        }
+        
+        .mobile-menu-btn {
+            background: none; border: none; font-size: 24px;
+            color: #4a5568; cursor: pointer; padding: 5px;
+        }
+        
+        .mobile-logo img { height: 35px; width: auto; }
+        
+        .mobile-actions {
+            display: flex; align-items: center; gap: 15px;
+        }
+        
+        .mobile-search-btn, .mobile-cart-btn {
+            background: none; border: none; font-size: 20px;
+            color: #4a5568; cursor: pointer; padding: 5px;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed; top: 0; left: -100%; width: 320px;
+            height: 100%; background: white; z-index: 1001;
+            transition: left 0.3s ease; overflow-y: auto;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu.active { left: 0; }
+        
+        .mobile-menu-header {
+            padding: 25px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; display: flex; justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-menu-close {
+            background: none; border: none; color: white;
+            font-size: 28px; cursor: pointer;
+        }
+        
+        .mobile-menu-content { padding: 20px; }
+        
+        .mobile-category {
+            margin-bottom: 25px;
+        }
+        
+        .mobile-category-title {
+            font-size: 16px; font-weight: 700; color: #2d3748;
+            margin-bottom: 15px; padding-bottom: 10px;
+            border-bottom: 2px solid #edf2f7;
+        }
+        
+        .mobile-link {
+            display: flex; align-items: center; gap: 12px;
+            padding: 14px 0; text-decoration: none; color: #4a5568;
+            border-bottom: 1px solid #edf2f7; font-weight: 500;
+        }
+        
+        .mobile-link:last-child { border-bottom: none; }
+        
+        .mobile-link:hover { color: #667eea; }
+        
+        /* Overlay */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 999;
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1280px; margin: 180px auto 60px; padding: 0 40px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px; padding: 60px; color: white;
+            margin-bottom: 60px; text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 48px; font-weight: 800; margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px; opacity: 0.9; max-width: 600px;
+            margin: 0 auto 30px; line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block; background: white;
+            color: #667eea; padding: 15px 35px; border-radius: 30px;
+            text-decoration: none; font-weight: 600; font-size: 16px;
+            transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; margin-top: 40px;
+        }
+        
+        .product-card {
+            background: white; border-radius: 16px; padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s; text-align: center;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-icon {
+            font-size: 48px; margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .product-title {
+            font-size: 20px; font-weight: 700; color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .product-description {
+            color: #718096; font-size: 14px; line-height: 1.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .categories-content { gap: 30px; }
+            .main-header { padding: 20px 30px; gap: 30px; }
+            .top-info-content, .categories-content { padding: 0 30px; }
+            .hero-title { font-size: 36px; }
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav { display: none; }
+            .mobile-nav { display: block; }
+            .main-content { margin: 100px auto 40px; padding: 0 20px; }
+            .hero-section { padding: 40px 20px; margin-bottom: 40px; }
+            .hero-title { font-size: 28px; }
+            .hero-subtitle { font-size: 16px; }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-menu { width: 280px; }
+            .main-content { padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+        <!-- Top Info Bar -->
+        <div class="top-info-bar">
+            <div class="top-info-content">
+                <div class="info-links">
+                    <a href="domorebemore.html">🚀 Do More Be More</a>
+                    <a href="singapur.html">🇸🇬 Singapore</a>
+                    <a href="uae.html">🇦🇪 UAE</a>
+                    <a href="johnjacobs.html">👓 John Jacobs</a>
+                    <a href="aqualence.html">💧 Aqualens</a>
+                </div>
+                <div>
+                    <a href="engineeringblogs.html" class="info-links">📚 Engineering Blogs</a>
+                    <a href="contactus.html" class="contact-btn">📞 Contact Us</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="logo">
+                <img src="image\hitaishilenslogo2.jpg" alt="Hitaishi Lens">
+            </div>
+            
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search for eyeglasses, sunglasses, lenses...">
+            </div>
+            
+            <div class="contact-info">
+                <div class="phone-number">
+                    <span>📞</span> 99998 99998
+                </div>
+                <div class="customer-support">24/7 Customer Support</div>
+            </div>
+            
+            <div class="user-actions">
+                <a href="trackorder.html" class="user-action-link">📦 Track Order</a>
+                <a href="signup.html" class="user-action-link">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="user-action-link">❤️ Wishlist</a>
+                <a href="cart.html" class="cart-btn">
+                    🛒 Cart <span class="cart-count"></span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="categories-content">
+                <div class="category-item">
+                    <a href="home.html" class="category-link">🏠 Home</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="eyeglasses.html" class="category-link">👓 Eyeglasses</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Eyeglasses Collection</div>
+                        <a href="#" class="dropdown-link">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Premium frames for men</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Stylish frames for women</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Durable & fun frames</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item">
+                    <a href="sunglasses.html" class="category-link">🕶️ Sunglasses</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Sunglasses Collection</div>
+                        <a href="#" class="dropdown-link">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">UV protection & style</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Fashion meets protection</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Safe & colorful</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item">
+                    <a href="kids.html" class="category-link">👶 Kids Glasses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="lenses.html" class="category-link">🔍 Lenses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="contactlenses.html" class="category-link">👁️ Contact Lenses</a>
+                </div>
+                
+                <div class="category-item">
+                    <a href="storelocater.html" class="category-link">📍 Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-header">
+            <button class="mobile-menu-btn" onclick="openMobileMenu()">☰</button>
+            <div class="mobile-logo">
+                <img src="image\hitaishilenslogo2.jpg" alt="Hitaishi Lens">
+            </div>
+            <div class="mobile-actions">
+                <button class="mobile-search-btn" onclick="openSearch()">🔍</button>
+                <button class="mobile-cart-btn" onclick="openCart()">🛒</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3 style="margin: 0;">Menu</h3>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">×</button>
+        </div>
+        <div class="mobile-menu-content">
+            <div class="mobile-category">
+                <div class="mobile-category-title">Categories</div>
+                <a href="home.html" class="mobile-link">🏠 Home</a>
+                <a href="eyeglasses.html" class="mobile-link">👓 Eyeglasses</a>
+                <a href="sunglasses.html" class="mobile-link">🕶️ Sunglasses</a>
+                <a href="kids.html" class="mobile-link">👶 Kids Glasses</a>
+                <a href="lenses.html" class="mobile-link">🔍 Lenses</a>
+                <a href="contactlenses.html" class="mobile-link">👁️ Contact Lenses</a>
+                <a href="storelocater.html" class="mobile-link">📍 Store Locator</a>
+            </div>
+            
+            <div class="mobile-category">
+                <div class="mobile-category-title">Quick Links</div>
+                <a href="trackorder.html" class="mobile-link">📦 Track Order</a>
+                <a href="signup.html" class="mobile-link">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="mobile-link">❤️ Wishlist</a>
+                <a href="engineeringblogs.html" class="mobile-link">📚 Engineering Blogs</a>
+                <a href="domorebemore.html" class="mobile-link">🚀 Do More Be More</a>
+            </div>
+            
+            <div class="mobile-category">
+                <div class="mobile-category-title">Contact</div>
+                <a href="tel:9999899998" class="mobile-link">📞 99998 99998</a>
+                <a href="contactus.html" class="mobile-link">📧 Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+  <div class="nav">
+    <h1>🕶️ Hitaishi Lens</h1>
+    <a href="cart.html">← Back to Cart</a>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h2>Checkout</h2>
+      <p>Complete your purchase securely</p>
+    </div>
+
+    <div class="card summary-section">
+      <h3>📋 Order Summary</h3>
+      <div id="cartSummary" class="order-items"></div>
+      <div id="total" class="total-section"></div>
+    </div>
+
+    <div class="card form-section">
+      <h3>👤 Customer Details</h3>
+      <form id="checkoutForm">
+        <div class="form-group">
+          <label for="name">Full Name <span class="required">*</span></label>
+          <input id="name" name="name" type="text" placeholder="John Doe" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input id="email" type="email" name="email" placeholder="john@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone <span class="required">*</span></label>
+          <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Shipping Address <span class="required">*</span></label>
+          <textarea id="address" name="address" placeholder="Enter your full address with PIN code..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitBtn">
+          <span>Place Order & Pay</span>
+        </button>
+        <div id="message" class="message"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem('cart') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function renderSummary() {
+      const cart = getCart();
+      const el = document.getElementById('cartSummary');
+      const totalEl = document.getElementById('total');
+      
+      if (!cart || cart.length === 0) {
+        el.innerHTML = `
+          <div class="empty-cart">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <p>Your cart is empty</p>
+            <a href="products.html" style="color: #667eea; margin-top: 10px; display: inline-block;">Continue Shopping</a>
+          </div>
+        `;
+        totalEl.innerHTML = '';
+        return;
+      }
+
+      el.innerHTML = cart.map(item => {
+        const price = parseFloat(item.price || 0);
+        const quantity = parseInt(item.quantity || 1, 10);
+        const subtotal = price * quantity;
+        const imageUrl = item.image_url 
+          ? ('http://localhost:5000' + item.image_url) 
+          : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="70" height="70"%3E%3Crect fill="%23f0f0f0" width="70" height="70" rx="8"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="10"%3ENo Image%3C/text%3E%3C/svg%3E';
+        
+        return `
+          <div class="item">
+            <div class="item-image">
+              <img src="${imageUrl}" alt="${item.name}" 
+                   onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"70\" height=\"70\"%3E%3Crect fill=\"%23f0f0f0\" width=\"70\" height=\"70\" rx=\"8\"/%3E%3C/svg%3E'">
+            </div>
+            <div class="item-details">
+              <div class="item-info">
+                <div class="item-name">${item.name}</div>
+                <div class="item-meta">
+                  <span class="item-qty">${quantity} × ₹${price.toFixed(2)}</span>
+                  ${item.color ? `<span style="color: #666;">${item.color}</span>` : ''}
+                </div>
+              </div>
+              <div class="item-price">
+                ₹${subtotal.toFixed(2)}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const subtotal = cart.reduce((sum, item) => {
+        return sum + (parseFloat(item.price || 0) * parseInt(item.quantity || 1, 10));
+      }, 0);
+
+      const shipping = subtotal > 1000 ? 0 : 50;
+      const total = subtotal + shipping;
+
+      totalEl.innerHTML = `
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span>₹${subtotal.toFixed(2)}</span>
+        </div>
+        <div class="total-row">
+          <span>Shipping</span>
+          <span>${shipping === 0 ? 'FREE' : `₹${shipping.toFixed(2)}`}</span>
+        </div>
+        <div class="total-row final">
+          <span>Total Amount</span>
+          <span class="amount">₹${total.toFixed(2)}</span>
+        </div>
+      `;
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const cart = getCart();
+      if (!cart || cart.length === 0) {
+        showMessage('Your cart is empty', 'error');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span class="loading"></span> Processing...';
+      submitBtn.disabled = true;
+
+      const customer = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        address: document.getElementById('address').value.trim()
+      };
+
+      showMessage('⏳ Processing your order...', 'loading');
+
+      try {
+        const resp = await fetch('http://localhost:5000/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            customer, 
+            items: cart.map(item => ({ 
+              id: item.id, 
+              name: item.name, 
+              price: item.price, 
+              quantity: item.quantity 
+            })) 
+          })
+        });
+
+        const data = await resp.json();
+        
+        if (resp.ok && data.orderId) {
+          localStorage.removeItem('cart');
+          showMessage('✅ Order placed successfully! Order ID: ' + data.orderId, 'success');
+          setTimeout(() => { 
+            window.location.href = 'order-confirmation.html?orderId=' + data.orderId; 
+          }, 2000);
+        } else {
+          showMessage(data.error || 'Checkout failed. Please try again.', 'error');
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      } catch (err) {
+        console.error(err);
+        showMessage('Network error. Please check your connection and try again.', 'error');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+    function showMessage(text, type) {
+      const msgEl = document.getElementById('message');
+      msgEl.innerHTML = text;
+      msgEl.className = `message ${type}`;
+      msgEl.classList.add('show');
+    }
+
+    // Initial render
+    renderSummary();
+  </script>
+</body>
+</html>

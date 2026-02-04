@@ -1,0 +1,35 @@
+{
+  "name": "hitaishilens-backend",
+  "version": "1.0.0",
+  "description": "Simple Express backend for signin/signup pages",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.22.1",
+    "jsonwebtoken": "^9.0.3",
+    "mailer": "^0.6.7",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.3",
+    "node": "^25.5.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NagarajuPindi/hitaishilens.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NagarajuPindi/hitaishilens/issues"
+  },
+  "homepage": "https://github.com/NagarajuPindi/hitaishilens#readme"
+}

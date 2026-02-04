@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>John Jacobs | Premium Lenses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      color: #222;
+    }
+
+    header {
+      background: grey;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      color: #ccc;
+    }
+
+    .section {
+      padding: 60px 30px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .section h2 {
+      font-size: 2.5em;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #111;
+    }
+
+    .lens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .lens-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .lens-card:hover {
+      transform: scale(1.03);
+    }
+
+    .lens-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .lens-card .info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .lens-card h3 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .lens-card p {
+      font-size: 0.95em;
+      color: #666;
+    }
+
+    .buy-btn {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buy-btn:hover {
+      background: #333;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .popup-content {
+      background: white;
+      padding: 30px;
+      max-width: 400px;
+      margin: 10% auto;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .popup-content h3 {
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .popup-content input, .popup-content textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      background: #20C1C8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup-content .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .banner {
+      background: url('https://images.unsplash.com/photo-1618886614634-0ba9e9ae3c68?auto=format&fit=crop&w=1400&q=80') center center/cover no-repeat;
+      padding: 120px 30px;
+      text-align: center;
+      color: white;
+    }
+
+    .banner h2 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .banner p {
+      font-size: 1.2em;
+      color: #eee;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-top: 60px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>John Jacobs Hitaishi Lens</h1>
+    <p>Engineered Lenses. Crafted for Clarity.</p>
+  </header>
+
+  <!-- Featured Banner -->
+  <!-- <div class="banner">
+    <h2>Premium Lens Technology</h2>
+    <p>Anti-glare. UV protected. Ultra-clear.</p>
+  </div> -->
+
+  <!-- Lens Collections -->
+  <div class="section">
+    <h2>Explore Our Lens Collection</h2>
+    <div class="lens-grid">
+      <div class="lens-card">
+        <img src="https://freerangestock.com/sample/46446/close-up-portrait-of-person-wearing-glasses.jpg" alt="Blue Cut Lens" />
+        <div class="info">
+          <h3>Blue Cut Lens</h3>
+          <p>Blocks harmful blue light, perfect for screen time warriors.</p>
+          <button class="buy-btn" onclick="openPopup('Blue Cut Lens')">Buy</button>
+        </div>
+      </div>
+
+      <div class="lens-card">
+        <img src="https://as2.ftcdn.net/v2/jpg/02/31/96/45/500_F_231964532_CAZOFMHUlvOpLcY4cYgbCciKbxrCKZeN.jpg" alt="Photochromic Lens" />
+        <div class="info">
+          <h3>Photochromic Lens</h3>
+          <p>Darkens outdoors, clear indoors. Ideal for daily transitions.</p>
+          <button class="buy-btn" onclick="openPopup('Photochromic Lens')">Buy</button>
+        </div>
+      </div>
+
+      <div class="lens-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnA7mZQBK6ccO3D-4DNcZ6Ye2rRqfO207xFTUH899Ad7Jy0KpwVY841LsJIhRN5ABxdps&usqp=CAU" alt="Polarized Lens" />
+        <div class="info">
+          <h3>Polarized Lens</h3>
+          <p>Enhanced clarity and anti-glare. Great for outdoor adventures.</p>
+          <button class="buy-btn" onclick="openPopup('Polarized Lens')">Buy</button>
+        </div>
+      </div>
+
+      <div class="lens-card">
+        <img src="https://iris.ca/cdn/shop/articles/0884f4eab35698d0a3bf4342eed3f684.jpg?v=1727965491" alt="Progressive Lens" />
+        <div class="info">
+          <h3>Progressive Lens</h3>
+          <p>Multi-focus lens for near to far vision. No line bifocals.</p>
+          <button class="buy-btn" onclick="openPopup('Progressive Lens')">Buy</button>
+        </div>
+      </div>
+
+      <div class="lens-card">
+        <img src="https://www.1800getlens.com/eyetopics/wp-content/uploads/2024/05/little-boy-wearing-glasses-at-home.jpg" alt="Anti-Reflective Lens" />
+        <div class="info">
+          <h3>Anti-Reflective Lens</h3>
+          <p>Reduces glare for night driving and bright lighting.</p>
+          <button class="buy-btn" onclick="openPopup('Anti-Reflective Lens')">Buy</button>
+        </div>
+      </div>
+      <div class="lens-card">
+        <img src="https://da4e1j5r7gw87.cloudfront.net/wp-content/uploads/sites/5170/2024/05/Wearing-new-eyewear.-Woman-and-girl-is-in-the-glasses-store.jpg" alt="Blue Cut Lens" />
+        <div class="info">
+          <h3>Blue Cut Lens</h3>
+          <p>Blocks harmful blue light, perfect for screen time warriors.</p>
+          <button class="buy-btn" onclick="openPopup('Blue Cut Lens')">Buy</button>
+        </div>
+      </div>
+      <div class="lens-card">
+        <img src="https://down-ph.img.susercontent.com/file/sg-11134201-7rbk0-lpq8p44xxzjk10" alt="Blue Cut Lens" />
+        <div class="info">
+          <h3>Blue Cut Lens</h3>
+          <p>Blocks harmful blue light, perfect for screen time warriors.</p>
+          <button class="buy-btn" onclick="openPopup('Blue Cut Lens')">Buy</button>
+        </div>
+      </div>
+      <div class="lens-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5-2zideHYZBGfh_1ORyASaJFZ3fKsPHehDUGlEU16OfFXqr-95raZ9QWWzXvy7jqpj0g&usqp=CAU" alt="Blue Cut Lens" />
+        <div class="info">
+          <h3>Blue Cut Lens</h3>
+          <p>Blocks harmful blue light, perfect for screen time warriors.</p>
+          <button class="buy-btn" onclick="openPopup('Blue Cut Lens')">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Popup -->
+  <div class="popup" id="orderPopup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h3>Order Lens</h3>
+      <form>
+        <input type="text" id="lensType" name="lens" readonly />
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="text" placeholder="Delivery Address" required />
+        <textarea rows="4" placeholder="Additional Notes (Optional)"></textarea>
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 John Jacobs. All rights reserved. | Designed for visionaries.
+  </footer>
+
+  <script>
+    function openPopup(lensName) {
+      document.getElementById("lensType").value = lensName;
+      document.getElementById("orderPopup").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("orderPopup").style.display = "none";
+    }
+  </script>
+</body>
+</html>

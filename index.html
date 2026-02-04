@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HitaishiLens</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      /* Sticky header that keeps navbars visible at top */
+      #main-header{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      }
+      /* small padding for top navigation */
+      #main-header .top-nav{padding: 6px 20px;}
+      /* keep the second row visually separated when sticky */
+      #main-header .brand-row{background-color: #f5f5f5;}
+      
+      /* Dropdown menu styles */
+      .dropdown-menu {
+        pointer-events: none !important;
+      }
+      
+      .dropdown-menu.active {
+        pointer-events: auto !important;
+      }
+    </style>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px;">
+     <!----------------------------------------------navigation bars-------------------------------------------------------------------------------->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitaishi Lens | Premium Eyewear</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Inter', Arial, sans-serif; background: #fafafa; color: #333; box-sizing: border-box;">
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; display: block;">
+        <!-- Main Header -->
+        <div class="main-header" style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; gap: 40px;">
+          <a href="index.html"  style="text-decoration: none;">  <div class="logo">
+                <img src="image\hitaishilogo.png" alt="Hitaishi Lens" style="width: 80px; height: 80px;">
+            </div></a>
+            
+            <div class="search-container" style="flex: 1; position: relative; max-width: 600px;">
+                <form id="searchForm" onsubmit="handleSearch(event)" style="margin: 0; width: 100%;">
+                    <span class="search-icon" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #8895a7; z-index: 2;">🔍</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search for eyeglasses, sunglasses, lenses..." style="width: 350px; padding: 14px 20px 14px 50px; border: 2px solid #e1e5e9; border-radius: 30px; font-size: 15px; background: #f8f9fa; transition: all 0.3s;">
+                </form>
+            </div>
+            
+            <div class="contact-info" style="text-align: right; margin-right: 30px;">
+                <div class="phone-number" style="font-size: 16px; font-weight: 700; color: #2d3748; display: flex; align-items: center; gap: 8px;">
+                    <span>📞</span> 99998 99998
+                </div>
+                <div class="customer-support" style="font-size: 12px; color: #718096; margin-top: 2px;">24/7 Customer Support</div>
+            </div>
+            
+            <div class="user-actions" style="display: flex; align-items: center; gap: 20px;">
+                <a href="trackorder.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">📦 Track Order</a>
+                <a href="login.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">❤️ Wishlist</a>
+                <a href="cart.html" class="cart-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.2);">
+                    🛒 Cart <span class="cart-count" style="background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 12px; font-weight: 700;">[0]</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Categories Menu -->
+        <div class="categories-menu" style="border-top: 1px solid #edf2f7; background: white; position: relative;">
+            <div class="categories-content" style="max-width: 1280px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: center; gap: 40px;">
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="index.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">🏠 Home</a>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="products-eyeglasses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👓 Eyeglasses</a>
+                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
+                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Eyeglasses Collection</div>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Premium frames for men</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Stylish frames for women</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Eyeglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Durable & fun frames</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="products-sunglasses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">🕶️ Sunglasses</a>
+                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
+                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Sunglasses Collection</div>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👨</span>
+                            <div>
+                                <div style="font-weight: 600;">Men's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">UV protection & style</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👩</span>
+                            <div>
+                                <div style="font-weight: 600;">Women's Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Fashion meets protection</div>
+                            </div>
+                        </a>
+                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👶</span>
+                            <div>
+                                <div style="font-weight: 600;">Kids' Sunglasses</div>
+                                <div style="font-size: 12px; color: #718096;">Safe & colorful</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="products-children.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👶 Kids Glasses</a>
+                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
+                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Kids Glasses Collection</div>
+                        <a href="products-children.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👦</span>
+                            <div>
+                                <div style="font-weight: 600;">Boys Glasses</div>
+                                <div style="font-size: 12px; color: #718096;">Durable & fun designs</div>
+                            </div>
+                        </a>
+                        <a href="products-children.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>👧</span>
+                            <div>
+                                <div style="font-weight: 600;">Girls Glasses</div>
+                                <div style="font-size: 12px; color: #718096;">Stylish & safe</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="products-contactlenses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👁️ Contact Lenses</a>
+                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
+                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Contact Lenses Collection</div>
+                        <a href="products-contactlenses.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>🔵</span>
+                            <div>
+                                <div style="font-weight: 600;">Daily Disposable</div>
+                                <div style="font-size: 12px; color: #718096;">Comfortable daily wear</div>
+                            </div>
+                        </a>
+                        <a href="products-contactlenses.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>🟢</span>
+                            <div>
+                                <div style="font-weight: 600;">Monthly Lenses</div>
+                                <div style="font-size: 12px; color: #718096;">Extended wear option</div>
+                            </div>
+                        </a>
+                        <a href="products-contactlenses.html" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
+                            <span>🟡</span>
+                            <div>
+                                <div style="font-weight: 600;">Colored Lenses</div>
+                                <div style="font-size: 12px; color: #718096;">Change your eye color</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="category-item" style="position: relative; padding: 18px 0;">
+                    <a href="storelocater.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">📍 Store Locator</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" style="display: none; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div class="mobile-header" style="padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #edf2f7;">
+            <button class="mobile-menu-btn" onclick="openMobileMenu()" style="background: none; border: none; font-size: 24px; color: #4a5568; cursor: pointer; padding: 5px;">☰</button>
+            <div class="mobile-logo">
+                <img src="image\hitaishilogo.png" alt="Hitaishi Lens" style="width: 60px; height: 60px;">
+            </div>
+            <div class="mobile-actions" style="display: flex; align-items: center; gap: 15px;">
+                <button class="mobile-search-btn" onclick="openMobileSearch()" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px;">🔍</button>
+<!-- Change this line in mobile-header section -->
+<a href="cart.html" class="mobile-cart-btn" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px; text-decoration: none;">🛒</a>            </div>
+        </div>
+        
+        <!-- Mobile Search Bar (Hidden by default) -->
+        <div id="mobileSearchBar" class="mobile-search-container" style="display: none; padding: 15px 20px; background: white; border-bottom: 1px solid #edf2f7;">
+            <form id="mobileSearchForm" onsubmit="handleMobileSearch(event)" style="margin: 0; width: 100%; display: flex; gap: 10px;">
+                <div style="flex: 1; position: relative;">
+                    <span class="mobile-search-icon" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #8895a7;">🔍</span>
+                    <input type="text" id="mobileSearchInput" class="mobile-search-input" placeholder="Search products..." style="width: 100%; padding: 12px 15px 12px 45px; border: 2px solid #e1e5e9; border-radius: 25px; font-size: 14px; background: #f8f9fa;">
+                </div>
+                <button type="button" onclick="closeMobileSearch()" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px;">✕</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="position: fixed; top: 0; left: -100%; width: 320px; height: 100%; background: white; z-index: 1001; transition: left 0.3s ease; overflow-y: auto; box-shadow: 10px 0 30px rgba(0,0,0,0.1);">
+        <div class="mobile-menu-header" style="padding: 25px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin: 0;">Menu</h3>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer;">×</button>
+        </div>
+        <div class="mobile-menu-content" style="padding: 20px;">
+            <!-- Mobile Search in Menu -->
+            <div class="mobile-menu-search" style="margin-bottom: 25px;">
+                <form onsubmit="handleMobileMenuSearch(event)" style="margin: 0;">
+                    <div style="position: relative;">
+                        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #8895a7;">🔍</span>
+                        <input type="text" id="mobileMenuSearchInput" placeholder="Search products..." style="width: 100%; padding: 12px 15px 12px 45px; border: 2px solid #e1e5e9; border-radius: 25px; font-size: 14px; background: #f8f9fa;">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="mobile-category" style="margin-bottom: 25px;">
+                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Categories</div>
+                <a href="home.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🏠 Home</a>
+                <a href="eyeglasses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👓 Eyeglasses</a>
+                <a href="products-sunglasses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🕶️ Sunglasses</a>
+                <a href="kids.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👶 Kids Glasses</a>
+                <a href="lenses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🔍 Lenses</a>
+                <a href="contactlenses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">👁️ Contact Lenses</a>
+                <a href="storelocater.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📍 Store Locator</a>
+            </div>
+            
+            <div class="mobile-category" style="margin-bottom: 25px;">
+                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Quick Links</div>
+                <a href="trackorder.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">📦 Track Order</a>
+                <a href="login.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👤 Sign In/Up</a>
+                <a href="whishlist.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">❤️ Wishlist</a>
+                <a href="engineeringblogs.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📚 Engineering Blogs</a>
+                <a href="domorebemore.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">🚀 Do More Be More</a>
+            </div>
+            
+            <div class="mobile-category" style="margin-bottom: 25px;">
+                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Contact</div>
+                <a href="tel:9999899998" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">📞 99998 99998</a>
+                <a href="contactus.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📧 Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay" onclick="closeMobileMenu(); closeMobileSearch();" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s;"></div>
+
+    <!-- Main Content -->
+    <main class="main-content" style="max-width: 1280px; margin: 180px auto 60px; padding: 0 40px;">
+        <!-- Responsive adjustments are handled by JavaScript and inline styles -->
+        <section class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 60px; color: white; margin-bottom: 60px; text-align: center;">
+            <h1 class="hero-title" style="font-size: 48px; font-weight: 800; margin-bottom: 20px;">Premium Eyewear for Clear Vision</h1>
+            <p class="hero-subtitle" style="font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto 30px; line-height: 1.6;">
+                Discover our exclusive collection of stylish eyeglasses, sunglasses, and contact lenses. 
+                Experience unmatched quality and comfort with Hitaishi Lens.
+            </p>
+            <a href="products.html" class="cta-button" style="display: inline-block; background: white; color: #667eea; padding: 15px 35px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">Shop Now →</a>
+        </section>
+
+       
+   
+      </main>
+
+    <script>
+        // SEARCH FUNCTIONALITY
+        function handleSearch(event) {
+            event.preventDefault();
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Navigate to products page with search query
+                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+        
+        function handleMobileSearch(event) {
+            event.preventDefault();
+            const searchInput = document.getElementById('mobileSearchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Navigate to products page with search query
+                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+            closeMobileSearch();
+        }
+        
+        function handleMobileMenuSearch(event) {
+            event.preventDefault();
+            const searchInput = document.getElementById('mobileMenuSearchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (searchTerm) {
+                // Navigate to products page with search query
+                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
+            }
+            closeMobileMenu();
+        }
+        
+        // MOBILE SEARCH FUNCTIONS
+        function openMobileSearch() {
+            const mobileSearchBar = document.getElementById('mobileSearchBar');
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            
+            mobileSearchBar.style.display = 'block';
+            setTimeout(() => {
+                mobileSearchInput.focus();
+            }, 100);
+        }
+        
+        function closeMobileSearch() {
+            const mobileSearchBar = document.getElementById('mobileSearchBar');
+            mobileSearchBar.style.display = 'none';
+        }
+        
+        // MOBILE MENU FUNCTIONS
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').style.left = '0';
+            document.getElementById('overlay').style.opacity = '1';
+            document.getElementById('overlay').style.visibility = 'visible';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').style.left = '-100%';
+            document.getElementById('overlay').style.opacity = '0';
+            document.getElementById('overlay').style.visibility = 'hidden';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // CART FUNCTIONALITY
+        function openCart() {
+            alert("Your cart has 3 items. Proceed to checkout?");
+        }
+        
+        // Close mobile menu and search when clicking outside
+        document.getElementById('overlay').addEventListener('click', function() {
+            closeMobileMenu();
+            closeMobileSearch();
+        });
+        
+        // Handle dropdown hover - MUST RUN AFTER DOM LOADS
+        function initializeDropdowns() {
+            const categoryItems = document.querySelectorAll('.category-item');
+            categoryItems.forEach(item => {
+                let timeout;
+                
+                item.addEventListener('mouseenter', () => {
+                    clearTimeout(timeout);
+                    const dropdown = item.querySelector('.dropdown-menu');
+                    if (dropdown) {
+                        dropdown.style.opacity = '1';
+                        dropdown.style.visibility = 'visible';
+                        dropdown.style.pointerEvents = 'auto';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    const dropdown = item.querySelector('.dropdown-menu');
+                    if (dropdown) {
+                        timeout = setTimeout(() => {
+                            dropdown.style.opacity = '0';
+                            dropdown.style.visibility = 'hidden';
+                            dropdown.style.pointerEvents = 'none';
+                        }, 100);
+                    }
+                });
+            });
+        }
+        
+        // Initialize dropdowns when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeDropdowns);
+        } else {
+            initializeDropdowns();
+        }
+        
+        // RESPONSIVE DESIGN HANDLER
+        function handleResponsiveDesign() {
+            const mobileNav = document.querySelector('.mobile-nav');
+            const desktopNav = document.querySelector('.desktop-nav');
+            const mainContent = document.querySelector('.main-content');
+            const heroSection = document.querySelector('.hero-section');
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const productsGrid = document.querySelector('.products-grid');
+            const categoriesContent = document.querySelector('.categories-content');
+            const mainHeader = document.querySelector('.main-header');
+            const searchContainer = document.querySelector('.search-container');
+            const userActions = document.querySelector('.user-actions');
+            const contactInfo = document.querySelector('.contact-info');
+            
+            if (window.innerWidth <= 768) {
+                // Mobile view
+                mobileNav.style.display = 'block';
+                desktopNav.style.display = 'none';
+                
+                // Adjust main content
+                mainContent.style.margin = '100px auto 40px';
+                mainContent.style.padding = '0 20px';
+                
+                // Adjust hero section
+                heroSection.style.padding = '40px 20px';
+                heroSection.style.marginBottom = '40px';
+                heroTitle.style.fontSize = '28px';
+                heroSubtitle.style.fontSize = '16px';
+                
+                // Adjust products grid
+                productsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                
+                // Adjust categories (for tablets)
+                if (categoriesContent) {
+                    categoriesContent.style.gap = '20px';
+                    categoriesContent.style.padding = '0 20px';
+                }
+                
+            } else if (window.innerWidth <= 1024) {
+                // Tablet view
+                mobileNav.style.display = 'none';
+                desktopNav.style.display = 'block';
+                
+                // Adjust main content
+                mainContent.style.margin = '160px auto 60px';
+                mainContent.style.padding = '0 30px';
+                
+                // Adjust hero section
+                heroSection.style.padding = '50px 30px';
+                heroTitle.style.fontSize = '36px';
+                
+                // Adjust products grid
+                productsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                
+                // Adjust header
+                if (mainHeader) {
+                    mainHeader.style.padding = '20px 30px';
+                    mainHeader.style.gap = '30px';
+                }
+                
+                // Adjust categories
+                if (categoriesContent) {
+                    categoriesContent.style.gap = '30px';
+                    categoriesContent.style.padding = '0 30px';
+                }
+                
+            } else {
+                // Desktop view
+                mobileNav.style.display = 'none';
+                desktopNav.style.display = 'block';
+                
+                // Reset all styles to default
+                mainContent.style.margin = '180px auto 60px';
+                mainContent.style.padding = '0 40px';
+                
+                heroSection.style.padding = '60px';
+                heroSection.style.marginBottom = '60px';
+                heroTitle.style.fontSize = '48px';
+                heroSubtitle.style.fontSize = '18px';
+                
+                productsGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+                
+                if (mainHeader) {
+                    mainHeader.style.padding = '20px 40px';
+                    mainHeader.style.gap = '40px';
+                }
+                
+                if (categoriesContent) {
+                    categoriesContent.style.gap = '40px';
+                    categoriesContent.style.padding = '0 40px';
+                }
+            }
+            
+            // Extra small mobile adjustments
+            if (window.innerWidth <= 480) {
+                // Very small screens
+                productsGrid.style.gridTemplateColumns = '1fr';
+                heroTitle.style.fontSize = '24px';
+                heroSubtitle.style.fontSize = '14px';
+                
+                // Adjust mobile menu width
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu) {
+                    mobileMenu.style.width = '280px';
+                }
+                
+                mainContent.style.padding = '0 15px';
+            }
+            
+            if (window.innerWidth <= 600) {
+                // Small screens
+                productsGrid.style.gridTemplateColumns = '1fr';
+            }
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', handleResponsiveDesign);
+        
+        // Initialize responsive design on load
+        window.addEventListener('load', handleResponsiveDesign);
+        
+        // ADD HOVER EFFECTS
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search input focus effect
+            const searchInputs = document.querySelectorAll('.search-input, .mobile-search-input, #mobileMenuSearchInput');
+            searchInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.outline = 'none';
+                    this.style.borderColor = '#667eea';
+                    this.style.background = 'white';
+                    this.style.boxShadow = '0 0 0 3px rgba(102,126,234,0.1)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = '#e1e5e9';
+                    this.style.background = '#f8f9fa';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // Add hover effects for links
+            const userActionLinks = document.querySelectorAll('.user-action-link');
+            userActionLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#667eea';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.color = '#4a5568';
+                });
+            });
+            
+            // Add hover effects for category links
+            const categoryLinks = document.querySelectorAll('.category-link');
+            categoryLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#667eea';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.color = '#4a5568';
+                });
+            });
+            
+            // Add hover effects for cart button
+            const cartBtn = document.querySelector('.cart-btn');
+            if (cartBtn) {
+                cartBtn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 6px 20px rgba(102,126,234,0.3)';
+                });
+                cartBtn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 15px rgba(102,126,234,0.2)';
+                });
+            }
+            
+            // Add hover effects for CTA button
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
+                });
+                ctaButton.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
+                });
+            }
+            
+            // Add hover effects for dropdown links
+            const dropdownLinks = document.querySelectorAll('.dropdown-link');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.background = '#f7fafc';
+                    this.style.paddingLeft = '10px';
+                    this.style.color = '#667eea';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.background = 'transparent';
+                    this.style.paddingLeft = '0';
+                    this.style.color = '#4a5568';
+                });
+            });
+            
+            // Add hover effects for mobile links
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#667eea';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.color = '#4a5568';
+                });
+            });
+            
+            // Initialize responsive design
+            handleResponsiveDesign();
+            
+            // Check for search query in URL (for demo purposes)
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search');
+            if (searchQuery) {
+                // If there's a search query in URL, show it in search bar
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.value = searchQuery;
+                }
+                // You could also trigger a search display here
+                console.log(`Search query detected: ${searchQuery}`);
+            }
+        });
+        
+        // Handle Enter key press in search
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const activeElement = document.activeElement;
+                if (activeElement.id === 'searchInput') {
+                    handleSearch(event);
+                } else if (activeElement.id === 'mobileSearchInput') {
+                    handleMobileSearch(event);
+                } else if (activeElement.id === 'mobileMenuSearchInput') {
+                    handleMobileMenuSearch(event);
+                }
+            }
+        });
+    </script>
+    
+    <!-- Load cart utilities -->
+    <script src="cart-utils.js"></script>
+    
+    <!-- Load navbar authentication script -->
+    <script src="navbar-auth.js"></script>
+</body>
+</html>
+
+
+
+<!------------------------------------------------------------------third image------------------------------------------------------------------------->
+<!-- TITLE DIVIDER -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0;">
+  <div style="flex:1; height:1px; background:#000;"></div>
+  <span style="padding:0 15px; text-align:center; font-size:30px; font-weight:bold; color:#004aad;">
+    YOUR EYE ARE IN GOOD HAND
+  </span>
+  <div style="flex:1; height:1px; background:#000;"></div>
+</div>
+
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .eye-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .eye-image,
+  .eye-content{
+    width:100% !important;
+    height:auto !important;
+  }
+  .eye-image img{
+    height:300px !important;
+  }
+  .eye-safe-title{
+    font-size:22px !important;
+  }
+  .eye-heading{
+    font-size:24px !important;
+  }
+  .eye-text{
+    font-size:16px !important;
+  }
+  .eye-btn{
+    font-size:16px !important;
+    padding:12px 24px !important;
+  }
+}
+</style>
+
+<!-- MAIN SECTION -->
+<div class="eye-wrapper" style="width:100%; height:50vh; display:flex;">
+
+  <!-- LEFT IMAGE -->
+  <div class="eye-image" style="width:50%;">
+    <img
+      src="https://i0.wp.com/pixahive.com/wp-content/uploads/2021/05/Model-sitting-and-posing-in-Black-outfit-439244-pixahive.jpg?fit=1560%2C1955&ssl=1"
+      alt="Eye Care"
+      style="width:100%; height:100%; object-fit:cover;"
+    >
+  </div>
+
+  <!-- RIGHT CONTENT -->
+  <div class="eye-content" style="
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background-image:url('https://static.vecteezy.com/system/resources/previews/007/100/608/non_2x/abstract-geometric-white-and-gray-on-light-silver-gradient-background-modern-banner-design-illustration-free-vector.jpg');
+    background-size:cover;
+    background-position:center;
+    color:rgb(12, 5, 19);
+    padding:20px;
+  ">
+
+    <h1 class="eye-heading" style="margin:0; font-weight:bold; font-size:36px;">
+      Take an instant<br>eye check-up
+    </h1>
+
+    <div class="eye-text" style="padding:10px; font-size:18px;">
+      See detailed vision insights now!
+    </div>
+
+    <!-- BUTTON -->
+    <a href="products.html"
+       class="eye-btn"
+       style="
+        margin-top:10px;
+        padding:12px 26px;
+        font-size:18px;
+        background-color:blueviolet;
+        color:white;
+        border-radius:6px;
+        text-decoration:none;
+       ">
+      Try Now
+    </a>
+
+  </div>
+</div>
+
+             <br>
+<!-------------------------------------------------------------------------4rth omage------------------------------------------------------------->
+
+                
+     <!-- TITLE DIVIDER -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0;">
+  <div style="flex:1; height:1px; background:#000;"></div>
+  <span style="padding:0 15px; text-align:center; font-size:30px; font-weight:bold; color:#004aad;">
+    PRIMIUM EYEVIEW
+  </span>
+  <div style="flex:1; height:1px; background:#000;"></div>
+</div>
+
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .premium-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .premium-text,
+  .premium-image{
+    width:100% !important;
+  }
+  .premium-image img{
+    height:280px !important;
+  }
+  .premium-title{
+    font-size:22px !important;
+  }
+  .premium-heading{
+    font-size:22px !important;
+    text-align:center !important;
+  }
+  .premium-offer{
+    font-size:20px !important;
+  }
+  .premium-btn{
+    font-size:16px !important;
+    padding:12px 26px !important;
+  }
+}
+</style>
+
+<!-- MAIN SECTION -->
+<div class="premium-wrapper" style="width:100%; height:50vh; display:flex;">
+
+  <!-- LEFT TEXT -->
+  <div class="premium-text" style="
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    color:black;
+    font-size:2em;
+    background-color:lightblue;
+    padding:20px;
+    text-align:center;
+  ">
+
+    <h1 class="premium-heading" style="margin:0; font-weight:bold; font-size:30px;">
+      Double Down On Striking Eyeglasses by <b>HITAISHI</b>
+    </h1>
+
+    <h2 class="premium-offer" style="margin:0; font-weight:bold;">
+      BUY 1 GET 1 FREE*
+    </h2>
+
+    <!-- BUTTON -->
+    <a href="products.html"
+       class="premium-btn"
+       style="
+        margin-top:10px;
+        padding:12px 26px;
+        font-size:18px;
+        background:black;
+        color:white;
+        border-radius:6px;
+        text-decoration:none;
+       ">
+      Shop Now
+    </a>
+
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="premium-image" style="width:50%;">
+    <img
+      src="https://www.clearly.ca/thelook/wp-content/uploads/2022/04/imgRB9-1050x608.jpg"
+      alt="Premium Eyeview"
+      style="width:100%; height:100%; object-fit:cover;"
+    >
+  </div>
+
+</div>
+      
+  <!---------------------------------------------------5th image------------------------------------------------------------------------------------>
+  <br>
+
+<!-- TITLE -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0;">
+  <div style="flex:1; height:1px; background:#000;"></div>
+  <span style="padding:0 15px; text-align:center; font-size:30px; font-weight:bold; color:#004aad;">
+    TOP-NOTCH QUALITY
+  </span>
+  <div style="flex:1; height:1px; background:#000;"></div>
+</div>
+
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .top-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .top-left,
+  .top-right,
+  .top-center{
+    width:100% !important;
+    height:260px !important;
+  }
+  .top-center{
+    height:auto !important;
+    padding:20px !important;
+  }
+  .top-title{
+    font-size:22px !important;
+  }
+  .top-center h2{
+    font-size:20px !important;
+  }
+}
+</style>
+
+<!-- MAIN SECTION -->
+<div class="top-wrapper" style="display:flex; width:100%; height:50vh; margin:0; padding:0;">
+
+  <!-- LEFT IMAGE -->
+  <div class="top-left" style="width:40%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://lenscaravan.com/cdn/shop/products/3_8ddb0943-47a9-4403-8cdf-83fc73887862_510x@2x.jpg?v=1619106571"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <div id="overlay-left" style="
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0); pointer-events:none;">
+    </div>
+
+    <button id="button-left" style="
+      position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+      padding:10px 20px; font-size:16px; color:white;
+      background:rgba(0,0,0,0.7); border:none; border-radius:5px; cursor:pointer;">
+      <a href="products.html" style="color:white; text-decoration:none;">Shop Now</a>
+    </button>
+  </div>
+
+  <!-- CENTER TEXT -->
+  <div class="top-center" style="
+    width:20%; height:100%; display:flex; align-items:center; justify-content:center;
+    text-align:center; background:#f5f5f5;">
+    <h2 style="font-size:24px; margin:0; color:rgb(12, 5, 19);">
+      Get your favourite Lens From <b>Hitaishi</b>
+    </h2>
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="top-right" style="width:40%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://images.pexels.com/photos/4226870/pexels-photo-4226870.jpeg"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <div id="overlay-right" style="
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0); pointer-events:none;">
+    </div>
+
+    <button id="button-right" style="
+      position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+      padding:10px 20px; font-size:16px; color:white;
+      background:rgba(0,0,0,0.7); border:none; border-radius:5px; cursor:pointer;">
+      <a href="products.html" style="color:white; text-decoration:none;">Shop Now</a>
+    </button>
+  </div>
+
+</div>
+
+<!-- ANIMATION SCRIPT -->
+<script>
+const buttonLeft = document.getElementById("button-left");
+const buttonRight = document.getElementById("button-right");
+const overlayLeft = document.getElementById("overlay-left");
+const overlayRight = document.getElementById("overlay-right");
+
+let toggle = false;
+
+setInterval(() => {
+  toggle = !toggle;
+
+  const btnColor = toggle ? '#ff4081' : 'rgba(0,0,0,0.7)';
+  const overlayColor = toggle ? 'rgba(255,64,129,0.3)' : 'rgba(0,0,0,0)';
+
+  buttonLeft.style.backgroundColor = btnColor;
+  buttonRight.style.backgroundColor = btnColor;
+
+  overlayLeft.style.backgroundColor = overlayColor;
+  overlayRight.style.backgroundColor = overlayColor;
+}, 800);
+</script>
+
+<br>
+
+ <!----------------------------------------------------------6th image-------------------------------------------------------------------------------->
+<!-- TITLE DIVIDER -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0;">
+  <div style="flex:1; height:1px; background:#000;"></div>
+  <span style="padding:0 15px; text-align:center; font-size:30px; font-weight:bold; color:#004aad;">
+    TRENDY AND ELEGANT
+  </span>
+  <div style="flex:1; height:1px; background:#000;"></div>
+</div>
+
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .trend-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .trend-text,
+  .trend-image{
+    width:100% !important;
+  }
+  .trend-image{
+    height:280px !important;
+  }
+  .trend-image img{
+    height:100% !important;
+  }
+  .trend-title{
+    font-size:22px !important;
+  }
+  .trend-heading{
+    font-size:22px !important;
+  }
+  .trend-offer{
+    font-size:20px !important;
+  }
+  .trend-btn{
+    font-size:16px !important;
+    padding:12px 26px !important;
+  }
+}
+</style>
+
+<!-- MAIN SECTION -->
+<div class="trend-wrapper" style="width:100%; height:50vh; display:flex;">
+
+  <!-- LEFT TEXT -->
+  <div class="trend-text" style="
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    color:rgb(12, 5, 19);
+    font-size:2em;
+    background-color:lightblue;
+    text-align:center;
+    padding:20px;
+  ">
+
+    <h1 class="trend-heading" style="margin:0; font-size:30px;">
+      Spotlight-Worthy Sunglasses
+    </h1>
+
+    <h2 class="trend-offer" style="margin:0; font-weight:bold;">
+      BUY 1 GET 1
+    </h2>
+
+    <!-- BUTTON -->
+    <a href="products.html"
+       class="trend-btn"
+       style="
+        margin-top:10px;
+        padding:12px 26px;
+        font-size:18px;
+        background-color:peru;
+        color:white;
+        border-radius:6px;
+        text-decoration:none;
+       ">
+      Shop Now
+    </a>
+
+  </div>
+
+  <!-- RIGHT IMAGE (SWAP) -->
+  <div class="trend-image" style="width:50%; height:100%;">
+    <img
+      id="swappingImage"
+      src="https://opticalpark.com/wp-content/uploads/2021/07/sun.jpg"
+      alt="Trendy Sunglasses"
+      style="width:100%; height:100%; object-fit:cover; display:block;"
+    >
+  </div>
+
+</div>
+
+<!-- IMAGE SWAP SCRIPT -->
+<script>
+var img = document.getElementById('swappingImage');
+var images = [
+  'https://opticalpark.com/wp-content/uploads/2021/07/sun.jpg',
+  'https://images.unsplash.com/photo-1517841905240-472988babdf9?fit=crop&w=800&q=80'
+];
+var i = 0;
+
+setInterval(function () {
+  i = (i + 1) % images.length;
+  img.src = images[i];
+}, 1000);
+</script>
+
+<br>
+
+  <!---------------------------------------------------------7th image--------------------------------------------------------------------------------->
+ <!-- TITLE -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0;">
+  <div style="flex:1; height:1px; background:#000;"></div>
+  <span style="padding:0 15px; text-align:center; font-size:30px; font-weight:bold; color:#004aad;">
+    SUN GLASSES
+  </span>
+  <div style="flex:1; height:1px; background:#000;"></div>
+</div>
+
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .sun-wrapper{
+    flex-direction:column !important;
+    height:auto !important;
+  }
+  .sun-box{
+    width:100% !important;
+    height:300px !important;
+  }
+  .sun-title{
+    font-size:22px !important;
+  }
+  .sun-text{
+    font-size:16px !important;
+  }
+  .sun-btn{
+    font-size:16px !important;
+    padding:12px 24px !important;
+  }
+}
+</style>
+
+<!-- MAIN WRAPPER -->
+<div class="sun-wrapper" style="display:flex; width:100%; height:50vh; margin:0; padding:0;">
+
+  <!-- IMAGE 1 -->
+  <div class="sun-box" style="width:50%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://eyedrnowga.com/wp-content/uploads/2022/07/Ray-Ban-RB6396-copy.webp"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <div class="sun-text" style="
+      position:absolute;
+      bottom:60px;
+      left:50%;
+      transform:translateX(-50%);
+      color:rgb(12, 5, 19);
+      font-size:18px;
+      font-weight:bold;
+      text-shadow:1px 1px 3px black;">
+      Shop your favourite one
+    </div>
+
+    <button class="sun-btn" style="
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 20px;
+      font-size:16px;
+      background:rgba(0,0,0,0.7);
+      color:rgb(12, 5, 19);
+      border:none;
+      border-radius:5px;
+      cursor:pointer;">
+      <a href="products-sunglasses.html" style="color:white; text-decoration:none;">Shop Now</a>
+    </button>
+  </div>
+
+  <!-- IMAGE 2 -->
+  <div class="sun-box" style="width:50%; height:100%; position:relative; overflow:hidden;">
+    <img src="https://cdn12.picryl.com/photo/2016/12/31/eyeglasses-glasses-spectacles-04f987-1024.jpg"
+         style="width:100%; height:100%; object-fit:cover;">
+
+    <div class="sun-text" style="
+      position:absolute;
+      bottom:60px;
+      left:50%;
+      transform:translateX(-50%);
+      color:rgb(12, 5, 19);
+      font-size:18px;
+      font-weight:bold;
+      text-shadow:1px 1px 3px black;">
+      Shop your favourite one
+    </div>
+
+    <button class="sun-btn" style="
+      position:absolute;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 20px;
+      font-size:16px;
+      background:rgba(0,0,0,0.7);
+      color:white;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;">
+      <a href="products-sunglasses.html" style="color:white; text-decoration:none;">Shop Now</a>
+    </button>
+  </div>
+
+</div>
+
+<!---------------------------------------------------------8th image------------------------------------------------------------------------->
+
+
+ <!-------------------------------------------------------------9TH IMAGE----------------------------------------------------------------------->
+    <!-- TITLE -->
+<div style="display:flex; align-items:center; width:100%; margin:20px 0;">
+  <div style="flex:1; height:1px; background:#000;"></div>
+  <span style="padding:0 15px; text-align:center; font-size:30px; font-weight:bold; color:rgb(12, 5, 19);">
+    OUR BRANDS
+  </span>
+  <div style="flex:1; height:1px; background:#000;"></div>
+</div>
+
+<br>
+
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .brand-banner{
+    height:320px !important;
+  }
+  .brand-title{
+    font-size:22px !important;
+  }
+  .brand-text{
+    font-size:20px !important;
+    left:15px !important;
+    top:auto !important;
+    bottom:20px !important;
+    line-height:1.3 !important;
+  }
+  .brand-text p{
+    font-size:22px !important;
+  }
+}
+</style>
+
+<!-- IMAGE BANNER -->
+<div class="brand-banner" style="position:relative; width:100%; height:500px; overflow:hidden;">
+
+  <img
+    src="https://lensrus.com/cdn/shop/files/lensRus-EyeExams-banner-Sep.jpg?v=1694460240&width=1500"
+    alt="Our Brands"
+    style="width:100%; height:100%; object-fit:cover; display:block;"
+  >
+
+  <!-- TEXT OVERLAY -->
+  <div class="brand-text" style="
+    position:absolute;
+    top:20px;
+    left:20px;
+    color:rgb(12, 5, 19);
+    font-size:34px;
+    font-weight:bold;
+    text-align:left;
+    line-height:1.2;
+    max-width:80%;
+  ">
+    <p style="padding:10px 0; color:brown; margin:0;">
+      HITAISHI LENS
+    </p>
+    IRRESISTIBLE FASHION <br>
+    DELIGHTS TO EXPLORE <br>
+    THE MANY 'YOU'
+  </div>
+
+</div>
+
+  
+<!------------------------------------------------------whats up contact------------------------------------------------------------->
+<!-- MOBILE RESPONSIVE CONTROL -->
+<style>
+@media(max-width:768px){
+  .call-wrapper{
+    flex-direction:column !important;
+    gap:15px !important;
+    text-align:center !important;
+  }
+  .call-left,
+  .call-right{
+    flex-direction:column !important;
+    gap:8px !important;
+  }
+  .call-left span,
+  .call-right span{
+    margin:0 !important;
+  }
+}
+</style>
+
+<!-- MAIN WRAPPER -->
+<div class="call-wrapper" style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:linear-gradient(to right, #65c1a7, #74c3b5);
+  padding:25px 15px;
+  border-radius:8px;
+  font-family:Arial, sans-serif;
+  flex-wrap:wrap;margin-top: 30px;
+">
+
+  <!-- LEFT SECTION -->
+  <div class="call-left" style="display:flex; align-items:center; color:white; font-size:18px;">
+    <span style="margin-right:12px; font-size:26px;">📞</span>
+
+    <div>
+      <div style="font-weight:bold; line-height:1.5;">CALL OUR EXPERTS TO</div>
+      <div style="font-weight:bold; line-height:1.5;">PLACE AN ORDER</div>
+    </div>
+
+    <span style="margin-left:20px; font-weight:bold; font-size:18px;">
+      <a href="tel:9999899998" style="color:white; text-decoration:none;">
+       9908793602
+      </a>
+    </span>
+  </div>
+
+  <!-- RIGHT SECTION -->
+  <div class="call-right" style="display:flex; align-items:center;">
+    <span style="color:white; font-size:18px; font-weight:bold; margin-right:12px;">
+      📱 BUY ON WHATSAPP
+    </span>
+
+    <span style="
+      background-color:yellow;
+      padding:10px 18px;
+      border-radius:5px;
+      font-weight:bold;
+      color:black;
+    ">
+      <a href="https://wa.me/919908793602" style="color:black; text-decoration:none;">
+       9908793602
+      </a>
+    </span>
+  </div>
+
+</div>
+
+                    <br>
+<footer>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h3>See Better with HitaishiLens</h3>
+      <p>India's leading eyewear e-commerce portal offering stylish frames and premium eyewear.</p>
+      <!-- Contact Button Added Here -->
+      <div class="contact-btn-container" style="margin-top: 15px;">
+        <a href="contactus.html" class="contact-btn">Contact Us</a>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <div class="link-col">
+        <h4>Services</h4>
+        <a href="storelocater.html">Store Locator</a>
+        <a href="#">Buying Guide</a>
+        <a href="#">Frame Size</a>
+      </div>
+      
+      <div class="link-col">
+        <h4>About Us</h4>
+        <a href="wearehiring.html">We Are Hiring</a>
+        <a href="referandearn.html">Refer & Earn</a>
+        <a href="domorebemore.html">About Hitaishi</a>
+        <a href="coupons.html">Coupons</a>
+      </div>
+      
+      <div class="link-col">
+        <h4>Help</h4>
+        <a href="#">FAQs</a>
+        <a href="#">Grievance Redressal</a>
+        <a href="#">Cardemi</a>
+      </div>
+    </div>
+
+    <div class="footer-app">
+      <p>Download HitaishiLens App</p>
+      <div class="app-badges">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" height="35">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" height="35">
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="legal-links">
+        <a href="#">T & C</a>
+        <a href="#">Privacy</a>
+        <a href="#">Disclaimer</a>
+        <span>Version 1.0.0</span>
+      </div>
+      
+      <div class="social-links">
+        <span>Follow Us</span>
+        <a href="https://www.facebook.com/login.php/" aria-label="Facebook">
+          <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" width="18">
+        </a>
+        <a href="https://www.instagram.com/accounts/login/" aria-label="Instagram">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" width="18">
+        </a>
+        <a href="https://x.com/i/flow/login" aria-label="Twitter/X">
+          <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" alt="Twitter/X" width="18">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    footer {
+      width: 100%;
+      background: #080b46;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 25px 15px 20px;
+    }
+    
+    .footer-brand {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .footer-brand h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+    
+    .footer-brand p {
+      margin: 0 auto;
+      line-height: 1.4;
+      opacity: 0.9;
+      font-size: 0.85rem;
+      max-width: 500px;
+    }
+    
+    /* Contact Button Styles */
+    .contact-btn-container {
+      margin-top: 15px;
+    }
+    
+    .contact-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #4a6ee0, #080b46);
+      color: white;
+      padding: 10px 25px;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-btn:hover {
+      background: linear-gradient(135deg, #5a7ef0, #1a1f66);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .contact-btn:active {
+      transform: translateY(0);
+    }
+    
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 20px 0;
+      padding: 15px 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    
+    .link-col h4 {
+      margin: 0 0 10px 0;
+      font-size: 0.95rem;
+    }
+    
+    .link-col a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 5px 0;
+      opacity: 0.8;
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+    
+    .link-col a:hover {
+      opacity: 1;
+    }
+    
+    .footer-app {
+      text-align: center;
+      margin: 15px 0;
+      padding: 15px 0;
+    }
+    
+    .footer-app p {
+      margin: 0 0 10px 0;
+      font-size: 0.85rem;
+    }
+    
+    .app-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .app-badges img {
+      height: 35px;
+      cursor: pointer;
+    }
+    
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.8rem;
+    }
+    
+    .legal-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .legal-links a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      white-space: nowrap;
+    }
+    
+    .legal-links a:hover {
+      opacity: 1;
+    }
+    
+    .legal-links span {
+      opacity: 0.6;
+      white-space: nowrap;
+    }
+    
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .social-links span {
+      opacity: 0.8;
+      font-size: 0.8rem;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .social-links img {
+      filter: brightness(0) invert(1);
+      transition: transform 0.2s;
+    }
+    
+    .social-links a:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .footer-container {
+        padding: 20px 12px 15px;
+      }
+      
+      .footer-brand h3 {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+      }
+      
+      .footer-brand p {
+        font-size: 0.8rem;
+        line-height: 1.3;
+      }
+      
+      .contact-btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+      }
+      
+      .footer-links {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 15px 0;
+        padding: 12px 0;
+      }
+      
+      .link-col h4 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+      
+      .link-col a {
+        font-size: 0.78rem;
+        margin: 4px 0;
+      }
+      
+      .footer-app {
+        margin: 12px 0;
+        padding: 12px 0;
+      }
+      
+      .footer-app p {
+        font-size: 0.8rem;
+        margin-bottom: 8px;
+      }
+      
+      .app-badges img {
+        height: 30px;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        text-align: center;
+        margin-top: 12px;
+        padding-top: 12px;
+      }
+      
+      .legal-links {
+        justify-content: center;
+        gap: 12px;
+      }
+      
+      .social-links {
+        justify-content: center;
+        gap: 8px;
+      }
+      
+      .social-links span {
+        font-size: 0.78rem;
+      }
+      
+      .social-links img {
+        width: 16px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .footer-container {
+        padding: 15px 10px 12px;
+      }
+      
+      .footer-links {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      
+      .link-col {
+        text-align: center;
+      }
+      
+      .link-col h4 {
+        font-size: 0.88rem;
+        margin-bottom: 6px;
+      }
+      
+      .link-col a {
+        font-size: 0.76rem;
+        margin: 3px 0;
+      }
+      
+      .contact-btn {
+        padding: 7px 18px;
+        font-size: 0.8rem;
+      }
+      
+      .legal-links {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .legal-links a, .legal-links span {
+        font-size: 0.76rem;
+      }
+      
+      .app-badges {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .app-badges img {
+        height: 28px;
+      }
+    }
+  </style>
+</footer>
+</body>
+</html>

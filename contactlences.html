@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Lenses & Stylish Eyewear</title>
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f3f3f3; color: #333;">
+
+  <!-- Header Banner -->
+  <div style="background: url('https://images.unsplash.com/photo-1618375531910-2f6388b09b9c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; height: 55vh; display: flex; justify-content: center; align-items: center;">
+    <div style="background: rgba(0,0,0,0.5); padding: 40px; border-radius: 10px; text-align: center;">
+      <h1 style="color: #fff; font-size: 48px;">Stylish & Clear Vision Starts Here</h1>
+      <p style="color: #ddd; font-size: 20px;">Discover our premium contact lenses for all-day comfort & trendy looks.</p>
+    </div>
+  </div>
+
+  <!-- Introduction -->
+  <div style="text-align: center; padding: 40px 20px;">
+    <h2 style="font-size: 32px; margin-bottom: 10px;">Contact Lenses & Stylish Looks</h2>
+    <p style="font-size: 18px; max-width: 700px; margin: auto;">Choose from daily wear, colored lenses, and premium soft lenses that bring both vision clarity and a fashionable flair to your eyes.</p>
+  </div>
+
+  <!-- Lens Grid -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; padding: 0 40px 60px;">
+
+    <!-- Lens Cards -->
+    <script>
+      const lenses = [
+        {
+          name: "Daily Comfort Lens",
+          desc: "Soft daily wear, ultra hydration",
+          price: "₹699",
+          old: "₹899",
+          discount: "22% OFF",
+          img: "https://img.freepik.com/premium-photo/glasses-eye-test-chart-blue-surface-close-up_185193-13131.jpg"
+        },
+        {
+          name: "ColorVision Green",
+          desc: "Vibrant color + UV protection",
+          price: "₹1,099",
+          old: "₹1,499",
+          discount: "27% OFF",
+          img: "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvZnJnbGFzc2VzX2ZsdWtlX2FuZ2VsX3RoZXJhcHlfNS1pbWFnZS1reWJkbjQxdS5qcGc.jpg"
+        },
+        {
+          name: "AquaFit Soft Lens",
+          desc: "All-day moisture, easy wear",
+          price: "₹849",
+          old: "₹1,099",
+          discount: "23% OFF",
+          img: "https://pixahive.com/wp-content/uploads/2020/11/Gogals-in-down-207485-pixahive.jpg"
+        },
+        {
+          name: "StyleLens Hazel",
+          desc: "Make a bold style statement",
+          price: "₹1,299",
+          old: "₹1,799",
+          discount: "28% OFF",
+          img: "https://www.shutterstock.com/image-photo/hipster-hand-hold-glasses-sky-260nw-521037667.jpg"
+        },
+        {
+          name: "Smart Vision Clear",
+          desc: "High-def clarity, anti-glare",
+          price: "₹749",
+          old: "₹999",
+          discount: "25% OFF",
+          img: "https://chromamodern.com/wp-content/uploads/2022/07/an-optician-handing-over-glasses-to-try-1024x672.jpg"
+        }
+      ];
+
+      document.write(
+        lenses.map(lens => `
+        <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center;">
+          <img src="${lens.img}" alt="${lens.name}" style="width: 100%; height: 200px; object-fit: cover;">
+          <div style="padding: 20px;">
+            <h3>${lens.name}</h3>
+            <p>${lens.desc}</p>
+            <p><strong>${lens.price}</strong> <span style="text-decoration: line-through; color: #888;">${lens.old}</span> <span style="color: green;">(${lens.discount})</span></p>
+            <button onclick="openForm('${lens.name}')" style="padding: 10px 18px; background: #20C1C8; color: white; border: none; border-radius: 6px; cursor: pointer;">Buy Now</button>
+          </div>
+        </div>
+      `).join('')
+      );
+    </script>
+  </div>
+
+  <!-- Popup Form -->
+  <div id="popupForm" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 30px; border-radius: 10px; width: 320px; text-align: center;">
+      <h2 id="productName" style="color: #20C1C8;">Order Now</h2>
+      <input type="text" placeholder="Your Name" style="width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px;">
+      <input type="text" placeholder="Address" style="width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px;">
+      <input type="number" placeholder="Phone Number" style="width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px;">
+      <div>
+        <button onclick="submitOrder()" style="margin: 10px 5px; padding: 10px 16px; background: #20C1C8; color: white; border: none; border-radius: 6px; cursor: pointer;">Order</button>
+        <button onclick="closeForm()" style="margin: 10px 5px; padding: 10px 16px; background: #ccc; color: black; border: none; border-radius: 6px; cursor: pointer;">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="background-color: #202020; color: white; text-align: center; padding: 30px;">
+    <p style="margin: 0;">&copy; 2025 Stylish Lenswear Co. All Rights Reserved</p>
+    <p style="margin-top: 10px;">For support, call 1800-LENS-STYLE</p>
+  </div>
+
+  <!-- JS for popup -->
+  <script>
+    function openForm(productName) {
+      document.getElementById("popupForm").style.display = "flex";
+      document.getElementById("productName").textContent = "Order: " + productName;
+    }
+
+    function closeForm() {
+      document.getElementById("popupForm").style.display = "none";
+    }
+
+    function submitOrder() {
+      alert("Thank you! Your order has been placed.");
+      closeForm();
+    }
+  </script>
+
+</body>
+</html>
