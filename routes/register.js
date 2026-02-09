@@ -23,7 +23,7 @@ const router = express.Router();
 })();
 
 /* 🔹 Signup API */
-router.post('/signup', async (req, res) => {
+router.post('/api/signup', async (req, res) => {
   const { firstName, lastName, phone, email, password } = req.body;
 
   if (!firstName || !email || !password) {
