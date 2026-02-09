@@ -700,44 +700,50 @@
 
   <!-- SCRIPT (UNCHANGED LOGIC) -->
   <script>
-    const form = document.getElementById('signupForm');
-    const msg = document.getElementById('msg');
+  const form = document.getElementById('signupForm');
+  const msg = document.getElementById('msg');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      msg.textContent = '';
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = '';
 
-      const data = {
-        firstName: form.firstName.value.trim(),
-        lastName: form.lastName.value.trim(),
-        phone: form.phone.value.trim(),
-        email: form.email.value.trim(),
-        password: form.password.value
-      };
+    const data = {
+      firstName: form.firstName.value.trim(),
+      lastName: form.lastName.value.trim(),
+      phone: form.phone.value.trim(),
+      email: form.email.value.trim(),
+      password: form.password.value
+    };
 
-      try {
-        const res = await fetch('https://opticscart.com/api/signup', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
+    try {
+      const res = await fetch('/api/signup', {   // ✅ IMPORTANT
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
 
-        const json = await res.json();
+      const json = await res.json();
 
-        if (res.ok) {
-          msg.style.color = 'green';
-          msg.textContent = json.message;
-          setTimeout(() => window.location.href = 'login.html', 1200);
-        } else {
-          msg.style.color = 'crimson';
-          msg.textContent = json.message || 'Signup failed';
-        }
-      } catch (err) {
+      if (res.ok) {
+        msg.style.color = 'green';
+        msg.textContent = json.message || 'Signup successful';
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1200);
+      } else {
         msg.style.color = 'crimson';
-        msg.textContent = 'Server not reachable';
+        msg.textContent = json.message || 'Signup failed';
       }
-    });
-  </script>
+
+    } catch (err) {
+      msg.style.color = 'crimson';
+      msg.textContent = 'Server not reachable';
+    }
+  });
+</script>
+
 
 </body>
 </html>
