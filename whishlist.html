@@ -584,7 +584,7 @@
 
     async function loadWishlist() {
       try {
-        const response = await fetch('http://localhost:5000/api/wishlist');
+        const response = await fetch('https://opticscart.com/api/wishlist');
         const data = await response.json();
 
         if (data.success && Array.isArray(data.items)) {
@@ -632,7 +632,7 @@
               ${discountPercent > 0 ? `<div class="discount-badge-wishlist">${Math.round(discountPercent)}% OFF</div>` : ''}
               <button class="remove-wishlist-btn" onclick="removeFromWishlist(${item.product_id}, event)" title="Remove from Wishlist">❌</button>
               ${item.image_url ? 
-                `<img src="http://localhost:5000${item.image_url}" alt="${item.product_name}">` 
+                `<img src="https://opticscart.com${item.image_url}" alt="${item.product_name}">` 
                 : '<div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #999;">No Image</div>'
               }
             </div>
@@ -685,7 +685,7 @@
       if (!confirm('Are you sure you want to remove this item from your wishlist?')) return;
 
       try {
-        const response = await fetch(`http://localhost:5000/api/wishlist/remove/${productId}`, {
+        const response = await fetch(`https://opticscart.com/api/wishlist/remove/${productId}`, {
           method: 'DELETE'
         });
         const data = await response.json();
@@ -733,7 +733,7 @@
       }
 
       try {
-        const response = await fetch('http://localhost:5000/api/checkout', {
+        const response = await fetch('https://opticscart.com/api/checkout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

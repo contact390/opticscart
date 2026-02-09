@@ -477,7 +477,7 @@
         // Fetch products from backend
         async function loadAllProducts() {
             try {
-                const response = await fetch('http://localhost:5000/api/get-lens');
+                const response = await fetch('https://opticscart.com/api/get-lens');
                 const data = await response.json();
                 if (data.success && Array.isArray(data.products)) {
                     allProducts = data.products;
@@ -554,7 +554,7 @@
                 'gold': '#daa520', 'silver': '#c0c0c0'
             };
 
-            const imageUrl = currentProduct.image_url ? `http://localhost:5000${currentProduct.image_url}` : '';
+            const imageUrl = currentProduct.image_url ? `https://opticscart.com${currentProduct.image_url}` : '';
             const noImagePlaceholder = `<div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #999; font-size: 14px;">No Image Available</div>`;
 
             container.innerHTML = `
@@ -654,7 +654,7 @@
                     <div class="product-card">
                         <div class="product-image">
                             ${discountPercent > 0 ? `<div class="discount-badge">${Math.round(discountPercent)}% OFF</div>` : ''}
-                            ${product.image_url ? `<img src="http://localhost:5000${product.image_url}" alt="${product.name}" onclick="navigateToProduct(${product.id})" style="cursor: pointer;">` : `<div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #999;">No Image</div>`}
+                            ${product.image_url ? `<img src="https://opticscart.com${product.image_url}" alt="${product.name}" onclick="navigateToProduct(${product.id})" style="cursor: pointer;">` : `<div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #999;">No Image</div>`}
                         </div>
                         <div class="product-details-info">
                             <div class="product-brand-card">${product.brand || 'Brand'}</div>
@@ -686,7 +686,7 @@
             }
 
             try {
-                const response = await fetch('http://localhost:5000/api/cart/add', {
+                const response = await fetch('https://opticscart.com/api/cart/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -725,7 +725,7 @@
 
             try {
                 // First check if in wishlist
-                const checkResponse = await fetch(`http://localhost:5000/api/wishlist/check/${productId}`, {
+                const checkResponse = await fetch(`https://opticscart.com/api/wishlist/check/${productId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -734,7 +734,7 @@
 
                 if (checkData.inWishlist) {
                     // Remove from wishlist
-                    const response = await fetch(`http://localhost:5000/api/wishlist/${checkData.wishlistId}`, {
+                    const response = await fetch(`https://opticscart.com/api/wishlist/${checkData.wishlistId}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token}`
@@ -752,7 +752,7 @@
                     }
                 } else {
                     // Add to wishlist
-                    const response = await fetch('http://localhost:5000/api/wishlist/add', {
+                    const response = await fetch('https://opticscart.com/api/wishlist/add', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

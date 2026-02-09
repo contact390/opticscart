@@ -253,7 +253,7 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:5000/api/request-information';
+        const API_URL = 'https://opticscart.com/api/request-information';
 
         async function handleSubmit(event) {
             event.preventDefault();
@@ -313,7 +313,7 @@
                 }
             } catch (error) {
                 console.error('Error:', error);
-                showError('Failed to submit the form. Please make sure the server is running on http://localhost:5000');
+                showError('Failed to submit the form. Please make sure the server is running on https://opticscart.com');
             } finally {
                 // Reset button
                 submitBtn.disabled = false;

@@ -759,7 +759,7 @@
 
         async function loadOrders() {
             try {
-                const response = await fetch('http://localhost:5000/api/orders');
+                const response = await fetch('http://opticscart.com/api/orders');
                 const data = await response.json();
 
                 if (data.success && Array.isArray(data.orders)) {
@@ -817,7 +817,7 @@
 
         async function viewOrder(orderId) {
             try {
-                const response = await fetch(`http://localhost:5000/api/orders/${orderId}`);
+                const response = await fetch(`http://opticscart.com/api/orders/${orderId}`);
                 const data = await response.json();
 
                 if (data.success) {
