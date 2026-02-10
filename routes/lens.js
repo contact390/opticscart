@@ -41,7 +41,7 @@ const upload = multer({
 });
 
 // Upload lens product with image
-router.post('/upload-lens', upload.single('image'), async (req, res) => {
+router.post('/api/upload-lens', upload.single('image'), async (req, res) => {
   try {
     const { name, brand, price, type, power_range, color, frame_material, coating_type, collection, gender_category, product_category, description, stock } = req.body;
 
