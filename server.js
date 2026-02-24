@@ -45,7 +45,7 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on https://opticscart.com:${PORT}`);
 });
 
 // 404 handler (useful when frontend gets 404)
