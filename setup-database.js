@@ -67,6 +67,12 @@ async function setupDatabase() {
       // Column might already exist
     }
     
+    try {
+      await connection.execute('ALTER TABLE lens_products ADD COLUMN model_image_url VARCHAR(500)');
+    } catch (e) {
+      // Column might already exist
+    }
+    
     connection.release();
 
     // Create orders and order_items tables

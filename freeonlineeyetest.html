@@ -5,6 +5,64 @@
   <title>Free Online Eye Test</title>
 </head>
 <body style="margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #fdfdfd; color: #333;">
+<div id="navbar-root"></div>
+
+ 
+
+  <script>
+    // Fetch navbar.html, inject its navs and run any inline scripts so updateAuthAndCart() works.
+    (async function loadNavbar(){
+      try {
+        const res = await fetch('navbar.html');
+        if (!res.ok) throw new Error('Failed to fetch navbar');
+        const text = await res.text();
+
+        // Parse fetched HTML into a container
+        const container = document.createElement('div');
+        container.innerHTML = text;
+
+        // Move desktop/mobile nav and mobile-menu/overlay into this document
+        const parts = ['.desktop-nav', '.mobile-nav', '.mobile-menu', '#overlay'];
+        const root = document.getElementById('navbar-root');
+        parts.forEach(sel => {
+          const el = container.querySelector(sel);
+          if (el) root.appendChild(el);
+        });
+
+        // Copy styles/scripts: execute any inline scripts from fetched file and wait for external scripts
+        const scripts = Array.from(container.querySelectorAll('script'));
+        const loadPromises = [];
+        scripts.forEach(s => {
+          const ns = document.createElement('script');
+          if (s.src) {
+            ns.src = s.src;
+            ns.async = false;
+            const p = new Promise((resolve, reject) => { ns.onload = resolve; ns.onerror = resolve; });
+            loadPromises.push(p);
+            document.head.appendChild(ns);
+          } else {
+            ns.textContent = s.textContent;
+            document.head.appendChild(ns);
+          }
+        });
+
+        // After scripts execute / load, call navbar init functions if available
+        Promise.all(loadPromises).then(() => {
+          setTimeout(() => {
+            try { if (window.updateAuthAndCart) window.updateAuthAndCart(); } catch(e) { console.warn(e); }
+            try { if (window.handleResponsiveDesign) window.handleResponsiveDesign(); } catch(e) { console.warn(e); }
+          }, 30);
+        });
+
+      } catch (err) {
+        console.error('Navbar load error:', err);
+      }
+    })();
+  </script>
+
+
+
+
 
   <!-- Hero Section -->
   <div style="background: linear-gradient(135deg, #00b4db, #0083b0); padding: 80px 20px; text-align: center; color: white;">

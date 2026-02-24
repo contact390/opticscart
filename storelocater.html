@@ -1,555 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+
+
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#137fec",
+                "accent-gold": "#d4af37",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"]
+            }
+        }
+    }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Store Locator</title>
 </head>
-<body style="margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; line-height: 1.6; color: #333;">
+<body style="margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f8f9fa; line-height: 1.6; color: #333;">
 
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hitaishi Lens | Premium Eyewear</title>
-</head>
-<body style="margin: 0; padding: 0; font-family: 'Inter', Arial, sans-serif; background: #fafafa; color: #333; box-sizing: border-box;">
-    <!-- Desktop Navigation -->
-    <nav class="desktop-nav" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; display: block;">
-        <!-- Main Header -->
-        <div class="main-header" style="max-width: 1280px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; gap: 40px;">
-            <div class="logo">
-                <img src="image\hitaishilogo.png" alt="Hitaishi Lens" style="width: 80px; height: 80px;">
-            </div>
-            
-            <div class="search-container" style="flex: 1; position: relative; max-width: 600px;">
-                <form id="searchForm" onsubmit="handleSearch(event)" style="margin: 0; width: 100%;">
-                    <span class="search-icon" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #8895a7; z-index: 2;">🔍</span>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search for eyeglasses, sunglasses, lenses..." style="width: 350px; padding: 14px 20px 14px 50px; border: 2px solid #e1e5e9; border-radius: 30px; font-size: 15px; background: #f8f9fa; transition: all 0.3s;">
-                </form>
-            </div>
-            
-            <div class="contact-info" style="text-align: right; margin-right: 30px;">
-                <div class="phone-number" style="font-size: 16px; font-weight: 700; color: #2d3748; display: flex; align-items: center; gap: 8px;">
-                    <span>📞</span> 99998 99998
-                </div>
-                <div class="customer-support" style="font-size: 12px; color: #718096; margin-top: 2px;">24/7 Customer Support</div>
-            </div>
-            
-            <div class="user-actions" style="display: flex; align-items: center; gap: 20px;">
-                <a href="trackorder.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">📦 Track Order</a>
-                <a href="signup.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">👤 Sign In/Up</a>
-                <a href="whishlist.html" class="user-action-link" style="color: #4a5568; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 5px;">❤️ Wishlist</a>
-                <a href="cart.html" class="cart-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.2);">
-                    🛒 Cart <span class="cart-count"></span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Categories Menu -->
-        <div class="categories-menu" style="border-top: 1px solid #edf2f7; background: white; position: relative;">
-            <div class="categories-content" style="max-width: 1280px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: center; gap: 40px;">
-                <div class="category-item" style="position: relative; padding: 18px 0;">
-                    <a href="index.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">🏠 Home</a>
-                </div>
-                
-                <div class="category-item" style="position: relative; padding: 18px 0;">
-                    <a href="products-eyeglasses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👓 Eyeglasses</a>
-                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
-                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Eyeglasses Collection</div>
-                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
-                            <span>👨</span>
-                            <div>
-                                <div style="font-weight: 600;">Men's Eyeglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Premium frames for men</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
-                            <span>👩</span>
-                            <div>
-                                <div style="font-weight: 600;">Women's Eyeglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Stylish frames for women</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
-                            <span>👶</span>
-                            <div>
-                                <div style="font-weight: 600;">Kids' Eyeglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Durable & fun frames</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="category-item" style="position: relative; padding: 18px 0;">
-                    <a href="products-sunglasses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">🕶️ Sunglasses</a>
-                    <div class="dropdown-menu" style="position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; padding: 25px; min-width: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; margin-top: 10px;">
-                        <div class="dropdown-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #667eea;">Sunglasses Collection</div>
-                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
-                            <span>👨</span>
-                            <div>
-                                <div style="font-weight: 600;">Men's Sunglasses</div>
-                                <div style="font-size: 12px; color: #718096;">UV protection & style</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
-                            <span>👩</span>
-                            <div>
-                                <div style="font-weight: 600;">Women's Sunglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Fashion meets protection</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-link" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #4a5568; transition: all 0.2s; border-radius: 6px;">
-                            <span>👶</span>
-                            <div>
-                                <div style="font-weight: 600;">Kids' Sunglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Safe & colorful</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="category-item" style="position: relative; padding: 18px 0;">
-                    <a href="products-children.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👶 Kids Glasses</a>
-                </div>
-                
-                <div class="category-item" style="position: relative; padding: 18px 0;">
-                    <a href="products-contactlenses.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">👁️ Contact Lenses</a>
-                </div>
-                
-                <div class="category-item" style="position: relative; padding: 18px 0;">
-                    <a href="storelocater.html" class="category-link" style="color: #4a5568; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: all 0.3s;">📍 Store Locator</a>
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" style="display: none; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-        <div class="mobile-header" style="padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #edf2f7;">
-            <button class="mobile-menu-btn" onclick="openMobileMenu()" style="background: none; border: none; font-size: 24px; color: #4a5568; cursor: pointer; padding: 5px;">☰</button>
-            <div class="mobile-logo">
-                <img src="image\hitaishilogo.png" alt="Hitaishi Lens" style="width: 60px; height: 60px;">
-            </div>
-            <div class="mobile-actions" style="display: flex; align-items: center; gap: 15px;">
-                <button class="mobile-search-btn" onclick="openMobileSearch()" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px;">🔍</button>
-<!-- Change this line in mobile-header section -->
-<a href="cart.html" class="mobile-cart-btn" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px; text-decoration: none;">🛒</a>            </div>
-        </div>
-        
-        <!-- Mobile Search Bar (Hidden by default) -->
-        <div id="mobileSearchBar" class="mobile-search-container" style="display: none; padding: 15px 20px; background: white; border-bottom: 1px solid #edf2f7;">
-            <form id="mobileSearchForm" onsubmit="handleMobileSearch(event)" style="margin: 0; width: 100%; display: flex; gap: 10px;">
-                <div style="flex: 1; position: relative;">
-                    <span class="mobile-search-icon" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #8895a7;">🔍</span>
-                    <input type="text" id="mobileSearchInput" class="mobile-search-input" placeholder="Search products..." style="width: 100%; padding: 12px 15px 12px 45px; border: 2px solid #e1e5e9; border-radius: 25px; font-size: 14px; background: #f8f9fa;">
-                </div>
-                <button type="button" onclick="closeMobileSearch()" style="background: none; border: none; font-size: 20px; color: #4a5568; cursor: pointer; padding: 5px;">✕</button>
-            </form>
-        </div>
-    </nav>
+<div id="navbar"></div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu" style="position: fixed; top: 0; left: -100%; width: 320px; height: 100%; background: white; z-index: 1001; transition: left 0.3s ease; overflow-y: auto; box-shadow: 10px 0 30px rgba(0,0,0,0.1);">
-        <div class="mobile-menu-header" style="padding: 25px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; justify-content: space-between; align-items: center;">
-            <h3 style="margin: 0;">Menu</h3>
-            <button class="mobile-menu-close" onclick="closeMobileMenu()" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer;">×</button>
-        </div>
-        <div class="mobile-menu-content" style="padding: 20px;">
-            <!-- Mobile Search in Menu -->
-            <div class="mobile-menu-search" style="margin-bottom: 25px;">
-                <form onsubmit="handleMobileMenuSearch(event)" style="margin: 0;">
-                    <div style="position: relative;">
-                        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #8895a7;">🔍</span>
-                        <input type="text" id="mobileMenuSearchInput" placeholder="Search products..." style="width: 100%; padding: 12px 15px 12px 45px; border: 2px solid #e1e5e9; border-radius: 25px; font-size: 14px; background: #f8f9fa;">
-                    </div>
-                </form>
-            </div>
-            
-            <div class="mobile-category" style="margin-bottom: 25px;">
-                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Categories</div>
-                <a href="home.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🏠 Home</a>
-                <a href="eyeglasses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👓 Eyeglasses</a>
-                <a href="products-sunglasses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🕶️ Sunglasses</a>
-                <a href="kids.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👶 Kids Glasses</a>
-                <a href="lenses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">🔍 Lenses</a>
-                <a href="contactlenses.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">👁️ Contact Lenses</a>
-                <a href="storelocater.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📍 Store Locator</a>
-            </div>
-            
-            <div class="mobile-category" style="margin-bottom: 25px;">
-                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Quick Links</div>
-                <a href="trackorder.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">📦 Track Order</a>
-                <a href="signup.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">👤 Sign In/Up</a>
-                <a href="whishlist.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">❤️ Wishlist</a>
-                <a href="engineeringblogs.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📚 Engineering Blogs</a>
-                <a href="domorebemore.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">🚀 Do More Be More</a>
-            </div>
-            
-            <div class="mobile-category" style="margin-bottom: 25px;">
-                <div class="mobile-category-title" style="font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7;">Contact</div>
-                <a href="tel:9999899998" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; border-bottom: 1px solid #edf2f7; font-weight: 500;">📞 99998 99998</a>
-                <a href="contactus.html" class="mobile-link" style="display: flex; align-items: center; gap: 12px; padding: 14px 0; text-decoration: none; color: #4a5568; font-weight: 500;">📧 Contact Us</a>
-            </div>
-        </div>
-    </div>
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
 
-    <!-- Overlay -->
-    <div class="overlay" id="overlay" onclick="closeMobileMenu(); closeMobileSearch();" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s;"></div>
 
-   
-    <script>
-        // SEARCH FUNCTIONALITY
-        function handleSearch(event) {
-            event.preventDefault();
-            const searchInput = document.getElementById('searchInput');
-            const searchTerm = searchInput.value.trim();
-            
-            if (searchTerm) {
-                // Navigate to products page with search query
-                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
-            }
-        }
-        
-        function handleMobileSearch(event) {
-            event.preventDefault();
-            const searchInput = document.getElementById('mobileSearchInput');
-            const searchTerm = searchInput.value.trim();
-            
-            if (searchTerm) {
-                // Navigate to products page with search query
-                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
-            }
-            closeMobileSearch();
-        }
-        
-        function handleMobileMenuSearch(event) {
-            event.preventDefault();
-            const searchInput = document.getElementById('mobileMenuSearchInput');
-            const searchTerm = searchInput.value.trim();
-            
-            if (searchTerm) {
-                // Navigate to products page with search query
-                window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
-            }
-            closeMobileMenu();
-        }
-        
-        // MOBILE SEARCH FUNCTIONS
-        function openMobileSearch() {
-            const mobileSearchBar = document.getElementById('mobileSearchBar');
-            const mobileSearchInput = document.getElementById('mobileSearchInput');
-            
-            mobileSearchBar.style.display = 'block';
-            setTimeout(() => {
-                mobileSearchInput.focus();
-            }, 100);
-        }
-        
-        function closeMobileSearch() {
-            const mobileSearchBar = document.getElementById('mobileSearchBar');
-            mobileSearchBar.style.display = 'none';
-        }
-        
-        // MOBILE MENU FUNCTIONS
-        function openMobileMenu() {
-            document.getElementById('mobileMenu').style.left = '0';
-            document.getElementById('overlay').style.opacity = '1';
-            document.getElementById('overlay').style.visibility = 'visible';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobileMenu').style.left = '-100%';
-            document.getElementById('overlay').style.opacity = '0';
-            document.getElementById('overlay').style.visibility = 'hidden';
-            document.body.style.overflow = 'auto';
-        }
-        
-        // CART FUNCTIONALITY
-        function openCart() {
-            alert("Your cart has 3 items. Proceed to checkout?");
-        }
-        
-        // Close mobile menu and search when clicking outside
-        document.getElementById('overlay').addEventListener('click', function() {
-            closeMobileMenu();
-            closeMobileSearch();
-        });
-        
-        // Handle dropdown hover
-        const categoryItems = document.querySelectorAll('.category-item');
-        categoryItems.forEach(item => {
-            let timeout;
-            item.addEventListener('mouseenter', () => {
-                clearTimeout(timeout);
-                const dropdown = item.querySelector('.dropdown-menu');
-                if (dropdown) {
-                    dropdown.style.opacity = '1';
-                    dropdown.style.visibility = 'visible';
-                }
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                const dropdown = item.querySelector('.dropdown-menu');
-                if (dropdown) {
-                    timeout = setTimeout(() => {
-                        dropdown.style.opacity = '0';
-                        dropdown.style.visibility = 'hidden';
-                    }, 200);
-                }
-            });
-        });
-        
-        // RESPONSIVE DESIGN HANDLER
-        function handleResponsiveDesign() {
-            const mobileNav = document.querySelector('.mobile-nav');
-            const desktopNav = document.querySelector('.desktop-nav');
-            const mainContent = document.querySelector('.main-content');
-            const heroSection = document.querySelector('.hero-section');
-            const heroTitle = document.querySelector('.hero-title');
-            const heroSubtitle = document.querySelector('.hero-subtitle');
-            const productsGrid = document.querySelector('.products-grid');
-            const categoriesContent = document.querySelector('.categories-content');
-            const mainHeader = document.querySelector('.main-header');
-            const searchContainer = document.querySelector('.search-container');
-            const userActions = document.querySelector('.user-actions');
-            const contactInfo = document.querySelector('.contact-info');
-            
-            if (window.innerWidth <= 768) {
-                // Mobile view
-                mobileNav.style.display = 'block';
-                desktopNav.style.display = 'none';
-                
-                // Adjust main content
-                mainContent.style.margin = '100px auto 40px';
-                mainContent.style.padding = '0 20px';
-                
-                // Adjust hero section
-                heroSection.style.padding = '40px 20px';
-                heroSection.style.marginBottom = '40px';
-                heroTitle.style.fontSize = '28px';
-                heroSubtitle.style.fontSize = '16px';
-                
-                // Adjust products grid
-                productsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-                
-                // Adjust categories (for tablets)
-                if (categoriesContent) {
-                    categoriesContent.style.gap = '20px';
-                    categoriesContent.style.padding = '0 20px';
-                }
-                
-            } else if (window.innerWidth <= 1024) {
-                // Tablet view
-                mobileNav.style.display = 'none';
-                desktopNav.style.display = 'block';
-                
-                // Adjust main content
-                mainContent.style.margin = '160px auto 60px';
-                mainContent.style.padding = '0 30px';
-                
-                // Adjust hero section
-                heroSection.style.padding = '50px 30px';
-                heroTitle.style.fontSize = '36px';
-                
-                // Adjust products grid
-                productsGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-                
-                // Adjust header
-                if (mainHeader) {
-                    mainHeader.style.padding = '20px 30px';
-                    mainHeader.style.gap = '30px';
-                }
-                
-                // Adjust categories
-                if (categoriesContent) {
-                    categoriesContent.style.gap = '30px';
-                    categoriesContent.style.padding = '0 30px';
-                }
-                
-            } else {
-                // Desktop view
-                mobileNav.style.display = 'none';
-                desktopNav.style.display = 'block';
-                
-                // Reset all styles to default
-                mainContent.style.margin = '180px auto 60px';
-                mainContent.style.padding = '0 40px';
-                
-                heroSection.style.padding = '60px';
-                heroSection.style.marginBottom = '60px';
-                heroTitle.style.fontSize = '48px';
-                heroSubtitle.style.fontSize = '18px';
-                
-                productsGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
-                
-                if (mainHeader) {
-                    mainHeader.style.padding = '20px 40px';
-                    mainHeader.style.gap = '40px';
-                }
-                
-                if (categoriesContent) {
-                    categoriesContent.style.gap = '40px';
-                    categoriesContent.style.padding = '0 40px';
-                }
-            }
-            
-            // Extra small mobile adjustments
-            if (window.innerWidth <= 480) {
-                // Very small screens
-                productsGrid.style.gridTemplateColumns = '1fr';
-                heroTitle.style.fontSize = '24px';
-                heroSubtitle.style.fontSize = '14px';
-                
-                // Adjust mobile menu width
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (mobileMenu) {
-                    mobileMenu.style.width = '280px';
-                }
-                
-                mainContent.style.padding = '0 15px';
-            }
-            
-            if (window.innerWidth <= 600) {
-                // Small screens
-                productsGrid.style.gridTemplateColumns = '1fr';
-            }
-        }
-        
-        // Handle window resize
-        window.addEventListener('resize', handleResponsiveDesign);
-        
-        // Initialize responsive design on load
-        window.addEventListener('load', handleResponsiveDesign);
-        
-        // ADD HOVER EFFECTS
-        document.addEventListener('DOMContentLoaded', function() {
-            // Search input focus effect
-            const searchInputs = document.querySelectorAll('.search-input, .mobile-search-input, #mobileMenuSearchInput');
-            searchInputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.style.outline = 'none';
-                    this.style.borderColor = '#667eea';
-                    this.style.background = 'white';
-                    this.style.boxShadow = '0 0 0 3px rgba(102,126,234,0.1)';
-                });
-                
-                input.addEventListener('blur', function() {
-                    this.style.borderColor = '#e1e5e9';
-                    this.style.background = '#f8f9fa';
-                    this.style.boxShadow = 'none';
-                });
-            });
-            
-            // Add hover effects for links
-            const userActionLinks = document.querySelectorAll('.user-action-link');
-            userActionLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.color = '#667eea';
-                });
-                link.addEventListener('mouseleave', function() {
-                    this.style.color = '#4a5568';
-                });
-            });
-            
-            // Add hover effects for category links
-            const categoryLinks = document.querySelectorAll('.category-link');
-            categoryLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.color = '#667eea';
-                });
-                link.addEventListener('mouseleave', function() {
-                    this.style.color = '#4a5568';
-                });
-            });
-            
-            // Add hover effects for cart button
-            const cartBtn = document.querySelector('.cart-btn');
-            if (cartBtn) {
-                cartBtn.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-2px)';
-                    this.style.boxShadow = '0 6px 20px rgba(102,126,234,0.3)';
-                });
-                cartBtn.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = '0 4px 15px rgba(102,126,234,0.2)';
-                });
-            }
-            
-            // Add hover effects for CTA button
-            const ctaButton = document.querySelector('.cta-button');
-            if (ctaButton) {
-                ctaButton.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-3px)';
-                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
-                });
-                ctaButton.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2)';
-                });
-            }
-            
-            // Add hover effects for dropdown links
-            const dropdownLinks = document.querySelectorAll('.dropdown-link');
-            dropdownLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.background = '#f7fafc';
-                    this.style.paddingLeft = '10px';
-                    this.style.color = '#667eea';
-                });
-                link.addEventListener('mouseleave', function() {
-                    this.style.background = 'transparent';
-                    this.style.paddingLeft = '0';
-                    this.style.color = '#4a5568';
-                });
-            });
-            
-            // Add hover effects for mobile links
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-            mobileLinks.forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.color = '#667eea';
-                });
-                link.addEventListener('mouseleave', function() {
-                    this.style.color = '#4a5568';
-                });
-            });
-            
-            // Initialize responsive design
-            handleResponsiveDesign();
-            
-            // Check for search query in URL (for demo purposes)
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchQuery = urlParams.get('search');
-            if (searchQuery) {
-                // If there's a search query in URL, show it in search bar
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) {
-                    searchInput.value = searchQuery;
-                }
-                // You could also trigger a search display here
-                console.log(`Search query detected: ${searchQuery}`);
-            }
-        });
-        
-        // Handle Enter key press in search
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const activeElement = document.activeElement;
-                if (activeElement.id === 'searchInput') {
-                    handleSearch(event);
-                } else if (activeElement.id === 'mobileSearchInput') {
-                    handleMobileSearch(event);
-                } else if (activeElement.id === 'mobileMenuSearchInput') {
-                    handleMobileMenuSearch(event);
-                }
-            }
-        });
-    </script>
-</body>
-</html>
 
   <!-- Main Container -->
   <main style="max-width: 1200px; margin: 0 auto;margin-top: 200px;">
@@ -660,11 +174,17 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer style="background: #20232a; color: #aaa; padding: 25px 20px; text-align: center; font-size: 14px;">
-    <p style="margin: 0 0 10px 0;">&copy; 2023 Fastrack Store Locator. All rights reserved.</p>
-    <p style="margin: 0; font-size: 13px;">Find your nearest Fastrack store for watches, bags, sunglasses and more.</p>
-  </footer>
+     <div id="footer"></div>
+
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+
+
 
   <!-- Script -->
   <script>

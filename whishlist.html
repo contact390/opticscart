@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+
+  <head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#137fec",
+                "accent-gold": "#d4af37",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"]
+            }
+        }
+    }
+}
+</script>
+
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hitaishi Lens - Wishlist</title>
@@ -508,6 +543,23 @@
   </style>
 </head>
 <body>
+
+<div id="navbar"></div>
+
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
+
+
+
+
+
+
+
   <div class="navbar">
     <h1>🕶️ Hitaishi Lens</h1>
     <a href="products.html">← Back to Shop</a>
@@ -579,6 +631,19 @@
     </div>
   </div>
 
+
+
+
+      <div id="footer"></div>
+
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+
   <script>
     let wishlistItems = [];
 
@@ -632,7 +697,7 @@
               ${discountPercent > 0 ? `<div class="discount-badge-wishlist">${Math.round(discountPercent)}% OFF</div>` : ''}
               <button class="remove-wishlist-btn" onclick="removeFromWishlist(${item.product_id}, event)" title="Remove from Wishlist">❌</button>
               ${item.image_url ? 
-                `<img src="https://opticscart.com${item.image_url}" alt="${item.product_name}">` 
+                `<img src="http://localhost:5000${item.image_url}" alt="${item.product_name}">` 
                 : '<div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: #999;">No Image</div>'
               }
             </div>

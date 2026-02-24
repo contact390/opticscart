@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HitaishiLens | Aviator Classic - Product Detail &amp; Virtual Try-On</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased font-display">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl font-bold">visibility</span>
+<h2 class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">HitaishiLens</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Eyeglasses</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Sunglasses</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors flex items-center gap-1" href="#">
+                        Virtual Try-On <span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Contact Lenses</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 flex-1 justify-end max-w-md ml-8">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Search for frames, styles..." type="text"/>
+</div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-1 w-4 h-4 bg-primary text-white text-[10px] flex items-center justify-center rounded-full font-bold border-2 border-white dark:border-slate-900">2</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 overflow-hidden">
+<img alt="User avatar" data-alt="Portrait of a user for profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSItoxEPqawwURD-1WOK-pOi8Ttp9ldxsuNH5TTQXJ0idJiNKTUjL_BnYW6v5epDChqv2YKwLkamwpbffHbBwhgHU0lyGcL73JNwVHNWpI6pj4aTGkiR1AXkKtUrw8ftHV8tLgH48KJsf9ITtdAuGi5s8MT-T6gXM6cfmjfiB0avbndRKYVncfHTDAVEpPTwniomDXK3F-qd7_of5L1i43HzxQi3lA8DPpLckW0QPIl8mHXe_sacH4hQTXTeMiM_A4nx-xQ-UHNTo"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-6 py-8">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-8 uppercase tracking-widest">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Eyeglasses</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-slate-900 dark:text-white">Aviator Classic</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Column: Gallery -->
+<div class="lg:col-span-7 space-y-4 lg:sticky lg:top-24">
+<div class="relative aspect-[4/3] bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group cursor-zoom-in">
+<img alt="Main Product Image" class="w-full h-full object-contain p-12 transition-transform duration-500 group-hover:scale-110" data-alt="Close up of classic gold aviator glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrK3FC6zGcEtxN5JamWu_cRXffOyg-oC4M8mqFQTInlf76w6N4roWWxVrhFUIspR4WLC2Yw_62WOvA91h3cAEkypoCJm0NG4kWl1VbPmUpJWPRLT5RHzPa9TIqE0aOjZG2SUtgKMSNtTvEBHu4dj3uFXtHZuUGiRi99Uqamrvi9hZCWpiLZF1RFSIHVWO1KcRceQOXPwoy7hlMelCqIe859RSFaP8VRPfKtizzSMvQQUTp_9GSdh4DeBbUesf_yMoxE-9PTZLLCHc"/>
+<div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-primary border border-primary/20 shadow-sm">Bestseller</div>
+</div>
+<div class="grid grid-cols-5 gap-4">
+<button class="aspect-square rounded-lg border-2 border-primary overflow-hidden bg-white dark:bg-slate-900">
+<img alt="View 1" class="w-full h-full object-contain p-2" data-alt="Front view of aviator glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACvlvikxkXAUSGRBvUiz3xcB2lBnYW_Cu_-skmpqc2uxcitvbUIKpOtuMweRkNXYNPQ-gW4lqBUCC8k-jXiSBtmO_ORaPxlUNpRpuU-29Ovs548KhnOegvFXFm8j5O0R9jMEuA07wSBswVhPRqPxf0oc5Y3dgxYEOEMmQjFWxNN3HtMAF2T8pyn5PDoWWtedchPJ-A3V0YrEZFpaSVbuaN2EjORNzIJ9O-Nt_LndJlTmlM88GnjxAY3m6AyHQIHclD6S4VmXqS9HU"/>
+</button>
+<button class="aspect-square rounded-lg border border-slate-200 dark:border-slate-800 hover:border-primary/50 overflow-hidden bg-white dark:bg-slate-900 transition-colors">
+<img alt="View 2" class="w-full h-full object-contain p-2" data-alt="Side profile of gold frame glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWpZzsMkliSqOFab_XHmZG_XRR0oWnKxtLhgoaPed3nc_2iElcU4Ixfl8-pbS_nrjONRl3Lbq5YmrWd9l1WYhI4AXHy_7t763KyaPS2WgGcnCT6FzDHx3UlQu6QA2-p3j52UEsjWonod5Mp2DYRO_Twde62yMKaXq73URCyuVZ17i-VK3XAe2UjElFEfwiqr3EdTBgtFkYR_03Lenj2nWEqQVVJkS3GsnYZmrswCZLuM_yZYkDwg86PFfeJfpG38DhygEZULZnYZo"/>
+</button>
+<button class="aspect-square rounded-lg border border-slate-200 dark:border-slate-800 hover:border-primary/50 overflow-hidden bg-white dark:bg-slate-900 transition-colors">
+<img alt="View 3" class="w-full h-full object-contain p-2" data-alt="Top down view of eyewear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFEXHT6osw6B1BGa2bO0p995ZidyspdM0F0Ld_M10sXzpDsjBS0egyHIVbLQGFjWvbwNLJ-UDrXfShGJm_amgzYdQx4z322bk2F2lki2WKlmSpPJkBjyrWh4ez2dEiTXSBc3YXT0xHcSx9eb5dew023pCkPmBn4vlmsQHrNXHw7n0DyCDJHSohDXN-W5Pi9GL67oaOgP7qooUAmRQ3-rXTcJI6O9vo2eSKQVFZq_yqcywK8mQAmea-hY8z4nx-D-6qJ_g33qHY6oM"/>
+</button>
+<button class="aspect-square rounded-lg border border-slate-200 dark:border-slate-800 hover:border-primary/50 overflow-hidden bg-white dark:bg-slate-900 transition-colors flex items-center justify-center relative">
+<img alt="View 4" class="w-full h-full object-cover grayscale opacity-50" data-alt="Model wearing aviator glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbbUTN9Y5bI1atlEJZ9-TI-S3NR6XSZcyfOO7c5HL0cg7BgcFjxLJQiWzXC6YUT-bAAICUopyJ9dTYmIN5rV7ciW4kcKQCS1Pekguj4AxwLR4Gi1uR3CJruio4cqRunwgII2E0VmgXAtcETSkOlxI4hoVo_mI6NX-RdHIflDBs_LyDq9ofRW56rFNmWlD-mdeSm9NrN1hoiV_Of5JPj8ZAYs2_GdZBCadOE9LQna8RCXFtkTfqMTxBBTBsaSuukS0fblSFV_3P0Xw"/>
+<span class="absolute inset-0 flex items-center justify-center bg-black/20 text-white font-bold text-xs">+2</span>
+</button>
+<button class="aspect-square rounded-lg border-2 border-dashed border-primary/30 flex flex-col items-center justify-center text-primary gap-1 hover:bg-primary/5 transition-colors group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">videocam</span>
+<span class="text-[10px] font-bold uppercase">Video</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Product Details -->
+<div class="lg:col-span-5 space-y-10">
+<!-- Product Intro -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<p class="text-primary font-bold tracking-widest text-sm uppercase">Ray-Ban Premium</p>
+<div class="flex items-center gap-1 text-amber-500">
+<span class="material-symbols-outlined text-sm fill-current">star</span>
+<span class="text-sm font-bold text-slate-900 dark:text-white">4.8</span>
+<span class="text-xs text-slate-500 font-medium">(1,240 Reviews)</span>
+</div>
+</div>
+<h1 class="text-4xl font-black text-slate-900 dark:text-white leading-tight">Aviator Classic <br/><span class="text-slate-400 font-medium">Gold Polished Titanium</span></h1>
+<div class="flex items-center gap-4">
+<span class="text-3xl font-black text-slate-900 dark:text-white">₹4,500</span>
+<span class="text-lg text-slate-400 line-through">₹7,000</span>
+<span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">35% OFF</span>
+</div>
+</div>
+<!-- Virtual Try-On Module -->
+<div class="p-6 bg-primary/5 border border-primary/20 rounded-xl space-y-4 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-10 -mr-4 -mt-4 text-primary group-hover:scale-125 transition-transform duration-700">
+<span class="material-symbols-outlined text-8xl">face</span>
+</div>
+<div class="relative z-10">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">photo_camera</span>
+                            Virtual Try-On
+                        </h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mt-1">See how these frames look on your face using AI technology.</p>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 bg-primary text-white py-3 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">play_circle</span>
+                                Start Live View
+                            </button>
+<button class="px-4 border border-slate-300 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 rounded-lg text-slate-700 dark:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-lg">upload</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Lens Selection -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-xs">Select Lens Type</h3>
+<button class="text-xs text-primary font-bold hover:underline flex items-center gap-1">
+                            Lens Guide <span class="material-symbols-outlined text-xs">help</span>
+</button>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<label class="relative flex items-center p-4 border-2 border-primary bg-primary/5 rounded-xl cursor-pointer transition-all">
+<input checked="" class="hidden" name="lens" type="radio"/>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Single Vision</p>
+<p class="text-xs text-slate-500 mt-0.5">For distance or reading</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-primary">Included</p>
+</div>
+<div class="absolute -top-2 -right-2 bg-primary text-white p-0.5 rounded-full">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</label>
+<label class="relative flex items-center p-4 border border-slate-200 dark:border-slate-800 hover:border-primary/50 rounded-xl cursor-pointer transition-all group">
+<input class="hidden" name="lens" type="radio"/>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Progressive / Bifocal</p>
+<p class="text-xs text-slate-500 mt-0.5">Both distance and reading in one</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-slate-900 dark:text-white">+ ₹1,200</p>
+</div>
+</label>
+<label class="relative flex items-center p-4 border border-slate-200 dark:border-slate-800 hover:border-primary/50 rounded-xl cursor-pointer transition-all group">
+<input class="hidden" name="lens" type="radio"/>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Zero Power / Blue Light</p>
+<p class="text-xs text-slate-500 mt-0.5">Protection for digital screens</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-slate-900 dark:text-white">+ ₹800</p>
+</div>
+</label>
+</div>
+</div>
+<!-- Frame Dimensions -->
+<div class="space-y-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+<h3 class="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-xs">Frame Dimensions</h3>
+<div class="grid grid-cols-3 gap-6">
+<div class="text-center p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<span class="material-symbols-outlined text-primary mb-2">straighten</span>
+<p class="text-[10px] text-slate-500 font-bold uppercase">Lens Width</p>
+<p class="text-sm font-black text-slate-900 dark:text-white">58 mm</p>
+</div>
+<div class="text-center p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<span class="material-symbols-outlined text-primary mb-2">width_normal</span>
+<p class="text-[10px] text-slate-500 font-bold uppercase">Bridge</p>
+<p class="text-sm font-black text-slate-900 dark:text-white">14 mm</p>
+</div>
+<div class="text-center p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<span class="material-symbols-outlined text-primary mb-2">linear_scale</span>
+<p class="text-[10px] text-slate-500 font-bold uppercase">Temple</p>
+<p class="text-sm font-black text-slate-900 dark:text-white">135 mm</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4 sticky bottom-8 pt-6">
+<button class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-4 rounded-lg font-black text-lg shadow-xl shadow-slate-900/10 hover:shadow-2xl transition-all active:scale-95 flex items-center justify-center gap-3">
+                        ADD TO CART
+                        <span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<div class="flex items-center justify-center gap-8 text-xs font-bold text-slate-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-green-500">local_shipping</span>
+                            Free Delivery
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-green-500">assignment_return</span>
+                            14 Day Returns
+                        </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-green-500">verified</span>
+                            1 Year Warranty
+                        </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Customer Reviews Section -->
+<section class="mt-24 pt-16 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-end justify-between mb-12">
+<div class="space-y-2">
+<h2 class="text-3xl font-black text-slate-900 dark:text-white leading-none">Customer Voices</h2>
+<p class="text-slate-500 font-medium">Real reviews from verified buyers</p>
+</div>
+<button class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-6 py-3 rounded-lg font-bold text-sm hover:border-primary transition-colors flex items-center gap-2">
+                    Write a Review
+                    <span class="material-symbols-outlined text-lg">edit_note</span>
+</button>
+</div>
+<!-- Review Summary Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+<div class="md:col-span-1 bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 text-center space-y-4">
+<h4 class="text-5xl font-black text-slate-900 dark:text-white">4.8</h4>
+<div class="flex justify-center gap-1 text-primary">
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star</span>
+<span class="material-symbols-outlined fill-current">star_half</span>
+</div>
+<p class="text-sm font-bold text-slate-500">Based on 1,240 reviews</p>      
+</div>
+<div class="md:col-span-3 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 overflow-x-auto no-scrollbar">
+<div class="aspect-square rounded-xl overflow-hidden relative group cursor-pointer">
+<img alt="Review Photo 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Customer selfie wearing aviators" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfqSuQRXLSrfMeD_0cEyWdbW9mTRTegdaVe9pJGAspICwsnTgYBVU_WTuY1Eg52JIL-M6ayrM5BwRNxfS1C33DVFC09doOSOOmaehgT5URnvSJYHXrQerwaymrHAta2ic5tlOVxSfQV3Jj3aqo7bwhAbLkSnfEmkwZfvgHaHaMbLFJmRSTQj8rJ1gAzxOk2cwCjLy81zqmsKbJHBUXzpFFjlZ2HxK8-SIVkoxgHql26F7U-MLtapbBEDvLuL0ZqoZdEmXwNdzUyTs"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+</div>            
+<div class="aspect-square rounded-xl overflow-hidden relative group cursor-pointer">
+<img alt="Review Photo 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Satisfied male customer in glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChMC2eQ_QHeHC_mofigjY98exhx3oJw7fOIIkgDRKByInTcevWyKzdJqEB8AX_ScZkbIyt9FNUXLMA5zcZjREeLXznb6Zvkd4vKKfSTrW9VjvbcGIOCRVKFeAajrCPkUmUJ9aQAtwHDYA-WMQ4svJJgNyGxnG7CGjBZtmZRIa1bwGCZ6ZTMZgIfB8Cv0cWRmaEMStuvoSFhAHr3_2kvEbVVWNst5idJTDcQ1a5kpQANpp4V3Jd92cA0EGKqyo6374i1fvZAYJhpAQ"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden relative group cursor-pointer">
+<img alt="Review Photo 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Woman smiling wearing new frames" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3UgwrbmEkSC9-15ugBvrkeNfGNdBUw-4o9oFSZYcarSYV9E0zf5HcaC71YDH78Qkjq5q-F3ckWINcaf7FsazqEDq0eO4VzF7vNgtKxvYq9FzoIGoqJVNffd1dgv8Qd4vrTxzsmXmct3RgqbLXidTqk2EhjF4qNs1hS93RjQo8Peo8id9H0DTNExgsoqGZvKF-yQDKU0eHIK8Pl1wqu-SO4_WKcNuFjNtLN-eZyEFkJWZd9p4EVdpP-DENriq1fa-lYObZsYhFFB0"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden relative group cursor-pointer">
+<img alt="Review Photo 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Young man profile wearing gold frames" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIrAnTUcy52E0rarrgrW8kSY6pKiO1rzveNgqlO1MYeJTuuhMPWG7M2SKfcLez4kKUJfsHObgintZk_6v0PZ_ezU5lVv-7EdVq8eNjYmb9VPmy-IYqdNEB13Bmw2lNuYgrpBuCwy8S02TO6SZbpRcICA0p0URbLqL09gIYut-vBTyXejwLQzxwh28H-QZqTrbK4rEv340hzL-9PYsilMHP-bQHSgsQ0e1sw5efphtUErEBzuCzn5jOsbQXxOwwksqXE2FK5IFgEa8"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">zoom_in</span>
+</div>
+</div>
+<div class="aspect-square rounded-xl bg-slate-100 dark:bg-slate-800 flex flex-col items-center justify-center text-slate-500 cursor-pointer hover:bg-slate-200 transition-colors">
+<span class="text-xl font-black">+45</span>
+<span class="text-[10px] font-bold uppercase">Photos</span>
+</div>
+</div>
+</div>
+<!-- Review Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Review 1 -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">AM</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Arun Mishra</p>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Verified Buyer</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">"Absolutely love the build quality! The titanium frame is incredibly light, forgot I was even wearing them. The virtual try-on was spot on with the sizing."</p>
+<div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+<button class="flex items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">thumb_up</span> Helpful (24)
+                        </button>
+<span class="text-[10px] text-slate-300">|</span>
+<p class="text-[10px] text-slate-400 font-bold">2 days ago</p>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold text-slate-400 overflow-hidden">
+<img alt="Reviewer" data-alt="Portrait of a female reviewer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC44XMxCdA0HCLGa1PCbkdbkuuNcdKubXAEkUP1ZkXkGNYlDJ-Jp5_w0GF1ESGFkSd03ct2MdTkm5qrOGa4V0DtslO3lmX6mV2X2fyTWBZoalYTDrnAeISgbQPEtMkHPC6_JPtcmfG7qUptOMBvVVi8eyLzv6w1leaklUurqnB6M1QsOG6OWZXjPZ5qpW4Xt5egF0zl80e_56QgCPIouONT53ZOjGEbdjYpfFuVUhXgMSXOBZnXQWNJp2qn7kAuodbDI7xhFxiniEQ"/>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Sarah J.</p>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Verified Buyer</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">"Elegant and classic. I opted for the Blue Light lenses and they've significantly reduced my eye strain during work hours. Packing was also very premium."</p>
+<div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+<button class="flex items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">thumb_up</span> Helpful (18)
+                        </button>
+<span class="text-[10px] text-slate-300">|</span>
+<p class="text-[10px] text-slate-400 font-bold">1 week ago</p>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">RK</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Rajat Kapoor</p>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Verified Buyer</p>
+</div>
+</div>
+<div class="flex gap-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px]">star</span>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">"Good glasses, looks premium. Delivery took 4 days which was slightly longer than expected but the product is worth the wait. Fits perfectly on my face."</p>
+<div class="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+<button class="flex items-center gap-1 text-[10px] font-bold text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">thumb_up</span> Helpful (5)
+                        </button>
+<span class="text-[10px] text-slate-300">|</span>
+<p class="text-[10px] text-slate-400 font-bold">1 week ago</p>
+</div>
+</div>
+</div>
+<div class="mt-12 text-center">
+<button class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest hover:text-primary transition-colors inline-flex items-center gap-2">
+                    Load More Reviews
+                    <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</section>
+</main>
+
+
+<!-- Footer -->
+<footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-16 mt-24">
+<div class="max-w-[1440px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12">
+<div class="col-span-2 space-y-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl font-bold">visibility</span>
+<h2 class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">HitaishiLens</h2>
+</div>
+<p class="text-sm text-slate-500 max-w-xs leading-relaxed">Revolutionizing the way you shop for eyewear. Premium quality meets cutting-edge virtual technology.</p>
+<div class="flex gap-4">
+<button class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-slate-500 hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">public</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-slate-500 hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+</button>
+</div>
+</div>
+<div class="space-y-4">
+<h5 class="text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white">Shop</h5>
+<ul class="space-y-2 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Eyeglasses</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sunglasses</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Computer Lenses</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Kids Eyewear</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white">Company</h5>
+<ul class="space-y-2 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Store Locator</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>          
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="col-span-2 space-y-4">
+<h5 class="text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white">Join the LensClub</h5>
+<p class="text-xs text-slate-500">Get early access to drops and exclusive offers.</p>
+<div class="flex gap-2">
+<input class="flex-1 bg-slate-100 dark:bg-slate-900 border-none rounded-lg px-4 py-2 text-xs focus:ring-1 focus:ring-primary" placeholder="Email address" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-xs font-bold">Subscribe</button>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-6 pt-16 mt-16 border-t border-slate-100 dark:border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+<p>© 2024 HitaishiLens Private Limited. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Cookie Policy</a>
+</div>
+</div>
+</footer>
+</body>
+</html>

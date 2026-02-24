@@ -41,26 +41,29 @@ const upload = multer({
 });
 
 // Upload lens product with image
-router.post('/api/upload-lens', upload.single('image'), async (req, res) => {
+router.post('/upload-lens', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'model_image', maxCount: 1 }]), async (req, res) => {
   try {
     const { name, brand, price, type, power_range, color, frame_material, coating_type, collection, gender_category, product_category, description, stock } = req.body;
 
     // Validate required fields
     if (!name || !brand || !price || !type) {
-      // Delete uploaded file if validation fails
-      if (req.file) {
-        fs.unlinkSync(req.file.path);
+      // Delete uploaded files if validation fails
+      if (req.files) {
+        Object.values(req.files).forEach(files => {
+          files.forEach(file => fs.unlinkSync(file.path));
+        });
       }
       return res.status(400).json({ error: 'Name, brand, price, and type are required' });
     }
 
-    // Get image URL if file was uploaded
-    const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+    // Get image URLs if files were uploaded
+    const image_url = req.files && req.files.image ? `/uploads/${req.files.image[0].filename}` : null;
+    const model_image_url = req.files && req.files.model_image ? `/uploads/${req.files.model_image[0].filename}` : null;
 
     const query = `
       INSERT INTO lens_products 
-      (name, brand, price, type, power_range, color, frame_material, coating_type, collection, gender_category, product_category, description, stock, image_url, created_at) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+      (name, brand, price, type, power_range, color, frame_material, coating_type, collection, gender_category, product_category, description, stock, image_url, model_image_url, created_at) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
     `;
 
     const [result] = await pool.execute(query, [
@@ -77,19 +80,23 @@ router.post('/api/upload-lens', upload.single('image'), async (req, res) => {
       product_category || null,
       description || null,
       stock || 0,
-      image_url
+      image_url,
+      model_image_url
     ]);
 
     res.status(201).json({
       success: true,
       message: 'Lens product uploaded successfully',
       productId: result.insertId,
-      imageUrl: image_url
+      imageUrl: image_url,
+      modelImageUrl: model_image_url
     });
   } catch (error) {
-    // Delete uploaded file if error occurs
-    if (req.file) {
-      fs.unlinkSync(req.file.path);
+    // Delete uploaded files if error occurs
+    if (req.files) {
+      Object.values(req.files).forEach(files => {
+        files.forEach(file => fs.unlinkSync(file.path));
+      });
     }
     console.error('Upload error:', error);
     res.status(500).json({ error: 'Failed to upload lens product', details: error.message });
@@ -140,24 +147,26 @@ router.get('/get-lens-by-type/:type', async (req, res) => {
 });
 
 // Update lens product with optional image
-router.put('/update-lens/:id', upload.single('image'), async (req, res) => {
+router.put('/update-lens/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'model_image', maxCount: 1 }]), async (req, res) => {
   try {
     const { id } = req.params;
     const { name, brand, price, type, power_range, color, frame_material, coating_type, collection, gender_category, product_category, description, stock } = req.body;
 
-    // Get existing product to check current image
-    const [existingProduct] = await pool.query('SELECT image_url FROM lens_products WHERE id = ?', [id]);
+    // Get existing product to check current images
+    const [existingProduct] = await pool.query('SELECT image_url, model_image_url FROM lens_products WHERE id = ?', [id]);
 
     if (existingProduct.length === 0) {
-      if (req.file) {
-        fs.unlinkSync(req.file.path);
+      if (req.files) {
+        Object.values(req.files).forEach(files => {
+          files.forEach(file => fs.unlinkSync(file.path));
+        });
       }
       return res.status(404).json({ error: 'Product not found' });
     }
 
-    // Use new image if uploaded, otherwise keep existing
+    // Use new images if uploaded, otherwise keep existing
     let image_url = existingProduct[0].image_url;
-    if (req.file) {
+    if (req.files && req.files.image) {
       // Delete old image if it exists
       if (existingProduct[0].image_url) {
         const oldImagePath = path.join(__dirname, '../', existingProduct[0].image_url);
@@ -165,12 +174,24 @@ router.put('/update-lens/:id', upload.single('image'), async (req, res) => {
           fs.unlinkSync(oldImagePath);
         }
       }
-      image_url = `/uploads/${req.file.filename}`;
+      image_url = `/uploads/${req.files.image[0].filename}`;
+    }
+
+    let model_image_url = existingProduct[0].model_image_url;
+    if (req.files && req.files.model_image) {
+      // Delete old model image if it exists
+      if (existingProduct[0].model_image_url) {
+        const oldModelImagePath = path.join(__dirname, '../', existingProduct[0].model_image_url);
+        if (fs.existsSync(oldModelImagePath)) {
+          fs.unlinkSync(oldModelImagePath);
+        }
+      }
+      model_image_url = `/uploads/${req.files.model_image[0].filename}`;
     }
 
     const query = `
       UPDATE lens_products 
-      SET name = ?, brand = ?, price = ?, type = ?, power_range = ?, color = ?, frame_material = ?, coating_type = ?, collection = ?, gender_category = ?, product_category = ?, description = ?, stock = ?, image_url = ?, updated_at = NOW()
+      SET name = ?, brand = ?, price = ?, type = ?, power_range = ?, color = ?, frame_material = ?, coating_type = ?, collection = ?, gender_category = ?, product_category = ?, description = ?, stock = ?, image_url = ?, model_image_url = ?, updated_at = NOW()
       WHERE id = ?
     `;
 
@@ -189,6 +210,7 @@ router.put('/update-lens/:id', upload.single('image'), async (req, res) => {
       description,
       stock,
       image_url,
+      model_image_url,
       id
     ]);
 

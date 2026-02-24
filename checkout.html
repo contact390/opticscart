@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#137fec",
+                "accent-gold": "#d4af37",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"]
+            }
+        }
+    }
+}
+</script>
+
+
+
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Checkout - Hitaishi Lens</title>
@@ -738,187 +773,17 @@
     </style>
 </head>
 <body>
-    <!-- Desktop Navigation -->
-    <nav class="desktop-nav">
-        <!-- Top Info Bar -->
-        <div class="top-info-bar">
-            <div class="top-info-content">
-                <div class="info-links">
-                    <a href="domorebemore.html">🚀 Do More Be More</a>
-                    <a href="singapur.html">🇸🇬 Singapore</a>
-                    <a href="uae.html">🇦🇪 UAE</a>
-                    <a href="johnjacobs.html">👓 John Jacobs</a>
-                    <a href="aqualence.html">💧 Aqualens</a>
-                </div>
-                <div>
-                    <a href="engineeringblogs.html" class="info-links">📚 Engineering Blogs</a>
-                    <a href="contactus.html" class="contact-btn">📞 Contact Us</a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Main Header -->
-        <div class="main-header">
-            <div class="logo">
-                <img src="image\hitaishilenslogo2.jpg" alt="Hitaishi Lens">
-            </div>
-            
-            <div class="search-container">
-                <span class="search-icon">🔍</span>
-                <input type="text" class="search-input" placeholder="Search for eyeglasses, sunglasses, lenses...">
-            </div>
-            
-            <div class="contact-info">
-                <div class="phone-number">
-                    <span>📞</span> 99998 99998
-                </div>
-                <div class="customer-support">24/7 Customer Support</div>
-            </div>
-            
-            <div class="user-actions">
-                <a href="trackorder.html" class="user-action-link">📦 Track Order</a>
-                <a href="signup.html" class="user-action-link">👤 Sign In/Up</a>
-                <a href="whishlist.html" class="user-action-link">❤️ Wishlist</a>
-                <a href="cart.html" class="cart-btn">
-                    🛒 Cart <span class="cart-count"></span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Categories Menu -->
-        <div class="categories-menu">
-            <div class="categories-content">
-                <div class="category-item">
-                    <a href="home.html" class="category-link">🏠 Home</a>
-                </div>
-                
-                <div class="category-item">
-                    <a href="eyeglasses.html" class="category-link">👓 Eyeglasses</a>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-title">Eyeglasses Collection</div>
-                        <a href="#" class="dropdown-link">
-                            <span>👨</span>
-                            <div>
-                                <div style="font-weight: 600;">Men's Eyeglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Premium frames for men</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-link">
-                            <span>👩</span>
-                            <div>
-                                <div style="font-weight: 600;">Women's Eyeglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Stylish frames for women</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-link">
-                            <span>👶</span>
-                            <div>
-                                <div style="font-weight: 600;">Kids' Eyeglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Durable & fun frames</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="category-item">
-                    <a href="sunglasses.html" class="category-link">🕶️ Sunglasses</a>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-title">Sunglasses Collection</div>
-                        <a href="#" class="dropdown-link">
-                            <span>👨</span>
-                            <div>
-                                <div style="font-weight: 600;">Men's Sunglasses</div>
-                                <div style="font-size: 12px; color: #718096;">UV protection & style</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-link">
-                            <span>👩</span>
-                            <div>
-                                <div style="font-weight: 600;">Women's Sunglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Fashion meets protection</div>
-                            </div>
-                        </a>
-                        <a href="#" class="dropdown-link">
-                            <span>👶</span>
-                            <div>
-                                <div style="font-weight: 600;">Kids' Sunglasses</div>
-                                <div style="font-size: 12px; color: #718096;">Safe & colorful</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="category-item">
-                    <a href="kids.html" class="category-link">👶 Kids Glasses</a>
-                </div>
-                
-                <div class="category-item">
-                    <a href="lenses.html" class="category-link">🔍 Lenses</a>
-                </div>
-                
-                <div class="category-item">
-                    <a href="contactlenses.html" class="category-link">👁️ Contact Lenses</a>
-                </div>
-                
-                <div class="category-item">
-                    <a href="storelocater.html" class="category-link">📍 Store Locator</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+ 
 
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
-        <div class="mobile-header">
-            <button class="mobile-menu-btn" onclick="openMobileMenu()">☰</button>
-            <div class="mobile-logo">
-                <img src="image\hitaishilenslogo2.jpg" alt="Hitaishi Lens">
-            </div>
-            <div class="mobile-actions">
-                <button class="mobile-search-btn" onclick="openSearch()">🔍</button>
-                <button class="mobile-cart-btn" onclick="openCart()">🛒</button>
-            </div>
-        </div>
-    </nav>
+<div id="navbar"></div>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <h3 style="margin: 0;">Menu</h3>
-            <button class="mobile-menu-close" onclick="closeMobileMenu()">×</button>
-        </div>
-        <div class="mobile-menu-content">
-            <div class="mobile-category">
-                <div class="mobile-category-title">Categories</div>
-                <a href="home.html" class="mobile-link">🏠 Home</a>
-                <a href="eyeglasses.html" class="mobile-link">👓 Eyeglasses</a>
-                <a href="sunglasses.html" class="mobile-link">🕶️ Sunglasses</a>
-                <a href="kids.html" class="mobile-link">👶 Kids Glasses</a>
-                <a href="lenses.html" class="mobile-link">🔍 Lenses</a>
-                <a href="contactlenses.html" class="mobile-link">👁️ Contact Lenses</a>
-                <a href="storelocater.html" class="mobile-link">📍 Store Locator</a>
-            </div>
-            
-            <div class="mobile-category">
-                <div class="mobile-category-title">Quick Links</div>
-                <a href="trackorder.html" class="mobile-link">📦 Track Order</a>
-                <a href="signup.html" class="mobile-link">👤 Sign In/Up</a>
-                <a href="whishlist.html" class="mobile-link">❤️ Wishlist</a>
-                <a href="engineeringblogs.html" class="mobile-link">📚 Engineering Blogs</a>
-                <a href="domorebemore.html" class="mobile-link">🚀 Do More Be More</a>
-            </div>
-            
-            <div class="mobile-category">
-                <div class="mobile-category-title">Contact</div>
-                <a href="tel:9999899998" class="mobile-link">📞 99998 99998</a>
-                <a href="contactus.html" class="mobile-link">📧 Contact Us</a>
-            </div>
-        </div>
-    </div>
-
-
-
-
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
     
   <div class="nav">
     <h1>🕶️ Hitaishi Lens</h1>
@@ -968,6 +833,17 @@
     </div>
   </div>
 
+
+  <div id="footer"></div>
+
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+
   <script>
     function getCart() {
       try {
@@ -1001,7 +877,7 @@
         const quantity = parseInt(item.quantity || 1, 10);
         const subtotal = price * quantity;
         const imageUrl = item.image_url 
-          ? ('https://opticscart.com' + item.image_url) 
+          ? ('http://localhost:5000' + item.image_url) 
           : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="70" height="70"%3E%3Crect fill="%23f0f0f0" width="70" height="70" rx="8"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="10"%3ENo Image%3C/text%3E%3C/svg%3E';
         
         return `

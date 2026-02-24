@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HitaishiLens | Premium Eyewear Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-card:hover .model-overlay {
+            opacity: 1;
+        }
+        .product-card .model-overlay {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between gap-8">
+<div class="flex items-center gap-10">
+<a class="flex items-center gap-2 group" href="#">
+<div class="bg-primary text-white p-1.5 rounded-lg">
+<span class="material-symbols-outlined block">visibility</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">HitaishiLens</h1>
+</a>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Eyeglasses</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Sunglasses</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Screen Glasses</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Contact Lenses</a>
+</nav>
+</div>
+<div class="flex-1 max-w-md hidden md:block">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl py-2.5 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-slate-400" placeholder="Search for frames, brands, or styles..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-primary text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3cumHU608ddg3Etgf-vaP53YmOun-H84IrzNyZ5BzyAe4GUjNqBFIgWSG1I4PSfNJUofZACc8-6aRZrTotgBI-mXbkcDoh3P69xHhVeBSlMQq9Otzym05fMeNURgJYUEutHxxvhWpdVQu9FGHTIBUl0EJQE7xKgHp4Jv_jlvG52w9O2y9S89JsTRgYYPzEtaMxCPBe7lH05b9reiHLkZW9gakv-RgsCnj_U_Bh9KRDDKFECgx2GqYsJkbpMnUlmU91ckQXJwzGeU"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-6 py-6">
+<!-- Breadcrumbs & Title Bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<nav class="flex items-center gap-2 text-xs text-slate-500 mb-2 uppercase tracking-wider font-semibold">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Eyeglasses</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-white">Men's Premium Collection</span>
+</nav>
+<h2 class="text-3xl font-extrabold tracking-tight">Men's Eyeglasses <span class="text-slate-400 font-normal ml-2 text-lg">(428 Items)</span></h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 cursor-pointer hover:border-primary transition-colors">
+<span class="text-sm font-medium">Sort By: Relevance</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex gap-10">
+<!-- Sidebar Filters -->
+<aside class="w-64 flex-shrink-0 hidden lg:block">
+<div class="sticky top-24 space-y-8">
+<!-- Frame Shape Filter -->
+<section>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Frame Shape</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex flex-col items-center justify-center p-3 border-2 border-primary bg-primary/5 rounded-xl transition-all">
+<span class="material-symbols-outlined text-primary mb-1">rectangle</span>
+<span class="text-[10px] font-bold uppercase">Aviator</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 border-2 border-transparent bg-white dark:bg-slate-800 rounded-xl hover:border-slate-200 transition-all">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 mb-1">trip_origin</span>
+<span class="text-[10px] font-bold uppercase">Round</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 border-2 border-transparent bg-white dark:bg-slate-800 rounded-xl hover:border-slate-200 transition-all">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 mb-1">check_box_outline_blank</span>
+<span class="text-[10px] font-bold uppercase">Rectangle</span>
+</button>
+<button class="flex flex-col items-center justify-center p-3 border-2 border-transparent bg-white dark:bg-slate-800 rounded-xl hover:border-slate-200 transition-all">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 mb-1">category</span>
+<span class="text-[10px] font-bold uppercase">Wayfarer</span>
+</button>
+</div>
+</section>
+<!-- Material Filter -->
+<section>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Material</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Titanium</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-slate-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Handmade Acetate</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Stainless Steel</span>
+</label>
+</div>
+</section>
+<!-- Price Range -->
+<section>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Price Range</h3>
+<div class="px-2">
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full relative mb-4">
+<div class="absolute left-1/4 right-0 h-full bg-primary rounded-full"></div>
+<div class="absolute left-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-lg cursor-pointer"></div>
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-lg cursor-pointer"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold">₹2,500</span>
+<span class="text-xs font-bold">₹15,000+</span>
+</div>
+</div>
+</section>
+<!-- Brand Filter -->
+<section>
+<h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-4">Top Brands</h3>
+<div class="space-y-2">
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary">Ray-Ban</span>
+</div>
+<span class="text-xs text-slate-400">124</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary">Oakley</span>
+</div>
+<span class="text-xs text-slate-400">86</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-3">
+<input class="rounded border-slate-300 text-primary focus:ring-primary w-4 h-4" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary">John Jacobs</span>
+</div>
+<span class="text-xs text-slate-400">210</span>
+</label>
+</div>
+</section>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-1">
+<!-- Active Filters Bar -->
+<div class="flex items-center flex-wrap gap-2 mb-8">
+<span class="text-xs font-bold text-slate-400 mr-2 uppercase tracking-tight">Active Filters:</span>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-semibold shadow-sm">
+                        Acetate
+                        <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-red-500">close</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-semibold shadow-sm">
+                        Aviator
+                        <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-red-500">close</span>
+</div>
+<button class="text-xs font-bold text-primary hover:underline ml-2">Clear All</button>
+</div>
+<!-- Main Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Product Card 1 -->
+<div class="product-card group relative bg-white dark:bg-background-dark rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:shadow-2xl transition-all duration-500">
+<div class="relative aspect-[4/3] overflow-hidden bg-slate-50 dark:bg-slate-900">
+<!-- Try On Badge -->
+<div class="absolute top-4 left-4 z-10">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-primary text-white text-[10px] font-bold uppercase rounded-full shadow-lg">
+<span class="material-symbols-outlined text-xs">view_in_ar</span>
+                                    3D Try On
+                                </div>
+</div>
+<button class="absolute top-4 right-4 z-10 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<!-- Primary Product Image -->
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Classic black aviator frames product shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOQDmQ86QYhDUjyXOuIhDWRPW9cDaA2YJSbe90jTU13LDO-nEj3PhQ6Nq3bQ47SOMgwbu32c1rFDaKJ4IyYjV-aFAOC3dzOv-pHgRFWOqswJQnEKdlDDP8jnVGCrC5okQgMr2AehJnS5fzH1OL5n9zOpzh8P-TgziiiJdrXgNtuXMnIhhqX9hF7s_0wSrzD_4PQaxcc74VDSieqydJXrVpPTFmYOIC1W5dMdsQRaF7PpGMhj5McO9wMsdM1txW1Ov9xqIPaZFNoHE"/>
+<!-- Model Image on Hover -->
+<div class="model-overlay absolute inset-0 bg-slate-100">
+<img class="w-full h-full object-cover" data-alt="Male model wearing black aviator glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYjYMGXEMK9tiFC-lt5V7GJgJuM6jGeARPOHqnKyzMgsI8H1_WAhWU36CaXGoLRCxE6iLjZDoI6CiXTEu3yRTFXMHDAFMqQOIVVAPwP0U7tlcC3W8zMQaWXuwijA6AwEYjY34b5mD6m4wm9f9Z6BRAXeZtDF1MxbTRXS5jOYw_sR9JWEiyJtzS2rjacN35-7EVm3nkIGIRJX3fZisFtp1VqKITgl7z3Y3kC2spcbO3XL5j9PSOlexbdVbL3yuckRYOAxNYwPXNB2E"/>
+</div>
+<!-- Add to Cart (Quick Action) -->
+<div class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-white text-slate-900 font-bold py-2.5 rounded-lg text-sm shadow-xl hover:bg-slate-50">Quick View</button>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ray-Ban</span>
+<div class="flex gap-1.5">
+<div class="w-3.5 h-3.5 rounded-full bg-black border-2 border-white shadow-sm ring-1 ring-slate-200 cursor-pointer"></div>
+<div class="w-3.5 h-3.5 rounded-full bg-amber-800 border-2 border-white shadow-sm ring-1 ring-slate-200 cursor-pointer"></div>
+<div class="w-3.5 h-3.5 rounded-full bg-slate-400 border-2 border-white shadow-sm ring-1 ring-slate-200 cursor-pointer"></div>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Aviator Classic RB3025</h3>
+<p class="text-xs text-slate-500 mb-4">Polished Black · Acetate</p>
+<div class="flex items-end gap-2">
+<span class="text-xl font-extrabold">₹11,490</span>
+<span class="text-sm text-slate-400 line-through font-medium mb-0.5">₹12,990</span>
+<span class="text-xs font-bold text-green-600 mb-0.5">12% OFF</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="product-card group relative bg-white dark:bg-background-dark rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:shadow-2xl transition-all duration-500">
+<div class="relative aspect-[4/3] overflow-hidden bg-slate-50 dark:bg-slate-900">
+<div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-primary text-white text-[10px] font-bold uppercase rounded-full shadow-lg">
+<span class="material-symbols-outlined text-xs">view_in_ar</span>
+                                    3D Try On
+                                </div>
+<div class="px-2.5 py-1 bg-amber-500 text-white text-[10px] font-bold uppercase rounded-full shadow-lg">Bestseller</div>
+</div>
+<button class="absolute top-4 right-4 z-10 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Modern round titanium glasses product shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIQoejqEOwV0C_1O7W7ZuN_eXdOrw81MbnyTSAz7QGPA5GAULIi57djepTs1nT0xfzz3YWG5052LtOktOIUq4Y-P-wJqG1B4wWtQe7ejykv3bKFWjnOfeQOL0qnh1O6c9kcKdfGnP2MAtFloIYjycZlwNB0VphW5AyVQTomqhwMSYP8w9qKrDH_GP-PftF2ULpkUeOvhVD8cBX0hM6l607o2fROVIPTCFbyecBVyas_UhG6-Dl5Eeo0t1zw0BHCY9330247tYJhcU"/>
+<div class="model-overlay absolute inset-0 bg-slate-100">
+<img class="w-full h-full object-cover" data-alt="Model wearing modern round frames" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLyOA2Bs57eI-l5-kA6k5oQd5fAQvI2nKNkBMkTLpy1aQlGHtH6C1cvQ2otuozQgSPv5yP0uhpMczhlSw_Pi1iUTuszXk-a3OQgfxawBuY_ejQS0A-vZcXkOfxkP_ZYt-V03txoIbGJ4Coy1zfuHezpugbqCxqDUaZPbYTKRZohO-2hgrgz7e4irNKLOrm4rw66MXbQzMK5UrBjTpKhemMhE89i7w_o_gqI-bTVd6BKh0BOcDREJReRIBYCKdZb_QkzJPNz6yYY-4"/>
+</div>
+<div class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-white text-slate-900 font-bold py-2.5 rounded-lg text-sm shadow-xl hover:bg-slate-50">Quick View</button>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Oakley</span>
+<div class="flex gap-1.5">
+<div class="w-3.5 h-3.5 rounded-full bg-slate-700 border-2 border-white shadow-sm ring-1 ring-slate-200 cursor-pointer"></div>
+<div class="w-3.5 h-3.5 rounded-full bg-blue-900 border-2 border-white shadow-sm ring-1 ring-slate-200 cursor-pointer"></div>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Lightbeam Titanium 0.5</h3>
+<p class="text-xs text-slate-500 mb-4">Gunmetal Gray · Titanium</p>
+<div class="flex items-end gap-2">
+<span class="text-xl font-extrabold">₹14,200</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="product-card group relative bg-white dark:bg-background-dark rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:shadow-2xl transition-all duration-500">
+<div class="relative aspect-[4/3] overflow-hidden bg-slate-50 dark:bg-slate-900">
+<div class="absolute top-4 left-4 z-10">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-primary text-white text-[10px] font-bold uppercase rounded-full shadow-lg">
+<span class="material-symbols-outlined text-xs">view_in_ar</span>
+                                    3D Try On
+                                </div>
+</div>
+<button class="absolute top-4 right-4 z-10 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Wayfarer style glasses product image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPCHJ5cZHl1FrpkUPmztccWW5OrAcvYaiuy03StHNqj5QejynAKMPn6tzMwcyWTgTxcFiN8NXeh2yYzft8P1EPWwVUNmNLobZgIMoaMgVN4gObbZsiynCT4ZdwTIxm9v3Ujt9yKGX5CL95yh_E8SvrQCLW-60ggG9zbMOzi_aRioYmkD1Y7paZ-D1P3Ey6bDQDyXK2-UI5tPYn7JZ9Zk9SFRFVFz4dkuH2y_T92D4gtKgXNERqoy6WXDxVHBF9YdLSSvWDxUMH7Mc"/>
+<div class="model-overlay absolute inset-0 bg-slate-100">
+<img class="w-full h-full object-cover" data-alt="Model posing with wayfarer frames" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArz-Q7-yKkBqPc28qyxoTu8plJXKR1aL51S9UBUSOmD4_m7PjCFGVYKn88N4rmaciYcevxZNKcQ4SJho5THiS5JrR6H8iE9Mh7oHYM07f-d2SxmW_q574vYliQ-jgegwF6ey5KI0PQJTeuLgij2rSKGhs4ykNyx4i4qL7CO3dsuDEv97nTPCsnG24NzpMjVjN0R5vgYJBPTAQEy9RMBIcP7AKwPtagLvk_uz1U0KdSdsaTMjQeRxQneKvuy2pJAkv67PmbD-8iB3w"/>
+</div>
+<div class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-white text-slate-900 font-bold py-2.5 rounded-lg text-sm shadow-xl hover:bg-slate-50">Quick View</button>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">John Jacobs</span>
+<div class="flex gap-1.5">
+<div class="w-3.5 h-3.5 rounded-full bg-slate-200 border-2 border-white shadow-sm ring-1 ring-slate-200 cursor-pointer"></div>
+<div class="w-3.5 h-3.5 rounded-full bg-slate-900 border-2 border-white shadow-sm ring-1 ring-slate-200 cursor-pointer"></div>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Urban Hustle JJ E1342</h3>
+<p class="text-xs text-slate-500 mb-4">Transparent · Lightweight Acetate</p>
+<div class="flex items-end gap-2">
+<span class="text-xl font-extrabold">₹4,500</span>
+<span class="text-sm text-slate-400 font-medium mb-0.5">Free Blue-Cut Lens</span>
+</div>
+</div>
+</div>
+<!-- Card 4 (New Arrival) -->
+<div class="product-card group relative bg-white dark:bg-background-dark rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:shadow-2xl transition-all duration-500">
+<div class="relative aspect-[4/3] overflow-hidden bg-slate-50 dark:bg-slate-900">
+<div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+<div class="px-2.5 py-1 bg-slate-900 text-white text-[10px] font-bold uppercase rounded-full shadow-lg">New Arrival</div>
+</div>
+<button class="absolute top-4 right-4 z-10 text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Luxury gold metal frames glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ciPHk0LyzakbfA-yXTun7M1055G8vya0iGH5fR3P8Lo2wLHNNkYafSvGysEcUZmV9fncUa1Oxm79HqaDN2MVx6jcHZ6RmWp16f9TN_GnJr1eWZ85_CalfIpeCid2WxHP7QgMfho0qEGKplKbJkTkRajmgasbL2jghcV9kNrSovE7cIRxEdBS7UPJKs8_OJBxkrZVumKdF403eNUoaLvlrdLCs5Ere72eR5H8osdciYslMfvN1w1PsHy77jxn3AFd3BQjK0Nixxk"/>
+<div class="model-overlay absolute inset-0 bg-slate-100">
+<img class="w-full h-full object-cover" data-alt="Model with luxury gold spectacles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb6fPKYryK1LRS3GpfyDpwxrT1pJhO4v9MGy-22utUD64zJE46QylbIARM6YT1lxrBFYMoW_lp2eStq1g9bz6F9GJTi-tIrs5azv3oGJmU3uc2tY9ujV0KulJiREoZlj5O5VApXk_VYR1KtvcnW__JXbI7wRG73dKqW1cN2CMFzyVrKFqRk7eBDvP0UQbyIh-Z-Ekif5Cpu9YOkq6UYvd05GrCCHebAf7kl2mc0FPOWW0Swbb8EfSOzN6zAc7xs6llfsR6TalR-yE"/>
+</div>
+<div class="absolute bottom-4 left-4 right-4 translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+<button class="w-full bg-white text-slate-900 font-bold py-2.5 rounded-lg text-sm shadow-xl hover:bg-slate-50">Quick View</button>
+</div>
+</div>
+<div class="p-5">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ray-Ban</span>
+<div class="flex gap-1.5">
+<div class="w-3.5 h-3.5 rounded-full bg-yellow-600 border-2 border-white shadow-sm ring-1 ring-slate-200 cursor-pointer"></div>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">Round Metal G-15</h3>
+<p class="text-xs text-slate-500 mb-4">Arista Gold · Pure Metal</p>
+<div class="flex items-end gap-2">
+<span class="text-xl font-extrabold">₹9,990</span>
+</div>
+</div>
+</div>
+<!-- Placeholder/Skeleton for loading simulation -->
+<div class="animate-pulse bg-white dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800 p-5 hidden xl:block">
+<div class="aspect-[4/3] bg-slate-100 dark:bg-slate-800 rounded-lg mb-4"></div>
+<div class="h-2 w-1/4 bg-slate-100 dark:bg-slate-800 rounded mb-2"></div>
+<div class="h-4 w-3/4 bg-slate-100 dark:bg-slate-800 rounded mb-2"></div>
+<div class="h-2 w-1/2 bg-slate-100 dark:bg-slate-800 rounded mb-4"></div>
+<div class="h-6 w-1/3 bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+<!-- Pagination -->
+<div class="col-span-full py-12 flex justify-center">
+<div class="flex items-center gap-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold shadow-lg shadow-primary/20">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all font-bold">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all font-bold">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all font-bold">12</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Simple -->
+<footer class="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-12 px-6">
+<div class="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+<div>
+<h4 class="font-bold mb-4 uppercase text-xs tracking-widest text-slate-400">Customer Service</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary" href="#">Track Order</a></li>
+<li><a class="hover:text-primary" href="#">Returns &amp; Exchanges</a></li>
+<li><a class="hover:text-primary" href="#">Shipping Information</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-4 uppercase text-xs tracking-widest text-slate-400">About HitaishiLens</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-primary" href="#">Our Story</a></li>
+<li><a class="hover:text-primary" href="#">Sustainability</a></li>
+<li><a class="hover:text-primary" href="#">Careers</a></li>
+<li><a class="hover:text-primary" href="#">Store Locator</a></li>
+</ul>
+</div>
+<div class="col-span-2">
+<h4 class="font-bold mb-4 uppercase text-xs tracking-widest text-slate-400">Subscribe for Lens updates</h4>
+<p class="text-sm text-slate-500 mb-4">Get the latest collection drops and early access to sales.</p>
+<div class="flex gap-2">
+<input class="flex-1 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm px-4" placeholder="Your email address" type="email"/>
+<button class="bg-primary text-white font-bold px-6 py-2 rounded-lg hover:brightness-110 transition-all text-sm">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-xs text-slate-400">© 2024 HitaishiLens Premium Eyewear. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Privacy Policy</a>
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Terms of Service</a>
+<a class="text-xs text-slate-400 hover:text-primary" href="#">Cookie Settings</a>
+</div>
+</div>
+</footer>
+</body></html>

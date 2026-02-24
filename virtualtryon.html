@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Try On</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils"></script>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+video, canvas{
+    position:absolute;
+    width:640px;
+    height:480px;
+}
+</style>
+</head>
+
+<body>
+
+<video id="video" autoplay playsinline></video>
+<canvas id="canvas"></canvas>
+
+<script>
+
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = 640;
+canvas.height = 480;
+
+// Load glasses image
+const glasses = new Image();
+glasses.src = "glasses.png"; // add PNG glasses in same folder
+
+// Start camera
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+    video.srcObject = stream;
+});
+
+// MediaPipe FaceMesh
+const faceMesh = new FaceMesh({
+    locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+    }
+});
+
+faceMesh.setOptions({
+    maxNumFaces: 1,
+    refineLandmarks: true,
+    minDetectionConfidence: 0.5,
+    minTrackingConfidence: 0.5
+});
+
+faceMesh.onResults(results => {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(video,0,0,canvas.width,canvas.height);
+
+    if(results.multiFaceLandmarks){
+        for(const landmarks of results.multiFaceLandmarks){
+
+            // Eye positions
+            const leftEye = landmarks[33];
+            const rightEye = landmarks[263];
+
+            const x = leftEye.x * canvas.width;
+            const y = leftEye.y * canvas.height;
+
+            const width = (rightEye.x - leftEye.x) * canvas.width * 2;
+            const height = width * 0.5;
+
+            // Draw glasses
+            ctx.drawImage(glasses, x - width/4, y - height/2, width, height);
+        }
+    }
+});
+
+// Attach camera to FaceMesh
+const camera = new Camera(video, {
+    onFrame: async () => {
+        await faceMesh.send({ image: video });
+    },
+    width: 640,
+    height: 480
+});
+
+camera.start();
+
+</script>
+
+</body>
+</html>
