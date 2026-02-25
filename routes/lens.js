@@ -41,6 +41,7 @@ const upload = multer({
 });
 
 // Upload lens product with image
+// set size limit and file type filter in npm install multer configurationnp
 router.post('/upload-lens', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'model_image', maxCount: 1 }]), async (req, res) => {
   try {
     const { name, brand, price, type, power_range, color, frame_material, coating_type, collection, gender_category, product_category, description, stock } = req.body;
