@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us | Hitaishi Lens</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#137fec",
+                "accent-gold": "#d4af37",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"]
+            }
+        }
+    }
+}
+</script>
+
+<body style="font-family:'Segoe UI', sans-serif; margin:0; background-color:#f4f8fb; color:#03396c;">
+
+
+
+<div id="navbar"></div>
+
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
+
+
+  <!-- Header -->
+  <header style="background-color:#005f73; color:white; padding:50px 20px; text-align:center;margin-top:  160px;">
+    <h1 style="margin:0; font-size:2.5em;">Contact Us</h1>
+    <p style="margin-top:10px;">We’re here to help! Get in touch with the Hitaishi Lens team</p>
+  </header>
+
+  <!-- Main Container -->
+  <div style="max-width:1000px; margin:auto; padding:40px 20px;">
+
+    <!-- Contact Form -->
+    <div style="background-color:white; padding:30px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1); margin-bottom:60px;">
+      <h2 style="text-align:center; color:#023047; margin-bottom:30px;">Send Us a Message</h2>
+
+<form id="contactForm">
+  <input type="text" id="name" placeholder="Your Name" required
+    style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+
+  <input type="email" id="email" placeholder="Your Email" required
+    style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+
+  <input type="text" id="subject" placeholder="Subject"
+    style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+
+  <textarea rows="5" id="message" placeholder="Your Message" required
+    style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:6px; font-size:15px;"></textarea>
+
+  <button type="submit"
+    style="background-color:#007bff; color:white; padding:12px 20px; font-size:16px; border:none; border-radius:6px; cursor:pointer; width:100%;">
+    Submit
+  </button>
+</form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    subject: document.getElementById("subject").value,
+    message: document.getElementById("message").value
+  };
+
+  try {
+    const res = await fetch("https://opticscart.com/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      alert("Message sent successfully ✅");
+      document.getElementById("contactForm").reset();
+    } else {
+      alert("Failed to send message ❌");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Server error ❌");
+  }
+});
+</script>
+
+    </div>
+
+    <!-- FAQ Section -->
+    <div>
+      <h2 style="text-align:center; margin-bottom:30px; color:#005f73;">
+        Frequently Asked Questions – Hitaishi Lens
+      </h2>
+
+      <div style="background-color:#ffffff; padding:20px 25px; border-radius:10px; margin-bottom:15px; box-shadow:0 3px 8px rgba(0,0,0,0.08);">
+        <h4 style="margin:0 0 10px; color:#0a2342;">What are Hitaishi contact lenses made of?</h4>
+        <p style="margin:0; color:#444; font-size:15px;">
+          Hitaishi contact lenses are crafted from advanced hydrogel materials that provide comfort, oxygen permeability, and UV protection.
+        </p>
+      </div>
+
+      <div style="background-color:#ffffff; padding:20px 25px; border-radius:10px; margin-bottom:15px; box-shadow:0 3px 8px rgba(0,0,0,0.08);">
+        <h4 style="margin:0 0 10px; color:#0a2342;">Are Hitaishi lenses suitable for sensitive eyes?</h4>
+        <p style="margin:0; color:#444; font-size:15px;">
+          Yes, our lenses are designed to be gentle and irritation-free, especially for users with dry or sensitive eyes.
+        </p>
+      </div>
+
+      <div style="background-color:#ffffff; padding:20px 25px; border-radius:10px; margin-bottom:15px; box-shadow:0 3px 8px rgba(0,0,0,0.08);">
+        <h4 style="margin:0 0 10px; color:#0a2342;">How long can I wear Hitaishi lenses in a day?</h4>
+        <p style="margin:0; color:#444; font-size:15px;">
+          You can comfortably wear them for 10–12 hours a day. However, always follow your eye care professional’s guidance.
+        </p>
+      </div>
+
+      <div style="background-color:#ffffff; padding:20px 25px; border-radius:10px; margin-bottom:15px; box-shadow:0 3px 8px rgba(0,0,0,0.08);">
+        <h4 style="margin:0 0 10px; color:#0a2342;">Do Hitaishi lenses offer power for both near and far vision?</h4>
+        <p style="margin:0; color:#444; font-size:15px;">
+          Yes, we offer single vision, toric, and multifocal lenses to suit different vision correction needs.
+        </p>
+      </div>
+
+      <div style="background-color:#ffffff; padding:20px 25px; border-radius:10px; margin-bottom:15px; box-shadow:0 3px 8px rgba(0,0,0,0.08);">
+        <h4 style="margin:0 0 10px; color:#0a2342;">Where can I buy Hitaishi contact lenses?</h4>
+        <p style="margin:0; color:#444; font-size:15px;">
+          Hitaishi lenses are available at authorized optical retailers and online on our official store locator page.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+<div id="footer"></div>
+
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+</body>
+</html>

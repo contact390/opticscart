@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Product Management</title>
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; color: #333; margin: 0; padding: 0; box-sizing: border-box;">
+    <!-- Navigation Bar -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 40px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="font-size: 24px; margin: 0;">🕶️ Hitaishi Lens - Admin</h1>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <a href="products.html" style="background: white; color: #667eea; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s;">View Store</a>
+            <a href="admin-orders.html" style="background: white; color: #667eea; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s;">Orders</a>
+            <a href="admin-upload-lens.html" style="background: white; color: #667eea; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s;">Upload</a>
+            <button onclick="logout()" style="background: white; color: #667eea; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s;">Logout</button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div style="max-width: 1400px; margin: 0 auto; padding: 20px;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h2 style="margin: 0; color: #333;">Product Management</h2>
+            <button style="background: #28a745; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: background 0.3s;" onclick="openAddModal()">+ Add New Product</button>
+        </div>
+
+        <!-- Success Alert -->
+        <div style="display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #c3e6cb;" id="successAlert"></div>
+
+        <!-- Error Alert -->
+        <div style="display: none; background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #f5c6cb;" id="errorAlert"></div>
+
+        <!-- Search Bar -->
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <input type="text" id="searchInput" placeholder="Search by name, brand, or type..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+            <button onclick="searchProducts()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600;">Search</button>
+            <button onclick="resetSearch()" style="background: #999; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600;">Reset</button>
+        </div>
+
+        <!-- Products Table Container -->
+        <div style="background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden;">
+            <!-- Loading State -->
+            <div style="display: flex; justify-content: center; align-items: center; padding: 40px; flex-direction: column;" id="loadingState">
+                <div style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #007bff; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                <p style="margin-top: 15px; color: #666;">Loading products...</p>
+            </div>
+
+            <!-- Products Table -->
+            <table id="productsTable" style="display: none; width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Image</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Name</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Brand</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Type</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Price</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Power Range</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Color</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Frame Material</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Coating Type</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Collection</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Gender</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Category</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Stock</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Added On</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Updated On</th>
+                        <th style="padding: 15px; text-align: left; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #495057;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productsBody"></tbody>
+            </table>
+
+            <!-- Empty State -->
+            <div style="text-align: center; padding: 40px; color: #666;" id="emptyState" style="display: none;">
+                <p>No products found</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; overflow-y: auto;" id="productModal">
+        <div style="background: white; border-radius: 8px; width: 90%; max-width: 700px; margin: 20px auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <!-- Modal Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #dee2e6; background: #f8f9fa;">
+                <span id="modalTitle" style="font-size: 20px; font-weight: 600; color: #333;">Add New Product</span>
+                <button style="background: none; border: none; font-size: 24px; cursor: pointer; color: #999; padding: 0;" onclick="closeProductModal()">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <form id="productForm" onsubmit="saveProduct(event)" style="padding: 20px;">
+                <!-- Name -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Product Name *</label>
+                    <input type="text" id="productName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <!-- Brand & Type -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Brand *</label>
+                        <input type="text" id="productBrand" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Type *</label>
+                        <input type="text" id="productType" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    </div>
+                </div>
+
+                <!-- Price & Stock -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Price (₹) *</label>
+                        <input type="number" id="productPrice" step="0.01" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Stock</label>
+                        <input type="number" id="productStock" value="0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    </div>
+                </div>
+
+                <!-- Gender & Product Category -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Gender Category *</label>
+                        <select id="productGenderCategory" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                            <option value="">Select Gender</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                            <option value="Children">Children</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Product Category *</label>
+                        <select id="productProductCategory" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                            <option value="">Select Category</option>
+                            <option value="Eye Glasses">Eye Glasses</option>
+                            <option value="Sunglasses">Sunglasses</option>
+                            <option value="Contact Lenses">Contact Lenses</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Collection & Power Range -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Collection</label>
+                        <input type="text" id="productCollection" placeholder="e.g., Premium, Classic" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Power Range</label>
+                        <input type="text" id="productPowerRange" placeholder="e.g., -6.0 to +8.0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    </div>
+                </div>
+
+                <!-- Frame Material & Coating Type -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Frame Material</label>
+                        <input type="text" id="productFrameMaterial" placeholder="e.g., Metal, Plastic" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Coating Type</label>
+                        <input type="text" id="productCoatingType" placeholder="e.g., Anti-glare, UV Protection" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    </div>
+                </div>
+
+                <!-- Color -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Color</label>
+                    <input type="text" id="productColor" placeholder="e.g., Brown, Clear" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                </div>
+
+                <!-- Description -->
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Description</label>
+                    <textarea id="productDescription" placeholder="Product description..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box; min-height: 80px; resize: vertical;"></textarea>
+                </div>
+
+                <!-- Image -->
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Product Image</label>
+                    <input type="file" id="productImage" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box;">
+                    <img id="imagePreview" style="display: none; max-width: 200px; max-height: 200px; margin-top: 10px; border-radius: 4px; border: 1px solid #ddd;">
+                </div>
+
+                <!-- Modal Actions -->
+                <div style="display: flex; justify-content: flex-end; gap: 10px; padding-top: 20px; border-top: 1px solid #dee2e6;">
+                    <button type="button" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600;" onclick="closeProductModal()">Cancel</button>
+                    <button type="submit" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600;">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;" id="confirmModal">
+        <div style="background: white; border-radius: 8px; padding: 30px; max-width: 400px; width: 90%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 18px; font-weight: 600; color: #333; margin-bottom: 15px;">Confirm Delete</div>
+            <div style="color: #666; margin-bottom: 25px; line-height: 1.5;">Are you sure you want to delete this product? This action cannot be undone.</div>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600;" onclick="closeConfirmModal()">Cancel</button>
+                <button style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600;" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allProducts = [];
+        let currentEditingId = null;
+        let deleteProductId = null;
+
+        // Load products on page load
+        async function loadProducts() {
+            try {
+                const response = await fetch('https://opticscart.com/api/get-lens');
+                const data = await response.json();
+
+                if (data.success && Array.isArray(data.products)) {
+                    allProducts = data.products;
+                    displayProducts(allProducts);
+                } else {
+                    showEmpty();
+                }
+            } catch (error) {
+                console.error('Error loading products:', error);
+                showEmpty();
+                showError('Failed to load products');
+            }
+        }
+
+        function displayProducts(products) {
+            const table = document.getElementById('productsTable');
+            const tbody = document.getElementById('productsBody');
+            const emptyState = document.getElementById('emptyState');
+            const loadingState = document.getElementById('loadingState');
+
+            if (products.length === 0) {
+                table.style.display = 'none';
+                emptyState.style.display = 'block';
+                loadingState.style.display = 'none';
+                return;
+            }
+
+            tbody.innerHTML = products.map(product => `
+                <tr>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">
+                        ${product.image_url ? 
+                            `<img src="http://localhost:5000${product.image_url}" alt="${product.name}" style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover; background: #f0f0f0;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22%3E%3Crect fill=%22%23ccc%22 width=%2250%22 height=%2250%22/%3E%3C/svg%3E'">` 
+                            : '<div style="width: 50px; height: 50px; border-radius: 5px; display: flex; align-items: center; justify-content: center; background: #f0f0f0;">N/A</div>'
+                        }
+                    </td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;"><strong>${product.name}</strong></td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.brand}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;"><span style="display: inline-block; padding: 5px 10px; border-radius: 3px; font-size: 12px; font-weight: 600; background: #e3f2fd; color: #1976d2;">${product.type}</span></td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;"><strong>₹${parseFloat(product.price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.power_range || '-'}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.color || '-'}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.frame_material || '-'}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.coating_type || '-'}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.collection || '-'}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.gender_category || '-'}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.product_category || '-'}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">
+                        <span style="display: inline-block; padding: 5px 10px; border-radius: 3px; font-size: 12px; font-weight: 600; background: ${product.stock < 10 ? '#ffccbc' : '#c8e6c9'}; color: ${product.stock < 10 ? '#d84315' : '#2e7d32'};">
+                            ${product.stock}
+                        </span>
+                    </td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${new Date(product.created_at).toLocaleDateString('en-IN')}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">${product.updated_at ? new Date(product.updated_at).toLocaleDateString('en-IN') : '-'}</td>
+                    <td style="padding: 15px; border-bottom: 1px solid #f0f0f0;">
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap; min-width: 200px;">
+                            <button style="padding: 8px 14px; border: none; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 12px; transition: all 0.3s; white-space: nowrap; flex: 1; min-width: 60px; text-align: center; background: #27ae60; color: white;" onclick="viewProduct(${product.id})">View</button>
+                            <button style="padding: 8px 14px; border: none; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 12px; transition: all 0.3s; white-space: nowrap; flex: 1; min-width: 60px; text-align: center; background: #667eea; color: white;" onclick="openEditModal(${product.id})">Edit</button>
+                            <button style="padding: 8px 14px; border: none; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 12px; transition: all 0.3s; white-space: nowrap; flex: 1; min-width: 60px; text-align: center; background: #e74c3c; color: white;" onclick="deleteProduct(${product.id})">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            table.style.display = 'table';
+            emptyState.style.display = 'none';
+            loadingState.style.display = 'none';
+        }
+
+        function showEmpty() {
+            document.getElementById('productsTable').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'block';
+            document.getElementById('loadingState').style.display = 'none';
+        }
+
+        function openAddModal() {
+            currentEditingId = null;
+            document.getElementById('modalTitle').innerText = 'Add New Product';
+            document.getElementById('productForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function openEditModal(id) {
+            const product = allProducts.find(p => p.id === id);
+            if (!product) return;
+
+            currentEditingId = id;
+            document.getElementById('modalTitle').innerText = 'Edit Product';
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productBrand').value = product.brand;
+            document.getElementById('productType').value = product.type;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productStock').value = product.stock;
+            document.getElementById('productGenderCategory').value = product.gender_category || '';
+            document.getElementById('productProductCategory').value = product.product_category || '';
+            document.getElementById('productCollection').value = product.collection || '';
+            document.getElementById('productPowerRange').value = product.power_range || '';
+            document.getElementById('productFrameMaterial').value = product.frame_material || '';
+            document.getElementById('productCoatingType').value = product.coating_type || '';
+            document.getElementById('productColor').value = product.color || '';
+            document.getElementById('productDescription').value = product.description || '';
+
+            if (product.image_url) {
+                const preview = document.getElementById('imagePreview');
+                preview.src = `http://localhost:5000${product.image_url}`;
+                preview.style.display = 'block';
+            }
+
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+            currentEditingId = null;
+        }
+
+        async function saveProduct(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('name', document.getElementById('productName').value);
+            formData.append('brand', document.getElementById('productBrand').value);
+            formData.append('type', document.getElementById('productType').value);
+            formData.append('price', document.getElementById('productPrice').value);
+            formData.append('stock', document.getElementById('productStock').value);
+            formData.append('gender_category', document.getElementById('productGenderCategory').value);
+            formData.append('product_category', document.getElementById('productProductCategory').value);
+            formData.append('collection', document.getElementById('productCollection').value);
+            formData.append('power_range', document.getElementById('productPowerRange').value);
+            formData.append('frame_material', document.getElementById('productFrameMaterial').value);
+            formData.append('coating_type', document.getElementById('productCoatingType').value);
+            formData.append('color', document.getElementById('productColor').value);
+            formData.append('description', document.getElementById('productDescription').value);
+
+            const imageFile = document.getElementById('productImage').files[0];
+            if (imageFile) {
+                formData.append('image', imageFile);
+            }
+
+            try {
+                const url = currentEditingId 
+                    ? `https://opticscart.com/api/update-lens/${currentEditingId}`
+                    : 'https://opticscart.com/api/upload-lens';
+                
+                const method = currentEditingId ? 'PUT' : 'POST';
+
+                const response = await fetch(url, {
+                    method: method,
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showSuccess(currentEditingId ? 'Product updated successfully' : 'Product added successfully');
+                    closeProductModal();
+                    loadProducts();
+                } else {
+                    showError(data.error || 'Failed to save product');
+                }
+            } catch (error) {
+                console.error('Error saving product:', error);
+                showError('Failed to save product');
+            }
+        }
+
+        function viewProduct(id) {
+            const product = allProducts.find(p => p.id === id);
+            if (!product) return;
+
+            const viewModal = document.createElement('div');
+            viewModal.id = 'viewProductModal';
+            viewModal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; overflow-y: auto;';
+            
+            viewModal.innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 30px; width: 90%; max-width: 600px; margin: 20px auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
+                        <h3 style="margin: 0; color: #333;">Product Details</h3>
+                        <button onclick="document.getElementById('viewProductModal').remove();" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #999;">&times;</button>
+                    </div>
+                    
+                    ${product.image_url ? `<div style="text-align: center; margin-bottom: 20px;"><img src="http://localhost:5000${product.image_url}" style="max-width: 100%; max-height: 200px; border-radius: 4px;"></div>` : ''}
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
+                        <div><strong>Product ID:</strong> ${product.id}</div>
+                        <div><strong>Name:</strong> ${product.name}</div>
+                        <div><strong>Brand:</strong> ${product.brand}</div>
+                        <div><strong>Type:</strong> ${product.type}</div>
+                        <div><strong>Price:</strong> ₹${parseFloat(product.price).toLocaleString('en-IN')}</div>
+                        <div><strong>Stock:</strong> ${product.stock}</div>
+                        <div><strong>Power Range:</strong> ${product.power_range || '-'}</div>
+                        <div><strong>Color:</strong> ${product.color || '-'}</div>
+                        <div><strong>Frame Material:</strong> ${product.frame_material || '-'}</div>
+                        <div><strong>Coating Type:</strong> ${product.coating_type || '-'}</div>
+                        <div><strong>Collection:</strong> ${product.collection || '-'}</div>
+                        <div><strong>Gender Category:</strong> ${product.gender_category || '-'}</div>
+                        <div><strong>Product Category:</strong> ${product.product_category || '-'}</div>
+                        <div style="grid-column: 1/-1;"><strong>Description:</strong> ${product.description || '-'}</div>
+                        <div><strong>Added On:</strong> ${new Date(product.created_at).toLocaleDateString('en-IN')}</div>
+                        <div><strong>Updated On:</strong> ${product.updated_at ? new Date(product.updated_at).toLocaleDateString('en-IN') : '-'}</div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: right; gap: 10px; border-top: 1px solid #eee; padding-top: 15px;">
+                        <button onclick="openEditModal(${product.id})" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600;">Edit</button>
+                        <button onclick="document.getElementById('viewProductModal').remove();" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600;">Close</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(viewModal);
+            viewModal.onclick = (e) => {
+                if (e.target.id === 'viewProductModal') viewModal.remove();
+            };
+        }
+
+        function deleteProduct(id) {
+            deleteProductId = id;
+            document.getElementById('confirmModal').style.display = 'flex';
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+            deleteProductId = null;
+        }
+
+        async function confirmDelete() {
+            if (!deleteProductId) return;
+
+            try {
+                const response = await fetch(`https://opticscart.com/api/delete-lens/${deleteProductId}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showSuccess('Product deleted successfully');
+                    closeConfirmModal();
+                    loadProducts();
+                } else {
+                    showError(data.error || 'Failed to delete product');
+                }
+            } catch (error) {
+                console.error('Error deleting product:', error);
+                showError('Failed to delete product');
+            }
+        }
+
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (!searchTerm) {
+                displayProducts(allProducts);
+                return;
+            }
+
+            const filtered = allProducts.filter(product =>
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.brand.toLowerCase().includes(searchTerm) ||
+                product.type.toLowerCase().includes(searchTerm)
+            );
+
+            displayProducts(filtered);
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            displayProducts(allProducts);
+        }
+
+        function showSuccess(message) {
+            const alert = document.getElementById('successAlert');
+            alert.innerText = message;
+            alert.style.display = 'block';
+            setTimeout(() => alert.style.display = 'none', 3000);
+        }
+
+        function showError(message) {
+            const alert = document.getElementById('errorAlert');
+            alert.innerText = message;
+            alert.style.display = 'block';
+        }
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            window.location.href = 'login.html';
+        }
+
+        // Handle image preview
+        document.getElementById('productImage')?.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) closeProductModal();
+        });
+
+        document.getElementById('confirmModal').addEventListener('click', function(e) {
+            if (e.target === this) closeConfirmModal();
+        });
+
+        // Load products on page load
+        loadProducts();
+    </script>
+</body>
+</html>

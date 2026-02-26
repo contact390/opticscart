@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#137fec",
+                "accent-gold": "#d4af37",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"]
+            }
+        }
+    }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store Locator</title>
+</head>
+<body style="margin: 0; font-family: 'Inter', Arial, sans-serif; background: #f8f9fa; line-height: 1.6; color: #333;">
+
+
+<div id="navbar"></div>
+
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
+
+
+
+  <!-- Main Container -->
+  <main style="max-width: 1200px; margin: 0 auto;margin-top: 200px;">
+
+    <!-- Search Section -->
+    <section style="padding: 25px 20px; text-align: center; background: white; margin: 20px 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+      <h2 style="margin: 0 0 20px 0; font-size: 22px; color: #2c3e50;">Find a Store</h2>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+        <input 
+          type="text" 
+          id="locationInput" 
+          placeholder="Enter your city, ZIP code, or address"
+          style="padding: 16px; width: 100%; max-width: 400px; font-size: 16px; border-radius: 10px; border: 2px solid #e0e0e0; transition: border-color 0.3s; outline: none; box-sizing: border-box;"
+          onfocus="this.style.borderColor='#007bff'"
+          onblur="this.style.borderColor='#e0e0e0'">
+        
+        <button 
+          onclick="updateMap()" 
+          style="padding: 16px 32px; font-size: 16px; font-weight: 600; border: none; background: linear-gradient(to right, #007bff, #0056b3); color: white; border-radius: 10px; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 8px rgba(0,123,255,0.2); width: 100%; max-width: 400px;"
+          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 12px rgba(0,123,255,0.3)'"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0,123,255,0.2)'">
+          Find Store
+        </button>
+      </div>
+      <p style="margin: 15px 0 0 0; font-size: 14px; color: #666;">Search for Fastrack stores in your area</p>
+    </section>
+
+    <!-- Static Google Map -->
+    <section style="padding: 0 15px; margin-bottom: 25px;">
+      <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); padding: 15px;">
+        <h3 style="margin: 0 0 15px 0; font-size: 20px; color: #2c3e50; padding: 0 5px;">Store Location</h3>
+        <div style="width: 100%; height: 300px; border-radius: 8px; overflow: hidden;">
+          <iframe
+            id="mapFrame"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            style="border: none;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Fastrack%20Store%20India&output=embed&zoom=5">
+          </iframe>
+        </div>
+        <p style="margin: 10px 0 0 0; font-size: 14px; color: #666; padding: 0 5px;">Interactive map showing store locations</p>
+      </div>
+    </section>
+
+    <!-- Store List -->
+    <section style="padding: 0 15px; margin-bottom: 40px;">
+      <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+        <div style="padding: 20px 15px; border-bottom: 1px solid #f0f0f0;">
+          <h2 style="margin: 0; font-size: 22px; color: #2c3e50;">Nearby Stores</h2>
+          <p style="margin: 5px 0 0 0; font-size: 14px; color: #666;">Click on a store for more details</p>
+        </div>
+        
+        <ul id="storeList" style="list-style: none; padding: 0; margin: 0;">
+          <li onclick="selectStore(this)" style="margin: 0; padding: 20px 15px; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s; cursor: pointer;" 
+              onmouseover="this.style.backgroundColor='#f8f9fa'" 
+              onmouseout="this.style.backgroundColor='white'">
+            <div style="display: flex; align-items: flex-start;">
+              <div style="margin-right: 15px; color: #007bff; font-size: 24px;">📍</div>
+              <div>
+                <strong style="display: block; font-size: 18px; margin-bottom: 8px; color: #2c3e50;">Fastrack Store - Connaught Place</strong>
+                <p style="margin: 0 0 8px 0; font-size: 15px; color: #555;">New Delhi, Delhi 110001</p>
+                <div style="display: flex; align-items: center;">
+                  <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600;">Open: 10am – 8pm</span>
+                  <span style="margin-left: 10px; font-size: 14px; color: #007bff;">0.5 miles away</span>
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <li onclick="selectStore(this)" style="margin: 0; padding: 20px 15px; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s; cursor: pointer;" 
+              onmouseover="this.style.backgroundColor='#f8f9fa'" 
+              onmouseout="this.style.backgroundColor='white'">
+            <div style="display: flex; align-items: flex-start;">
+              <div style="margin-right: 15px; color: #007bff; font-size: 24px;">📍</div>
+              <div>
+                <strong style="display: block; font-size: 18px; margin-bottom: 8px; color: #2c3e50;">Fastrack Store - MG Road</strong>
+                <p style="margin: 0 0 8px 0; font-size: 15px; color: #555;">Bengaluru, Karnataka 560001</p>
+                <div style="display: flex; align-items: center;">
+                  <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600;">Open: 11am – 9pm</span>
+                  <span style="margin-left: 10px; font-size: 14px; color: #007bff;">1.2 miles away</span>
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <li onclick="selectStore(this)" style="margin: 0; padding: 20px 15px; transition: background-color 0.2s; cursor: pointer;" 
+              onmouseover="this.style.backgroundColor='#f8f9fa'" 
+              onmouseout="this.style.backgroundColor='white'">
+            <div style="display: flex; align-items: flex-start;">
+              <div style="margin-right: 15px; color: #007bff; font-size: 24px;">📍</div>
+              <div>
+                <strong style="display: block; font-size: 18px; margin-bottom: 8px; color: #2c3e50;">Fastrack Store - Andheri West</strong>
+                <p style="margin: 0 0 8px 0; font-size: 15px; color: #555;">Mumbai, Maharashtra 400053</p>
+                <div style="display: flex; align-items: center;">
+                  <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600;">Open: 10am – 9pm</span>
+                  <span style="margin-left: 10px; font-size: 14px; color: #007bff;">2.5 miles away</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+     <div id="footer"></div>
+
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+
+
+
+  <!-- Script -->
+  <script>
+    function updateMap() {
+      const location = document.getElementById("locationInput").value.trim();
+      if (location !== "") {
+        const mapFrame = document.getElementById("mapFrame");
+        mapFrame.src = `https://www.google.com/maps?q=Fastrack+Store+${encodeURIComponent(location)}&output=embed&zoom=12`;
+        
+        // Update store list with search results
+        document.getElementById("storeList").innerHTML = `
+          <li onclick="selectStore(this)" style="margin: 0; padding: 20px 15px; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s; cursor: pointer;" 
+              onmouseover="this.style.backgroundColor='#f8f9fa'" 
+              onmouseout="this.style.backgroundColor='white'">
+            <div style="display: flex; align-items: flex-start;">
+              <div style="margin-right: 15px; color: #007bff; font-size: 24px;">📍</div>
+              <div>
+                <strong style="display: block; font-size: 18px; margin-bottom: 8px; color: #2c3e50;">Fastrack Store - ${location}</strong>
+                <p style="margin: 0 0 8px 0; font-size: 15px; color: #555;">123 Main Street, ${location}</p>
+                <div style="display: flex; align-items: center;">
+                  <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600;">Open: 10am – 8pm</span>
+                  <span style="margin-left: 10px; font-size: 14px; color: #007bff;">0.8 miles away</span>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li onclick="selectStore(this)" style="margin: 0; padding: 20px 15px; transition: background-color 0.2s; cursor: pointer;" 
+              onmouseover="this.style.backgroundColor='#f8f9fa'" 
+              onmouseout="this.style.backgroundColor='white'">
+            <div style="display: flex; align-items: flex-start;">
+              <div style="margin-right: 15px; color: #007bff; font-size: 24px;">📍</div>
+              <div>
+                <strong style="display: block; font-size: 18px; margin-bottom: 8px; color: #2c3e50;">Fastrack Store - ${location} Mall</strong>
+                <p style="margin: 0 0 8px 0; font-size: 15px; color: #555;">456 Shopping Complex, ${location}</p>
+                <div style="display: flex; align-items: center;">
+                  <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 600;">Open: 11am – 9pm</span>
+                  <span style="margin-left: 10px; font-size: 14px; color: #007bff;">1.5 miles away</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        `;
+      } else {
+        alert("Please enter a city, ZIP code, or address to find stores.");
+      }
+    }
+    
+    function selectStore(storeElement) {
+      // Remove any previously selected store
+      const allStores = document.querySelectorAll('#storeList li');
+      allStores.forEach(store => {
+        store.style.backgroundColor = 'white';
+        store.style.boxShadow = 'none';
+      });
+      
+      // Highlight selected store
+      storeElement.style.backgroundColor = '#f0f7ff';
+      storeElement.style.boxShadow = 'inset 3px 0 0 #007bff';
+      
+      // Extract store name and update map
+      const storeName = storeElement.querySelector('strong').textContent;
+      const locationMatch = storeName.match(/-\s*(.+)/);
+      if (locationMatch) {
+        const location = locationMatch[1];
+        const mapFrame = document.getElementById("mapFrame");
+        mapFrame.src = `https://www.google.com/maps?q=Fastrack+Store+${encodeURIComponent(location)}&output=embed&zoom=14`;
+      }
+    }
+    
+    // Allow pressing Enter to search
+    document.getElementById("locationInput").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        updateMap();
+      }
+    });
+  </script>
+
+</body>
+</html>

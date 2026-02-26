@@ -1,0 +1,76 @@
+<p style="text-align: center; color:#20C1C8; font-size: 30px; margin-top: 20px;"><b>Look it, Buy it</b></p>
+
+  <!-- Product Container -->
+  <div id="product-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 30px;"></div>
+
+  <!-- Popup Modal -->
+  <div id="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.6); z-index:1000; justify-content: center; align-items: center;">
+    <div style="background:white; border-radius:10px; width:300px; padding:20px; position:relative; text-align:center;">
+      <span onclick="closePopup()" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:18px;">✖</span>
+      <h3 id="popupTitle" style="color:#20C1C8;"></h3>
+      <p id="popupPrice" style="font-size:18px; font-weight:bold;"></p>
+      <p style="font-size:14px; color:gray;">Includes all taxes | Free Shipping</p>
+      <button onclick="confirmBuy()" style="margin-top:15px; padding:10px 20px; background:#20C1C8; color:white; border:none; border-radius:5px; cursor:pointer;">Confirm Purchase</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const products = [
+      { title: "Pink Aviator Sunglasses", price: "₹1,350", img: "https://img.freepik.com/premium-photo/portrait-woman-wearing-sunglasses-against-white-background_1048944-4518679.jpg" },
+      { title: "Black Aviator Sunglasses", price: "₹1,350", img: "https://img.freepik.com/premium-photo/woman-wearing-yellow-glasses-that-says-she-is-wearing-yellow-pair-goggles_915071-150653.jpg", bestseller: true },
+      { title: "Classic Black Aviators", price: "₹1,250", img: "https://img.freepik.com/free-photo/portrait-young-stylish-laughing-woman-model-casual-summer-clothes-brown-hat-with-natural-makeup-isolated-white-wall_158538-7069.jpg" },
+      { title: "Blue Aviator Sunglasses", price: "₹1,000", img: "https://img.freepik.com/premium-photo/woman-yellow-jacket-sunglasses-holds-brown-leather-handbag_781958-1447.jpg" },
+      { title: "Green Aviator Sunglasses", price: "₹1,000", img: "https://img.freepik.com/free-photo/stylish-woman-wearing-yellow-bandana_273609-13325.jpg" },
+      { title: "Amber Vintage Shades", price: "₹1,200", img: "https://img.freepik.com/premium-photo/outside-close-up-portrait-smiling-pretty-girl-sunglasses-with-wonderful-smile-is-posing-camera-blur-city-background-sunlight_291650-2061.jpg" },
+      { title: "Retro Brown Sunglasses", price: "₹1,450", img: "https://img.freepik.com/free-photo/attractive-blond-smiling-woman-walking-park-summer-outfit-taking-selfie-photo-phone_285396-8203.jpg", bestseller: true },
+      { title: "Yellow Trendy Aviators", price: "₹999", img: "https://img.freepik.com/free-photo/attractive-blond-smiling-woman-sitting-deck-chair-stylish-outfit_285396-8234.jpg" },
+      { title: "Ocean Blue Glasses", price: "₹1,300", img: "https://img.freepik.com/free-photo/attractive-blond-smiling-woman-sitting-relaxed-deck-chair-stylish-outfit_285396-8242.jpg" },
+      { title: "Matte Grey Unisex", price: "₹1,400", img: "https://www.shutterstock.com/shutterstock/videos/28207996/thumb/8.jpg?ip=x480" },
+      { title: "Ocean Blue Glasses", price: "₹1,300", img: "https://img.freepik.com/premium-photo/young-girl-eats-her-french-fries-right-street-she-is-very-hungry-brutal-appetite-awoke-her_122525-549.jpg" },
+      { title: "Matte Grey Unisex", price: "₹1,400", img: "https://images.pexels.com/photos/17445679/pexels-photo-17445679/free-photo-of-woman-in-sunglasses.png" }
+    ];
+
+    const productContainer = document.getElementById('product-container');
+    const popup = document.getElementById('popup');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupPrice = document.getElementById('popupPrice');
+
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.style = "background:white; border-radius:10px; width:200px; padding:15px; position:relative;";
+
+      let bestsellerTag = product.bestseller
+        ? `<div style='position:absolute; top:-10px; left:10px; background:orange; color:white; padding:3px 8px; font-size:12px; border-radius:4px;'>BESTSELLER</div>`
+        : "";
+
+      card.innerHTML = `
+        ${bestsellerTag}
+        <img src="${product.img}?w=300&q=80" style="width:100%; height:180px; object-fit:cover; border-radius:8px;">
+        <div style="margin-top:10px;">
+          <strong style="color:orange;">Tees By Fastrack</strong>
+          <p style="margin:5px 0; font-size:14px;">${product.title}</p>
+          <p style="font-weight:bold;">${product.price}</p>
+          <p style="font-size:12px; color:gray;">Inclusive of all taxes</p>
+          <button onclick="openPopup('${product.title}', '${product.price}')" style="margin-top:10px; width:100%; background:#20C1C8; color:white; border:none; padding:8px 0; border-radius:5px; cursor:pointer;">Buy Now</button>
+        </div>
+        <div style="position:absolute; top:10px; right:10px; color:#ccc;">♡</div>
+      `;
+      productContainer.appendChild(card);
+    });
+
+    function openPopup(title, price) {
+      popupTitle.innerText = title;
+      popupPrice.innerText = price;
+      popup.style.display = "flex";
+    }
+
+    function closePopup() {
+      popup.style.display = "none";
+    }
+
+    function confirmBuy() {
+      alert("✅ Thank you for your purchase!");
+      closePopup();
+    }
+  </script>

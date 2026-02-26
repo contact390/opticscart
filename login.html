@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#137fec",
+                "accent-gold": "#d4af37",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"]
+            }
+        }
+    }
+}
+</script>
+
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitaishi Lens | Login</title>
+</head>
+
+
+
+
+
+<body style="
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+">
+<div id="navbar"></div>
+
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
+
+
+
+
+    <div style="
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        width: 380px;
+        max-width: 90%;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        overflow: hidden;margin-top: 350px;
+    ">
+    
+        <!-- Decorative elements -->
+        <div style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        "></div>
+        
+        <!-- Logo -->
+        <div style="margin-bottom: 25px;">
+            <img src="image\hitaishilogo.png" alt="Hitaishi Lens" style="
+                width: 80px;
+                height: 80px;
+                margin-bottom: 10px;
+                border-radius: 50%;
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            ">
+            <h2 style="
+                margin: 0;
+                color: #2d3748;
+                font-size: 28px;
+                font-weight: 700;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            ">Hitaishi Lens</h2>
+            <p style="
+                margin: 5px 0 0 0;
+                color: #718096;
+                font-size: 14px;
+                font-weight: 500;
+            ">Premium Eyewear Experience</p>
+        </div>
+
+        <h3 style="
+            margin: 0 0 25px 0;
+            color: #2d3748;
+            font-size: 24px;
+            font-weight: 600;
+        ">Welcome Back</h3>
+        
+        <form onsubmit="return handleLogin(event)" style="margin: 0;">
+            <!-- Email Input -->
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label style="
+                    display: block;
+                    color: #4a5568;
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin-bottom: 8px;
+                ">Email Address</label>
+                <div style="position: relative;">
+                    <span style="
+                        position: absolute;
+                        left: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: #667eea;
+                        font-size: 18px;
+                    ">📧</span>
+                    <input type="email" id="username" placeholder="Enter your email" required style="
+                        width: 100%;
+                        padding: 14px 15px 14px 45px;
+                        border: 2px solid #e1e5e9;
+                        border-radius: 10px;
+                        font-size: 15px;
+                        color: #2d3748;
+                        background: #f8f9fa;
+                        outline: none;
+                        transition: all 0.3s;
+                        box-sizing: border-box;
+                    "
+                    onfocus="this.style.borderColor='#667eea'; this.style.background='white'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'"
+                    onblur="this.style.borderColor='#e1e5e9'; this.style.background='#f8f9fa'; this.style.boxShadow='none'">
+                </div>
+            </div>
+
+            <!-- Password Input -->
+            <div style="margin-bottom: 25px; text-align: left;">
+                <label style="
+                    display: block;
+                    color: #4a5568;
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin-bottom: 8px;
+                ">Password</label>
+                <div style="position: relative;">
+                    <span style="
+                        position: absolute;
+                        left: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: #667eea;
+                        font-size: 18px;
+                    ">🔒</span>
+                    <input type="password" id="password" placeholder="Enter your password" required style="
+                        width: 100%;
+                        padding: 14px 15px 14px 45px;
+                        border: 2px solid #e1e5e9;
+                        border-radius: 10px;
+                        font-size: 15px;
+                        color: #2d3748;
+                        background: #f8f9fa;
+                        outline: none;
+                        transition: all 0.3s;
+                        box-sizing: border-box;
+                        -webkit-box-shadow: 0 0 0px 1000px #f8f9fa inset !important;
+                        box-shadow: 0 0 0px 1000px #f8f9fa inset !important;
+                        -webkit-text-fill-color: #2d3748 !important;
+                    "
+                    onfocus="this.style.borderColor='#667eea'; this.style.background='white'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.1)'; this.style.webkitBoxShadow='0 0 0px 1000px white inset !important'; this.style.boxShadow='0 0 0px 1000px white inset !important'"
+                    onblur="this.style.borderColor='#e1e5e9'; this.style.background='#f8f9fa'; this.style.boxShadow='none'; this.style.webkitBoxShadow='0 0 0px 1000px #f8f9fa inset !important'; this.style.boxShadow='0 0 0px 1000px #f8f9fa inset !important'">
+                    <button type="button" onclick="togglePassword()" style="
+                        position: absolute;
+                        right: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: none;
+                        border: none;
+                        color: #718096;
+                        cursor: pointer;
+                        font-size: 16px;
+                        padding: 0;
+                    ">👁️</button>
+                </div>
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 25px;
+                font-size: 14px;
+            ">
+                <label style="display: flex; align-items: center; color: #4a5568; cursor: pointer;">
+                    <input type="checkbox" style="margin-right: 8px;">
+                    Remember me
+                </label>
+                <a href="forgot-password.html" style="
+                    color: #667eea;
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: color 0.3s;
+                "
+                onmouseover="this.style.color='#764ba2'"
+                onmouseout="this.style.color='#667eea'">
+                    Forgot Password?
+                </a>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" style="
+                width: 100%;
+                padding: 15px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border: none;
+                color: white;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.3s;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                letter-spacing: 0.5px;
+            " 
+            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102,126,234,0.6)'" 
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102,126,234,0.4)'">
+                Login
+            </button>
+
+            <!-- Divider -->
+            <div style="
+                display: flex;
+                align-items: center;
+                margin: 25px 0;
+                color: #a0aec0;
+            ">
+                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+                <span style="padding: 0 15px; font-size: 13px;">OR</span>
+                <div style="flex: 1; height: 1px; background: #e2e8f0;"></div>
+            </div>
+
+            <!-- Social Login -->
+            <div style="margin-bottom: 25px;">
+                <button type="button" onclick="loginWithGoogle()" style="
+                    width: 100%;
+                    padding: 12px;
+                    background: white;
+                    border: 2px solid #e1e5e9;
+                    color: #4a5568;
+                    font-size: 14px;
+                    font-weight: 500;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    margin-bottom: 10px;
+                "
+                onmouseover="this.style.borderColor='#667eea'; this.style.backgroundColor='#f8f9fa'"
+                onmouseout="this.style.borderColor='#e1e5e9'; this.style.backgroundColor='white'">
+                    <span>🔗</span>
+                    Continue with Google
+                </button>
+            </div>
+
+            <!-- Signup Link -->
+            <p style="
+                margin: 0;
+                color: #718096;
+                font-size: 14px;
+                text-align: center;
+            ">
+                Don't have an account? 
+                <a href="signup.html" style="
+                    color: #667eea;
+                    text-decoration: none;
+                    font-weight: 600;
+                    margin-left: 5px;
+                    transition: color 0.3s;
+                "
+                onmouseover="this.style.color='#764ba2'"
+                onmouseout="this.style.color='#667eea'">
+                    Create Account
+                </a>
+            </p>
+        </form>
+
+        <!-- Message Display -->
+        <div id="message" style="
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        "></div>
+
+        <!-- Footer -->
+        <div style="
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #a0aec0;
+            font-size: 12px;
+        ">
+            <p style="margin: 0;">By logging in, you agree to our 
+                <a href="terms.html" style="color: #667eea; text-decoration: none;">Terms</a> 
+                & 
+                <a href="privacy.html" style="color: #667eea; text-decoration: none;">Privacy Policy</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleButton = event.currentTarget;
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.textContent = '👁️';
+            }
+        }
+
+        // Login function
+        async function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const message = document.getElementById("message");
+
+            // Reset message
+            message.textContent = '';
+            message.style.display = 'none';
+
+            // Validation
+            if (!email || !password) {
+                showMessage('Please fill in all fields', 'error');
+                return false;
+            }
+
+            if (!validateEmail(email)) {
+                showMessage('Please enter a valid email address', 'error');
+                return false;
+            }
+
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Logging in...';
+            submitBtn.disabled = true;
+
+            try {
+                // Call backend API for authentication
+                const res = await fetch('https://opticscart.com/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok && (data.success || data.userId || data.token)) {
+                    showMessage('Login successful! Redirecting...', 'success');
+                    
+                    // Store token & user data
+                    const userId = data.userId || data.user?.id || data.id;
+                    const token = data.token || data.userId;
+                    const firstName = data.user?.firstName || 'User';
+                    const username = firstName.charAt(0).toUpperCase() + firstName.slice(1); // Capitalize first letter
+                    
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('firstName', firstName);
+                    localStorage.setItem('email', email);
+                    localStorage.setItem('userId', userId);
+                    localStorage.setItem('user', JSON.stringify({
+                        id: userId,
+                        name: username,
+                        firstName: firstName,
+                        email: email
+                    }));
+                    
+                    console.log('Login successful. Redirecting to index.html', { userId, username });
+
+                    // Redirect immediately
+                    setTimeout(() => {
+                        window.location.replace('index.html');
+                    }, 800);
+
+                } else {
+                    // Show specific error message from backend
+                    const errorMsg = data.message || data.error || 'Invalid email or password';
+                    showMessage(errorMsg, 'error');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    console.error('Login failed:', data);
+                }
+
+            } catch (err) {
+                console.error('Login error:', err);
+                showMessage('Server error. Please check if the server is running and try again.', 'error');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Show message function
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.style.display = 'block';
+            
+            if (type === 'success') {
+                message.style.backgroundColor = 'rgba(72, 187, 120, 0.1)';
+                message.style.color = '#48BB78';
+                message.style.border = '1px solid #48BB78';
+            } else if (type === 'error') {
+                message.style.backgroundColor = 'rgba(245, 101, 101, 0.1)';
+                message.style.color = '#F56565';
+                message.style.border = '1px solid #F56565';
+            }
+        }
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Google login function
+        function loginWithGoogle() {
+            showMessage('Google login coming soon!', 'success');
+            // Implement actual Google OAuth here
+        }
+
+        // Auto-focus email field on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('username').focus();
+            
+            // REMOVED THE AUTO-REDIRECT CODE
+            // The login page should never auto-redirect
+            // Users should explicitly log in
+            
+            // Optional: You can show a message if user is already logged in
+            const token = localStorage.getItem('token');
+            if (token) {
+                // Show info message but don't redirect
+                showMessage('You are already logged in. Use the form to log in with a different account.', 'info');
+                message.style.backgroundColor = 'rgba(102, 126, 234, 0.1)';
+                message.style.color = '#667eea';
+                message.style.border = '1px solid #667eea';
+            }
+        });
+
+        // Enter key support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const activeElement = document.activeElement;
+                if (activeElement.id === 'password') {
+                    document.querySelector('button[type="submit"]').click();
+                }
+            }
+        });
+    </script>
+
+    <!-- Add some responsive styles -->
+    <style>
+        @media (max-width: 480px) {
+            body > div {
+                padding: 30px 20px;
+                width: 90%;
+                margin: 20px;
+            }
+            
+            h2 {
+                font-size: 24px !important;
+            }
+            
+            h3 {
+                font-size: 20px !important;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            body > div {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+    
+    <!-- Load navbar authentication script -->
+    <script src="navbar-auth.js"></script>
+
+</body>
+</html>

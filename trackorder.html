@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<!-- Tailwind Config -->
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#137fec",
+                "accent-gold": "#d4af37",
+                "background-light": "#f6f7f8",
+                "background-dark": "#101922",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"]
+            }
+        }
+    }
+}
+</script>
+
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order | Hitaishi Lens</title>
+  <style>
+    @media (max-width: 768px) {
+      .track-container {
+        margin: 20px 15px !important;
+        padding: 20px !important;
+      }
+      h1 {
+        font-size: 24px !important;
+        padding: 15px !important;
+      }
+      h2 {
+        font-size: 20px !important;
+      }
+      input, button {
+        font-size: 16px !important;
+        padding: 14px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .track-container {
+        margin: 15px 10px !important;
+        padding: 15px !important;
+      }
+      h1 {
+        font-size: 20px !important;
+        padding: 12px !important;
+      }
+    }
+  </style>
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; min-height: 100vh;">
+
+<div id="navbar"></div>
+
+<script>
+fetch("navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+</script>
+
+
+
+
+
+
+  <div style="background: #101820; color: white; padding: 20px; text-align: center;">
+    <h1 style="margin: 0; font-size: 28px;">Hitaishi Lens - Track Your Order</h1>
+  </div>
+
+  <div class="track-container" style="max-width: 600px; margin: 40px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 90%;">
+    <h2 style="margin-top: 0; font-size: 24px;">Enter Your Order ID</h2>
+    <p style="color: #555; font-size: 16px; line-height: 1.5;">Find your order details and track its current status.</p>
+
+    <input id="orderId" type="text" placeholder="e.g., HLT123456" style="width: 100%; padding: 12px; margin-top: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+    
+    <button onclick="trackOrder()" style="margin-top: 20px; padding: 12px 20px; background: #007bff; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; width: 100%;">
+      Track Order
+    </button>
+
+    <div id="result" style="margin-top: 30px; padding: 15px; background: #e9ecef; border-radius: 6px; display: none; line-height: 1.6;"></div>
+  </div>
+
+  <script>
+    function trackOrder() {
+      const orderId = document.getElementById('orderId').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (orderId === '') {
+        resultDiv.style.display = 'block';
+        resultDiv.innerHTML = "<strong>Please enter a valid Order ID.</strong>";
+        return;
+      }
+
+      const mockData = {
+        "HLT123456": "📦 Order Confirmed<br>🚚 Out for Delivery<br>⏰ Expected delivery: 13-Apr-2025",
+        "HLT789012": "📦 Order Confirmed<br>✅ Delivered on 10-Apr-2025",
+        "HLT456789": "📦 Order Confirmed<br>🔧 In Transit<br>Estimated: 14-Apr-2025"
+      };
+
+      const status = mockData[orderId.toUpperCase()];
+
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = status 
+        ? `<strong>Order ID:</strong> ${orderId.toUpperCase()}<br><br><div>${status}</div>` 
+        : `<strong>No status found for Order ID:</strong> ${orderId}`;
+    }
+
+    // Enter key support
+    document.getElementById('orderId').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        trackOrder();
+      }
+    });
+  </script>
+    <div id="footer"></div>
+
+<script>
+fetch("footer.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+</script>
+
+</body>
+</html>
