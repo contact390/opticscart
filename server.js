@@ -43,7 +43,7 @@ app.use('/api', cartRoutes);
 // health check
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
-const PORT = 5000;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on https://opticscart.com:${PORT}`);
 });
