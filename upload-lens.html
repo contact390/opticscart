@@ -897,21 +897,31 @@
 
             try {
                 const response = await fetch('https://opticscart.com/api/upload-lens', {
-                    method: 'POST',
-                    body: formData  // FormData automatically sets multipart/form-data with boundary
-                });
+    method: 'POST',
+    body: formData
+});
 
-                const result = await response.json();
+let result;
 
-                if (response.ok) {
-                    showMessage('Product uploaded successfully! ✓', 'success');
-                    form.reset();
-                    setTimeout(() => {
-                        window.location.href = 'products.html';
-                    }, 2000);
-                } else {
-                    showMessage(result.error || 'Failed to upload product', 'error');
-                }
+const contentType = response.headers.get("content-type");
+
+if (contentType && contentType.includes("application/json")) {
+    result = await response.json();
+} else {
+    const text = await response.text();
+    console.error("Server returned non-JSON:", text);
+    throw new Error("Server error: " + response.status);
+}
+
+if (response.ok) {
+    showMessage('Product uploaded successfully! ✓', 'success');
+    form.reset();
+    setTimeout(() => {
+        window.location.href = 'products.html';
+    }, 2000);
+} else {
+    showMessage(result?.error || 'Failed to upload product', 'error');
+}
             } catch (error) {
                 console.error('Error:', error);
                 showMessage('Network error. Please try again.', 'error');
